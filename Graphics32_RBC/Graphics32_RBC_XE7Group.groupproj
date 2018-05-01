@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{5472E720-07D1-4286-B140-6AAB4D6852B1}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="Packages\Graphics32_RBC.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Demos\Widgets\Demo_Widgets.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="Graphics32_RBC">
+        <MSBuild Projects="Packages\Graphics32_RBC.dproj"/>
+    </Target>
+    <Target Name="Graphics32_RBC:Clean">
+        <MSBuild Projects="Packages\Graphics32_RBC.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Graphics32_RBC:Make">
+        <MSBuild Projects="Packages\Graphics32_RBC.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Demo_Widgets">
+        <MSBuild Projects="Demos\Widgets\Demo_Widgets.dproj"/>
+    </Target>
+    <Target Name="Demo_Widgets:Clean">
+        <MSBuild Projects="Demos\Widgets\Demo_Widgets.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Demo_Widgets:Make">
+        <MSBuild Projects="Demos\Widgets\Demo_Widgets.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="Graphics32_RBC;Demo_Widgets"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="Graphics32_RBC:Clean;Demo_Widgets:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="Graphics32_RBC:Make;Demo_Widgets:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
