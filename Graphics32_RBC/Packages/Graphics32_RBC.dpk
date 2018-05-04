@@ -38,6 +38,7 @@ contains
   GR32_Widgets_Circle in '..\Sources\GR32_Widgets_Circle.pas',
   GR32_Widgets_Box in '..\Sources\GR32_Widgets_Box.pas',
   GR32_Widgets_Bar in '..\Sources\GR32_Widgets_Bar.pas',
-  GR32_Widgets_Izgara in '..\Sources\GR32_Widgets_Izgara.pas';
+  GR32_Widgets_Izgara in '..\Sources\GR32_Widgets_Izgara.pas',
+  GR32_Widgets_Chart in '..\Sources\GR32_Widgets_Chart.pas';
 
 end.
