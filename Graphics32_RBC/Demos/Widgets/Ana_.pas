@@ -7,8 +7,7 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, GR32_Image, Vcl.ComCtrls, GR32_ColorPicker,
   GR32_ColorSwatch, Vcl.StdCtrls, Vcl.ExtCtrls, GR32_Widgets_Base,
   GR32_Widgets_Circle, GR32_Widgets_Box, GR32_Widgets_Bar, rbcWidgetBase, rbcWidgetInfoCircle, dxPanel,
-  GR32_Widgets_Izgara, cxGraphics, cxControls, cxLookAndFeels,
-  cxLookAndFeelPainters, dxSkinsCore, dxSkinVS2010, AdvScrollBox, cxScrollBox;
+  GR32_Widgets_Izgara, GR32_Widgets_Chart;
 
 type
   TAna = class(TForm)
@@ -30,24 +29,19 @@ type
     GP: TGridPanel;
     GR32WidgetBox6: TGR32WidgetBox;
     GR32WidgetBox3: TGR32WidgetBox;
-    GR32WidgetBox7: TGR32WidgetBox;
     GR32WidgetCircle1: TGR32WidgetCircle;
     GR32WidgetCircle2: TGR32WidgetCircle;
     GR32WidgetBox2: TGR32WidgetBox;
-    GR32WidgetCircle3: TGR32WidgetCircle;
-    GR32WidgetCircle4: TGR32WidgetCircle;
     GR32WidgetBar1: TGR32WidgetBar;
     GR32WidgetBar2: TGR32WidgetBar;
     GR32WidgetBar3: TGR32WidgetBar;
     GR32WidgetBar4: TGR32WidgetBar;
-    TabSheet2: TTabSheet;
-    GR32WidgetIzgara1: TGR32WidgetIzgara;
-    GR32WidgetIzgara2: TGR32WidgetIzgara;
     GR32WidgetIzgara3: TGR32WidgetIzgara;
+    TabSheet4: TTabSheet;
+    GRO: TGR32WidgetChart;
+    FREQ: TTrackBar;
+    BRO: TGR32WidgetChart;
     WGT: TGR32WidgetCircle;
-    TabSheet3: TTabSheet;
-    cxScrollBox1: TcxScrollBox;
-    AdvScrollBox1: TAdvScrollBox;
     procedure TRAChange(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
     procedure Button1Click(Sender: TObject);
@@ -57,6 +51,8 @@ type
     procedure Button4Click(Sender: TObject);
     procedure FormResize(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure GROClick(Sender: TObject);
+    procedure FREQChange(Sender: TObject);
   private
     { Private declarations }
     procedure Setup;
@@ -76,7 +72,9 @@ implementation
 {$R *.dfm}
 
 uses
-  System.Math;
+    System.Math
+  , GR32_Rubicube_Utils
+  ;
 
 procedure TAna.Button1Click(Sender: TObject);
 begin
@@ -105,7 +103,21 @@ begin
   H := P1.Height - WGT.Height;
 end;
 
+procedure TAna.FREQChange(Sender: TObject);
+begin
+  Timer1.Interval := FREQ.Position;
+  Timer2.Interval := FREQ.Position;
+end;
+
+procedure TAna.GROClick(Sender: TObject);
+begin
+  Setup; GRO.Invalidate;
+end;
+
 procedure TAna.Setup;
+var
+  I: Integer;
+  M: Single;
 begin
   T := 0;
   L := 0;
@@ -117,6 +129,14 @@ begin
   AY := 2;
   WGT.Top := T;
   WGT.Left := L;
+  //GRO.Items.Flush;
+  M := GRO.Height;
+  //GRO.ClearItems;
+  for I := 0 to 50 do begin
+      M := Random(100);
+      GRO.Add('Test', M);
+      BRO.Add('Test', M);
+  end;
 end;
 
 procedure TAna.Timer1Timer(Sender: TObject);
@@ -183,8 +203,9 @@ end;
 
 procedure TAna.TRAChange(Sender: TObject);
 var
-  I: Integer;
+  I, J, K, Z: Integer;
   C: TComponent;
+  V: Single;
 begin
   for I := 0 to ComponentCount - 1 do begin
       if Components[I] is TGR32WidgetCircle then begin
@@ -195,6 +216,20 @@ begin
       end else
       if Components[I] is TGR32WidgetBar then begin
           TGR32WidgetBar(Components[I]).Yuzde := TRA.Position;
+      end else
+      if Components[I] is TGR32WidgetChart then begin
+
+          with  TGR32WidgetChart(Components[I]) do begin
+                K := 1;
+                Z := ItemCount - 1;
+                for J := 0 to ItemCount - 1 do begin
+                    K := (K + 1) mod ItemCount;
+                    Item(J).Value := Item(K).Value;
+                end;
+                //Ayarlar.Cizgi_YariCap  := 1 + (TRA.Position / 9);
+                //Ayarlar.Cizgi_Kalinlik := 1 + (TRA.Position / 7);
+                Invalidate;
+          end;
       end else
       begin end;
   end;

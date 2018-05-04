@@ -2,8 +2,8 @@ object Ana: TAna
   Left = 0
   Top = 0
   Caption = 'Ana'
-  ClientHeight = 641
-  ClientWidth = 1097
+  ClientHeight = 745
+  ClientWidth = 1148
   Color = clWindow
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -12,46 +12,30 @@ object Ana: TAna
   Font.Style = []
   OldCreateOrder = False
   OnCreate = FormCreate
-  OnResize = FormResize
   PixelsPerInch = 96
   TextHeight = 13
   object PG: TPageControl
     Left = 0
     Top = 61
-    Width = 1097
-    Height = 580
+    Width = 1148
+    Height = 684
     ActivePage = P1
     Align = alClient
     TabOrder = 0
+    ExplicitHeight = 658
     object P1: TTabSheet
       Caption = 'Animasyon'
       OnResize = FormResize
-      object GR32WidgetIzgara2: TGR32WidgetIzgara
-        Left = 0
-        Top = 0
-        Width = 1089
-        Height = 552
-        Align = alClient
-        AralikDikey = 20
-        AralikYatay = 20
-        Background = clWindow
-        BorderColor = 13077765
-        BorderStyle = psSolid
-        BorderWidth = 5
-        DamaModu = True
-        LineColor = 15724527
-        LineStyle = psDot
-        LineWidth = 1
-        ExplicitLeft = 372
-        ExplicitTop = 50
-        ExplicitWidth = 221
-        ExplicitHeight = 187
-      end
+      ExplicitHeight = 630
+      DesignSize = (
+        1140
+        656)
       object WGB: TGR32WidgetBox
-        Left = 614
-        Top = 376
+        Left = 214
+        Top = 499
         Width = 256
         Height = 83
+        Anchors = [akLeft, akBottom]
         Ayarlar.Background = clWindow
         Ayarlar.BackgroundHover = 2147418112
         Ayarlar.BorderColor = clBtnShadow
@@ -93,12 +77,14 @@ object Ana: TAna
         FooterText = 'Renevue'
         SimgeChar = '}'
         FiligranChar = #252
+        ExplicitTop = 473
       end
       object GR32WidgetBox1: TGR32WidgetBox
-        Left = 614
-        Top = 268
+        Left = 214
+        Top = 395
         Width = 256
         Height = 102
+        Anchors = [akLeft, akBottom]
         Ayarlar.Background = clWindow
         Ayarlar.BackgroundHover = 0
         Ayarlar.BorderColor = 11711154
@@ -140,12 +126,14 @@ object Ana: TAna
         FooterText = 'Renevue'
         SimgeChar = '}'
         FiligranChar = #252
+        ExplicitTop = 369
       end
       object WBR: TGR32WidgetBar
-        Left = 614
-        Top = 465
+        Left = 214
+        Top = 588
         Width = 256
-        Height = 22
+        Height = 58
+        Anchors = [akLeft, akBottom]
         Background = clBtnFace
         BarColor = 1305771
         Yuzde = 0
@@ -153,16 +141,18 @@ object Ana: TAna
         Direction = wbdYatay
         Oval = 1
         Invert = False
+        ExplicitTop = 562
       end
       object WGC: TGR32WidgetCircle
-        Left = 614
-        Top = 8
-        Width = 256
+        Left = 10
+        Top = 395
+        Width = 198
         Height = 251
         Margins.Left = 10
         Margins.Top = 10
         Margins.Right = 10
         Margins.Bottom = 10
+        Anchors = [akLeft, akBottom]
         Ayarlar.AntiAliased = True
         Ayarlar.Background = clWindow
         Ayarlar.BorderColor = clWindowFrame
@@ -196,28 +186,102 @@ object Ana: TAna
         Ayarlar.Padding.Bottom = 10
         HeaderText = 'Task Complete'
         Yuzde = 35
+        ExplicitTop = 369
       end
       object GR32WidgetIzgara3: TGR32WidgetIzgara
-        Left = 372
-        Top = 260
-        Width = 223
-        Height = 189
+        Left = 10
+        Top = 280
+        Width = 460
+        Height = 109
+        Anchors = [akLeft, akBottom]
         AralikDikey = 20
         AralikYatay = 20
         Background = clWindow
         BorderColor = 13077765
-        BorderStyle = psSolid
-        BorderWidth = 5
+        BorderStyle = psDot
+        BorderWidth = 2
         DamaModu = False
         LineColor = clBtnShadow
         LineStyle = psDot
         LineWidth = 1
+        LineView = wilTumu
+      end
+      object GRO: TGR32WidgetChart
+        Left = 0
+        Top = 120
+        Width = 1140
+        Height = 120
+        Align = alTop
+        Ayarlar.Background = 11478434
+        Ayarlar.BorderColor = clYellow
+        Ayarlar.BorderStyle = psDash
+        Ayarlar.BorderWidth = 0
+        Ayarlar.ChartType = wctCizgi
+        Ayarlar.Cizgi_Cember = clWhite
+        Ayarlar.Cizgi_Dolgusu = clWhite
+        Ayarlar.Cizgi_Kalinlik = 2.000000000000000000
+        Ayarlar.Cizgi_Renk = clWhite
+        Ayarlar.Cizgi_YariCap = 4.000000000000000000
+        Ayarlar.FrameColor = clYellow
+        Ayarlar.FrameStyle = psDot
+        Ayarlar.FrameWidth = 0
+        Ayarlar.Header.Charset = DEFAULT_CHARSET
+        Ayarlar.Header.Color = clWhite
+        Ayarlar.Header.Height = -27
+        Ayarlar.Header.Name = 'Bauhaus 93'
+        Ayarlar.Header.Style = []
+        Ayarlar.HeaderHeight = 30
+        Ayarlar.HeaderPos = fpTopLeft
+        Ayarlar.Padding.Left = 20
+        Ayarlar.Padding.Top = 10
+        Ayarlar.Padding.Right = 20
+        Ayarlar.Padding.Bottom = 10
+        AntiAliased = True
+        Header = #199'izgi Grafik'
+        ExplicitLeft = 230
+        ExplicitTop = 119
+        ExplicitWidth = 907
+      end
+      object BRO: TGR32WidgetChart
+        Left = 0
+        Top = 0
+        Width = 1140
+        Height = 120
+        Align = alTop
+        Ayarlar.Background = 16753994
+        Ayarlar.BorderColor = clMaroon
+        Ayarlar.BorderStyle = psDash
+        Ayarlar.BorderWidth = 0
+        Ayarlar.ChartType = wctCubuk
+        Ayarlar.Cizgi_Cember = clRed
+        Ayarlar.Cizgi_Dolgusu = clWhite
+        Ayarlar.Cizgi_Kalinlik = 2.000000000000000000
+        Ayarlar.Cizgi_Renk = clSilver
+        Ayarlar.Cizgi_YariCap = 7.000000000000000000
+        Ayarlar.FrameColor = clRed
+        Ayarlar.FrameStyle = psDot
+        Ayarlar.FrameWidth = 0
+        Ayarlar.Header.Charset = DEFAULT_CHARSET
+        Ayarlar.Header.Color = clAqua
+        Ayarlar.Header.Height = -47
+        Ayarlar.Header.Name = 'zai Seagull Felt-tip Pen'
+        Ayarlar.Header.Style = []
+        Ayarlar.HeaderHeight = 40
+        Ayarlar.HeaderPos = fpTopCenter
+        Ayarlar.Padding.Left = 20
+        Ayarlar.Padding.Top = 10
+        Ayarlar.Padding.Right = 20
+        Ayarlar.Padding.Bottom = 10
+        AntiAliased = True
+        Header = #199'ubuk Grafik'
+        ExplicitLeft = 230
+        ExplicitWidth = 907
       end
       object WGT: TGR32WidgetCircle
-        Left = 104
-        Top = 88
-        Width = 308
-        Height = 359
+        Left = 488
+        Top = 284
+        Width = 178
+        Height = 229
         Margins.Left = 10
         Margins.Top = 10
         Margins.Right = 10
@@ -229,14 +293,14 @@ object Ana: TAna
         Ayarlar.DisplayFormat = '%%%D'
         Ayarlar.Font.Charset = DEFAULT_CHARSET
         Ayarlar.Font.Color = 5387228
-        Ayarlar.Font.Height = -43
+        Ayarlar.Font.Height = -24
         Ayarlar.Font.Name = 'zai Seagull Felt-tip Pen'
         Ayarlar.Font.Style = [fsBold]
         Ayarlar.FrameColor = 16711808
         Ayarlar.FrameWidth = 1
         Ayarlar.Header.Charset = DEFAULT_CHARSET
         Ayarlar.Header.Color = clHotLight
-        Ayarlar.Header.Height = -43
+        Ayarlar.Header.Height = -32
         Ayarlar.Header.Name = 'zai Seagull Felt-tip Pen'
         Ayarlar.Header.Style = [fsBold]
         Ayarlar.HeaderPos = fpCenterCenter
@@ -260,11 +324,12 @@ object Ana: TAna
     object TabSheet1: TTabSheet
       Caption = 'Dashboard '#214'rne'#287'i'
       ImageIndex = 1
+      ExplicitHeight = 630
       object GP: TGridPanel
         Left = 0
         Top = 0
-        Width = 1089
-        Height = 552
+        Width = 1140
+        Height = 656
         Align = alClient
         BevelOuter = bvNone
         ColumnCollection = <
@@ -288,12 +353,8 @@ object Ana: TAna
           end
           item
             Column = 1
+            ColumnSpan = 2
             Control = GR32WidgetBox3
-            Row = 0
-          end
-          item
-            Column = 2
-            Control = GR32WidgetBox7
             Row = 0
           end
           item
@@ -310,16 +371,6 @@ object Ana: TAna
             Column = 3
             Control = GR32WidgetBox2
             Row = 0
-          end
-          item
-            Column = 2
-            Control = GR32WidgetCircle3
-            Row = 2
-          end
-          item
-            Column = 3
-            Control = GR32WidgetCircle4
-            Row = 2
           end
           item
             Column = 0
@@ -341,10 +392,11 @@ object Ana: TAna
             Control = GR32WidgetBar4
             Row = 1
           end>
+        ParentBackground = False
         RowCollection = <
           item
             SizeStyle = ssAbsolute
-            Value = 130.000000000000000000
+            Value = 120.000000000000000000
           end
           item
             SizeStyle = ssAbsolute
@@ -354,12 +406,13 @@ object Ana: TAna
             Value = 100.000000000000000000
           end>
         TabOrder = 0
+        ExplicitHeight = 630
         object GR32WidgetBox6: TGR32WidgetBox
           AlignWithMargins = True
           Left = 10
           Top = 10
-          Width = 252
-          Height = 110
+          Width = 265
+          Height = 100
           Margins.Left = 10
           Margins.Top = 10
           Margins.Right = 10
@@ -409,10 +462,10 @@ object Ana: TAna
         end
         object GR32WidgetBox3: TGR32WidgetBox
           AlignWithMargins = True
-          Left = 282
+          Left = 295
           Top = 10
-          Width = 252
-          Height = 110
+          Width = 550
+          Height = 100
           Margins.Left = 10
           Margins.Top = 10
           Margins.Right = 10
@@ -460,65 +513,12 @@ object Ana: TAna
           SimgeChar = '#'
           FiligranChar = #252
         end
-        object GR32WidgetBox7: TGR32WidgetBox
-          AlignWithMargins = True
-          Left = 554
-          Top = 10
-          Width = 252
-          Height = 110
-          Margins.Left = 10
-          Margins.Top = 10
-          Margins.Right = 10
-          Margins.Bottom = 10
-          Align = alClient
-          Ayarlar.Background = clWindow
-          Ayarlar.BackgroundHover = 0
-          Ayarlar.BorderColor = 13553358
-          Ayarlar.BorderStyle = psDot
-          Ayarlar.BorderWidth = 1
-          Ayarlar.FrameColor = clWindowFrame
-          Ayarlar.FrameStyle = psDashDotDot
-          Ayarlar.FrameWidth = 0
-          Ayarlar.Header.Charset = DEFAULT_CHARSET
-          Ayarlar.Header.Color = clHotLight
-          Ayarlar.Header.Height = -48
-          Ayarlar.Header.Name = 'Voyage Fantastique Platinum'
-          Ayarlar.Header.Style = []
-          Ayarlar.HeaderPos = fpTopLeft
-          Ayarlar.Footer.Charset = DEFAULT_CHARSET
-          Ayarlar.Footer.Color = clGrayText
-          Ayarlar.Footer.Height = -32
-          Ayarlar.Footer.Name = 'Voyage Fantastique Straight'
-          Ayarlar.Footer.Style = []
-          Ayarlar.FooterPos = fpBottomRight
-          Ayarlar.Padding.Left = 10
-          Ayarlar.Padding.Top = 10
-          Ayarlar.Padding.Right = 10
-          Ayarlar.Padding.Bottom = 10
-          Ayarlar.Simge.Charset = DEFAULT_CHARSET
-          Ayarlar.Simge.Color = clMaroon
-          Ayarlar.Simge.Height = -47
-          Ayarlar.Simge.Name = 'UgurFonts'
-          Ayarlar.Simge.Style = []
-          Ayarlar.Filigran.Charset = DEFAULT_CHARSET
-          Ayarlar.Filigran.Color = 15856113
-          Ayarlar.Filigran.Height = -171
-          Ayarlar.Filigran.Name = 'Webdings'
-          Ayarlar.Filigran.Style = []
-          Ayarlar.FiligranPos = fpCenterRight
-          Ayarlar.SimgeWidth = 60
-          Ayarlar.SimgePos = fpCenterCenter
-          HeaderText = '87610$'
-          FooterText = 'Tahsilat'
-          SimgeChar = ']'
-          FiligranChar = #252
-        end
         object GR32WidgetCircle1: TGR32WidgetCircle
           AlignWithMargins = True
-          Left = 282
-          Top = 185
-          Width = 252
-          Height = 357
+          Left = 295
+          Top = 175
+          Width = 265
+          Height = 471
           Margins.Left = 10
           Margins.Top = 10
           Margins.Right = 10
@@ -557,13 +557,14 @@ object Ana: TAna
           Ayarlar.Padding.Bottom = 10
           HeaderText = 'Task Complete'
           Yuzde = 35
+          ExplicitHeight = 445
         end
         object GR32WidgetCircle2: TGR32WidgetCircle
           AlignWithMargins = True
           Left = 10
-          Top = 185
-          Width = 252
-          Height = 357
+          Top = 175
+          Width = 265
+          Height = 471
           Margins.Left = 10
           Margins.Top = 10
           Margins.Right = 10
@@ -602,13 +603,14 @@ object Ana: TAna
           Ayarlar.Padding.Bottom = 10
           HeaderText = 'Task Complete'
           Yuzde = 35
+          ExplicitHeight = 445
         end
         object GR32WidgetBox2: TGR32WidgetBox
           AlignWithMargins = True
-          Left = 826
+          Left = 865
           Top = 10
-          Width = 253
-          Height = 110
+          Width = 265
+          Height = 100
           Margins.Left = 10
           Margins.Top = 10
           Margins.Right = 10
@@ -656,101 +658,11 @@ object Ana: TAna
           SimgeChar = '\'
           FiligranChar = #252
         end
-        object GR32WidgetCircle3: TGR32WidgetCircle
-          AlignWithMargins = True
-          Left = 554
-          Top = 185
-          Width = 252
-          Height = 357
-          Margins.Left = 10
-          Margins.Top = 10
-          Margins.Right = 10
-          Margins.Bottom = 10
-          Align = alClient
-          Ayarlar.AntiAliased = True
-          Ayarlar.Background = clWindow
-          Ayarlar.BorderColor = clBtnShadow
-          Ayarlar.BorderWidth = 1
-          Ayarlar.DisplayFormat = '%D%%'
-          Ayarlar.Font.Charset = DEFAULT_CHARSET
-          Ayarlar.Font.Color = clYellow
-          Ayarlar.Font.Height = -67
-          Ayarlar.Font.Name = 'Droid'
-          Ayarlar.Font.Style = []
-          Ayarlar.FrameColor = clBtnShadow
-          Ayarlar.FrameWidth = 1
-          Ayarlar.Header.Charset = DEFAULT_CHARSET
-          Ayarlar.Header.Color = clWindowText
-          Ayarlar.Header.Height = -31
-          Ayarlar.Header.Name = 'Pants Patrol'
-          Ayarlar.Header.Style = [fsBold]
-          Ayarlar.HeaderPos = fpCenterCenter
-          Ayarlar.HeaderHeight = 50
-          Ayarlar.Style = wgtDaire
-          Ayarlar.StyleFill = wfsWinding
-          Ayarlar.StyleLine = psDot
-          Ayarlar.BaseColor = clWindow
-          Ayarlar.ValueColor = 15126639
-          Ayarlar.InnerColor = clWindow
-          Ayarlar.OuterColor = 15126639
-          Ayarlar.IntraColor = 14745600
-          Ayarlar.Padding.Left = 10
-          Ayarlar.Padding.Top = 10
-          Ayarlar.Padding.Right = 10
-          Ayarlar.Padding.Bottom = 10
-          HeaderText = 'Task Complete'
-          Yuzde = 35
-        end
-        object GR32WidgetCircle4: TGR32WidgetCircle
-          AlignWithMargins = True
-          Left = 826
-          Top = 185
-          Width = 253
-          Height = 357
-          Margins.Left = 10
-          Margins.Top = 10
-          Margins.Right = 10
-          Margins.Bottom = 10
-          Align = alClient
-          Ayarlar.AntiAliased = True
-          Ayarlar.Background = clWindow
-          Ayarlar.BorderColor = clWindow
-          Ayarlar.BorderWidth = 1
-          Ayarlar.DisplayFormat = '%%%D'
-          Ayarlar.Font.Charset = DEFAULT_CHARSET
-          Ayarlar.Font.Color = clWindowText
-          Ayarlar.Font.Height = -33
-          Ayarlar.Font.Name = 'zai Seagull Felt-tip Pen'
-          Ayarlar.Font.Style = []
-          Ayarlar.FrameColor = 16711808
-          Ayarlar.FrameWidth = 1
-          Ayarlar.Header.Charset = DEFAULT_CHARSET
-          Ayarlar.Header.Color = clWindowText
-          Ayarlar.Header.Height = -27
-          Ayarlar.Header.Name = 'zai Ed Sloppy Simple'
-          Ayarlar.Header.Style = []
-          Ayarlar.HeaderPos = fpCenterCenter
-          Ayarlar.HeaderHeight = 50
-          Ayarlar.Style = wgtDaire
-          Ayarlar.StyleFill = wfsWinding
-          Ayarlar.StyleLine = psDot
-          Ayarlar.BaseColor = clWindow
-          Ayarlar.ValueColor = 16711808
-          Ayarlar.InnerColor = clWindow
-          Ayarlar.OuterColor = 16711808
-          Ayarlar.IntraColor = clWindow
-          Ayarlar.Padding.Left = 10
-          Ayarlar.Padding.Top = 10
-          Ayarlar.Padding.Right = 10
-          Ayarlar.Padding.Bottom = 10
-          HeaderText = 'Task Complete'
-          Yuzde = 25
-        end
         object GR32WidgetBar1: TGR32WidgetBar
           AlignWithMargins = True
           Left = 10
-          Top = 140
-          Width = 252
+          Top = 130
+          Width = 265
           Height = 25
           Margins.Left = 10
           Margins.Top = 10
@@ -767,9 +679,9 @@ object Ana: TAna
         end
         object GR32WidgetBar2: TGR32WidgetBar
           AlignWithMargins = True
-          Left = 282
-          Top = 140
-          Width = 252
+          Left = 295
+          Top = 130
+          Width = 265
           Height = 25
           Margins.Left = 10
           Margins.Top = 10
@@ -786,9 +698,9 @@ object Ana: TAna
         end
         object GR32WidgetBar3: TGR32WidgetBar
           AlignWithMargins = True
-          Left = 554
-          Top = 140
-          Width = 252
+          Left = 580
+          Top = 130
+          Width = 265
           Height = 25
           Margins.Left = 10
           Margins.Top = 10
@@ -805,9 +717,9 @@ object Ana: TAna
         end
         object GR32WidgetBar4: TGR32WidgetBar
           AlignWithMargins = True
-          Left = 826
-          Top = 140
-          Width = 253
+          Left = 865
+          Top = 130
+          Width = 265
           Height = 25
           Margins.Left = 10
           Margins.Top = 10
@@ -824,57 +736,16 @@ object Ana: TAna
         end
       end
     end
-    object TabSheet2: TTabSheet
-      Caption = 'Izgara'
-      ImageIndex = 2
-      DesignSize = (
-        1089
-        552)
-      object GR32WidgetIzgara1: TGR32WidgetIzgara
-        Left = 14
-        Top = 12
-        Width = 1065
-        Height = 527
-        Anchors = [akLeft, akTop, akRight, akBottom]
-        AralikDikey = 20
-        AralikYatay = 20
-        Background = clWindow
-        BorderColor = 13487565
-        BorderStyle = psSolid
-        BorderWidth = 1
-        DamaModu = True
-        LineColor = 15724527
-        LineStyle = psDot
-        LineWidth = 1
-      end
-    end
-    object TabSheet3: TTabSheet
-      Caption = 'TabSheet3'
-      ImageIndex = 3
-      object cxScrollBox1: TcxScrollBox
-        Left = 74
-        Top = 42
-        Width = 299
-        Height = 305
-        TabOrder = 0
-      end
-      object AdvScrollBox1: TAdvScrollBox
-        Left = 468
-        Top = 48
-        Width = 291
-        Height = 361
-        DoubleBuffered = True
-        Ctl3D = False
-        ParentCtl3D = False
-        ParentDoubleBuffered = False
-        TabOrder = 1
-      end
+    object TabSheet4: TTabSheet
+      Caption = 'Chart'
+      ImageIndex = 4
+      ExplicitHeight = 630
     end
   end
   object Panel1: TPanel
     Left = 0
     Top = 0
-    Width = 1097
+    Width = 1148
     Height = 61
     Align = alTop
     TabOrder = 1
@@ -883,12 +754,12 @@ object Ana: TAna
       Top = 8
       Width = 75
       Height = 35
-      Caption = 'Button1'
+      Caption = 'Animasyon'
       TabOrder = 0
       OnClick = Button1Click
     end
     object TRA: TTrackBar
-      Left = 96
+      Left = 91
       Top = 8
       Width = 219
       Height = 35
@@ -898,11 +769,11 @@ object Ana: TAna
       OnChange = TRAChange
     end
     object Button2: TButton
-      Left = 321
+      Left = 316
       Top = 8
       Width = 75
       Height = 35
-      Caption = 'Button2'
+      Caption = 'Border'
       TabOrder = 2
       OnClick = Button2Click
     end
@@ -911,7 +782,7 @@ object Ana: TAna
       Top = 8
       Width = 75
       Height = 35
-      Caption = 'Button2'
+      Caption = 'Anti Alias'
       TabOrder = 3
       OnClick = Button3Click
     end
@@ -920,9 +791,20 @@ object Ana: TAna
       Top = 8
       Width = 75
       Height = 35
-      Caption = 'Button4'
+      Caption = 'De'#287'erler'
       TabOrder = 4
       OnClick = Button4Click
+    end
+    object FREQ: TTrackBar
+      Left = 555
+      Top = 8
+      Width = 219
+      Height = 35
+      Max = 1000
+      Min = 50
+      Position = 75
+      TabOrder = 5
+      OnChange = FREQChange
     end
   end
   object Timer1: TTimer
@@ -934,7 +816,7 @@ object Ana: TAna
   end
   object Timer2: TTimer
     Enabled = False
-    Interval = 250
+    Interval = 125
     OnTimer = Timer2Timer
     Left = 148
     Top = 12
