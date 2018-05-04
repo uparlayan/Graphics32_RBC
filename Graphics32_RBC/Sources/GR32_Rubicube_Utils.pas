@@ -4,18 +4,18 @@ interface
 
 uses
     GR32
-
   , GR32_Polygons
   , GR32_VectorUtils
   , VCL.Graphics                //  TColor
+  , System.Classes              //  TList
   ;
 
 const
   Pi   = 3.141592653589793; // 270. derece
   Pi_1 = 1.570796326794897; // 180. derece
   Pi_3 = 4.712388980384690; // 90. derece...
-  Pi_4 = 6.283185307179586; // Bu özel hesaplamalar için kullanýlan Pi'nin 4. katýdýr...
-  Pi_004 = Pi_4 * 0.01; // => 0.06283185307179586
+  Pi_4 = 6.283185307179586; // Bu özel hesaplamalar için kullanýlan Pi'nin 2. katýdýr...
+  Pi_004 = Pi_4 * 0.01;     // => 0.06283185307179586
 
 type
   TPiOfsetTipi = (Pi_0, Pi_90, Pi_180, Pi_270);
@@ -30,8 +30,18 @@ const
                                                                       , 3.141592653589793 // 270. derece
                                                                       );
 type                                                                    //            0          1              0          1    //
-  TGR32WidgetFillStyle = ( wfsWinding, wfsAlternatif );//TPolyFillMode; // (pfAlternate, pfWinding, pfEvenOdd = 0, pfNonZero); "= 0" atamasý yapýlmýþ dolayýsýyla object inspectorde çýkmýyor, o nedenle ek bir set tanýmlandý.
-  TFontPos = (fpTopLeft, fpTopCenter, fpTopRight, fpCenterLeft, fpCenterCenter, fpCenterRight, fpBottomLeft, fpBottomCenter, fpBottomRight);
+  TGR32WidgetFillStyle      = (wfsWinding, wfsAlternatif );     //  TPolyFillMode; // (pfAlternate, pfWinding, pfEvenOdd = 0, pfNonZero); "= 0" atamasý yapýlmýþ dolayýsýyla object inspectorde çýkmýyor, o nedenle ek bir set tanýmlandý.
+  TGR32WidgetVerticalPos    = (wvpNone, wvpTop, wvpBottom);    //  Dikey konumlandýrma bilgisi için...
+  TGR32WidgetHorizontalPos  = (whpNone, whpLeft, whpRight);  //  Yatay konumlandýrma bilgisi için
+  TFontPos                  = (fpTopLeft, fpTopCenter, fpTopRight, fpCenterLeft, fpCenterCenter, fpCenterRight, fpBottomLeft, fpBottomCenter, fpBottomRight);
+  TColor_Helper = record Helper for TColor
+    public
+      function ToColor32: TColor32;
+  end;
+  TListHelper = class helper for TList
+    public
+      procedure Flush; // Listenin içindeki TObject soyundan gelen nesneleri free etmeye yarar... Clear'dan daha etkilidir !
+  end;
   TRenderHelper = class helper for TPolygonRenderer32VPR // TPolygonRenderer32
     public
       function ArrayOfFloat(Values: array of TFloat): TArrayOfFloat;
@@ -53,6 +63,7 @@ implementation
 
 uses
     System.Types    //  TSize
+  , System.SysUtils //  FreeAndNil
   ;
 
 { TRenderHelper }
@@ -102,7 +113,7 @@ begin
   if (aKalinlik < 1)
   or (aWidth < 1)
   or (aHeight < 1)
-   then begin
+  then begin
       Result := [];
       Exit;
   end;
@@ -121,12 +132,12 @@ begin
   Dot  := Z * 1;
   case aStyle of
        psClear       : Result := [];
-       psSolid       : Result := BuildPolyPolyline(BuildDashedLine(Noktalar, ArrayOfFloat([Dash                     ])), False, aKalinlik, jsRound, esRound); // BuildPolyline(Noktalar, aKalinlik, jsRound, esRound);
-       psDash        : Result := BuildPolyPolyline(BuildDashedLine(Noktalar, ArrayOfFloat([Dash, Dash               ])), False, aKalinlik, jsRound, esRound);
-       psDot         : Result := BuildPolyPolyline(BuildDashedLine(Noktalar, ArrayOfFloat([Dot , Dash                ])), False, aKalinlik, jsRound, esRound);
-       psDashDot     : Result := BuildPolyPolyline(BuildDashedLine(Noktalar, ArrayOfFloat([Dash, Dash, Dot, Dash      ])), False, aKalinlik, jsRound, esRound);
+       psSolid       : Result := BuildPolyPolyline(BuildDashedLine(Noktalar, ArrayOfFloat([Dash                             ])), False, aKalinlik, jsRound, esRound); // BuildPolyline(Noktalar, aKalinlik, jsRound, esRound);
+       psDash        : Result := BuildPolyPolyline(BuildDashedLine(Noktalar, ArrayOfFloat([Dash, Dash                       ])), False, aKalinlik, jsRound, esRound);
+       psDot         : Result := BuildPolyPolyline(BuildDashedLine(Noktalar, ArrayOfFloat([Dot , Dash                       ])), False, aKalinlik, jsRound, esRound);
+       psDashDot     : Result := BuildPolyPolyline(BuildDashedLine(Noktalar, ArrayOfFloat([Dash, Dash, Dot, Dash            ])), False, aKalinlik, jsRound, esRound);
        psDashDotDot  : Result := BuildPolyPolyline(BuildDashedLine(Noktalar, ArrayOfFloat([Dash, Dash, Dot, Dash, Dot, Dash ])), False, aKalinlik, jsRound, esRound);
-       psInsideFrame : Result := BuildPolyPolyline(BuildDashedLine(Noktalar, ArrayOfFloat([Dash                     ])), False, aKalinlik, jsRound, esRound); // BuildPolyline(Noktalar, aKalinlik, jsBevel, esSquare);
+       psInsideFrame : Result := BuildPolyPolyline(BuildDashedLine(Noktalar, ArrayOfFloat([Dash                             ])), False, aKalinlik, jsRound, esRound); // BuildPolyline(Noktalar, aKalinlik, jsBevel, esSquare);
        psUserStyle   : Result := [];
        psAlternate   : Result := [];
   end;
@@ -151,12 +162,12 @@ begin
   Dot  := Z * 1;
   case aStyle of
        psClear       : Result := [];
-       psSolid       : Result := BuildPolyPolyline(BuildDashedLine(Noktalar, ArrayOfFloat([Dash                     ])), False, aKalinlik, jsRound, esRound); // BuildPolyline(Noktalar, aKalinlik, jsRound, esRound);
-       psDash        : Result := BuildPolyPolyline(BuildDashedLine(Noktalar, ArrayOfFloat([Dash, Dash               ])), False, aKalinlik, jsRound, esRound);
-       psDot         : Result := BuildPolyPolyline(BuildDashedLine(Noktalar, ArrayOfFloat([Dot , Dash                ])), False, aKalinlik, jsRound, esRound);
-       psDashDot     : Result := BuildPolyPolyline(BuildDashedLine(Noktalar, ArrayOfFloat([Dash, Dash, Dot, Dash      ])), False, aKalinlik, jsRound, esRound);
+       psSolid       : Result := BuildPolyPolyline(BuildDashedLine(Noktalar, ArrayOfFloat([Dash                             ])), False, aKalinlik, jsRound, esRound); // BuildPolyline(Noktalar, aKalinlik, jsRound, esRound);
+       psDash        : Result := BuildPolyPolyline(BuildDashedLine(Noktalar, ArrayOfFloat([Dash, Dash                       ])), False, aKalinlik, jsRound, esRound);
+       psDot         : Result := BuildPolyPolyline(BuildDashedLine(Noktalar, ArrayOfFloat([Dot , Dash                       ])), False, aKalinlik, jsRound, esRound);
+       psDashDot     : Result := BuildPolyPolyline(BuildDashedLine(Noktalar, ArrayOfFloat([Dash, Dash, Dot, Dash            ])), False, aKalinlik, jsRound, esRound);
        psDashDotDot  : Result := BuildPolyPolyline(BuildDashedLine(Noktalar, ArrayOfFloat([Dash, Dash, Dot, Dash, Dot, Dash ])), False, aKalinlik, jsRound, esRound);
-       psInsideFrame : Result := BuildPolyPolyline(BuildDashedLine(Noktalar, ArrayOfFloat([Dash                     ])), False, aKalinlik, jsRound, esRound); // BuildPolyline(Noktalar, aKalinlik, jsBevel, esSquare);
+       psInsideFrame : Result := BuildPolyPolyline(BuildDashedLine(Noktalar, ArrayOfFloat([Dash                             ])), False, aKalinlik, jsRound, esRound); // BuildPolyline(Noktalar, aKalinlik, jsBevel, esSquare);
        psUserStyle   : Result := [];
        psAlternate   : Result := [];
   end;
@@ -306,6 +317,25 @@ end;
 function TPiOfsetTipi_Helper.ToSingle: Single;
 begin
   Result := PiOfset[Self];
+end;
+
+{ TColor_Helper }
+
+function TColor_Helper.ToColor32: TColor32;
+begin
+  Result := Color32(Self);
+end;
+
+{ TListHelper }
+
+procedure TListHelper.Flush;
+var
+  I: Integer;
+begin
+  for I := Self.Count - 1 downto 0 do begin
+      TObject( Self[I] ).Free;
+      Self.Delete( I );
+  end;
 end;
 
 end.

@@ -33,7 +33,7 @@ type
       destructor Destroy(); override;
       procedure Invalidate; override;
       procedure Resize; override;
-      procedure PaintControl; virtual;
+      procedure PaintControl; virtual;  // Bu, yavru nesnelerde tanýmlanacak. Bu noktada ise bu metod Paint metodunda çaðýrýlacak. Böylece iþleyiþ ve performans düzgün ilerleyecek...
     published
       property Align;
       property AlignWithMargins;

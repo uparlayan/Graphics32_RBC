@@ -127,8 +127,8 @@ begin
   // Genel çerçeve bilgileri hesaplanýyor.
   T  := 0;
   L  := 0;
-  W  := Width;// ClientWidth ;
-  H  := Height;// ClientHeight;
+  W  := Width;
+  H  := Height;
   MR := Merkez;
 
   case FInvert of

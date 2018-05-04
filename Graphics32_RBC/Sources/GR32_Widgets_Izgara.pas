@@ -6,16 +6,15 @@ uses
     GR32_Widgets_Base
   , GR32_Rubicube_Utils         //  Rubicube extensions
   , GR32                        //  TBitmap32
-          //  TColor32, ColorTo
   , GR32_Polygons               //  Poligon hesaplama formülleri
   , System.Classes              //  TComponent
   , System.SysUtils             //  FreeAndNil
-                  //  Min
   , Vcl.Graphics                //  TColor
   , Vcl.Controls                //  TCustomControl
   ;
 
 type
+  TGR32WidgetLines = (wilTumu, wilDikey, wilYatay, wilYok); // Izgaranýn hangi eksendeki çizgilerinin gösterileceðini seçmeye yarar...
   TGR32WidgetIzgara = class(TGR32CustomWidget)
     private
       FAralikDikey  : Integer;
@@ -28,6 +27,7 @@ type
       FLineColor    : TColor;
       FLineStyle    : TPenStyle;
       FLineWidth    : Integer;
+      FLineView     : TGR32WidgetLines;
       procedure SetAralikDikey(const Value: Integer);
       procedure SetAralikYatay(const Value: Integer);
       procedure SetBackground(const Value: TColor);
@@ -38,6 +38,7 @@ type
       procedure SetLineColor(const Value: TColor);
       procedure SetLineStyle(const Value: TPenStyle);
       procedure SetLineWidth(const Value: Integer);
+      procedure SetLineView(const Value: TGR32WidgetLines);
     protected
     public
       constructor Create(AOwner: TComponent); override;
@@ -54,6 +55,7 @@ type
       property LineColor    : TColor      read  FLineColor      write SetLineColor      ;
       property LineStyle    : TPenStyle   read  FLineStyle      write SetLineStyle      ;
       property LineWidth    : Integer     read  FLineWidth      write SetLineWidth      ;
+      property LineView     : TGR32WidgetLines  read  FLineView write SetLineView       ;
       property Margins;
       property Left;
       property Top;
@@ -69,7 +71,6 @@ procedure Register;
 begin
   RegisterComponents('Graphics32RBC', [TGR32WidgetIzgara]);
 end;
-
 
 { TGR32WidgetIzgara }
 
@@ -138,6 +139,11 @@ begin
   FLineStyle := Value; Invalidate;
 end;
 
+procedure TGR32WidgetIzgara.SetLineView(const Value: TGR32WidgetLines);
+begin
+  FLineView := Value; Invalidate;
+end;
+
 procedure TGR32WidgetIzgara.SetLineWidth(const Value: Integer);
 begin
   FLineWidth := Value; Invalidate;
@@ -146,15 +152,12 @@ end;
 procedure TGR32WidgetIzgara.PaintControl;
 var
   T, L, W, H  : Integer;                // Genel çerçeve bilgisi
-  BW_, LW_    : Integer;                // Border ve Frame çizgi kalýnlýðý
-  I, J, K, MI, MJ: Integer;
+  I, J        : Integer;
   Ressam      : TPolygonRenderer32VPR;  // TPolygonRenderer32; //  Tuval
   XY, QW      : TFloatPoint;
 
   CL : TColor32;
   X, Y: Integer;
-  OddY, OddX: Boolean;
-  ScanLine: PColor32Array;
   CCheckerBoardColor: array[0..1] of TColor32;
 
 begin
