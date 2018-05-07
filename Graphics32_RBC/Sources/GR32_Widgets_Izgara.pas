@@ -1,7 +1,7 @@
-{-----------------------------------------------------------------------------------
+ï»¿{-----------------------------------------------------------------------------------
  Unit Name    : GR32_Widgets_Izgara.pas                                            /
- Author       : Uður PARLAYAN / uparlayan <ugurparlayan@gmail.com>                 /
- Copyright    : 2018 by Uður PARLAYAN. All rights reserved.                        /
+ Author       : UÄŸur PARLAYAN / uparlayan <ugurparlayan@gmail.com>                 /
+ Copyright    : 2018 by UÄŸur PARLAYAN. All rights reserved.                        /
  Component Set: Graphics32_RBC                                                     /
                                                                                    /
  Purpose      : Visual graphics for Business Intelligence applications on VCL      /
@@ -24,7 +24,7 @@ uses
     GR32_Widgets_Base
   , GR32_Rubicube_Utils         //  Rubicube extensions
   , GR32                        //  TBitmap32
-  , GR32_Polygons               //  Poligon hesaplama formülleri
+  , GR32_Polygons               //  Poligon hesaplama formÃ¼lleri
   , System.Classes              //  TComponent
   , System.SysUtils             //  FreeAndNil
   , Vcl.Graphics                //  TColor
@@ -32,7 +32,7 @@ uses
   ;
 
 type
-  TGR32WidgetLines = (wilTumu, wilDikey, wilYatay, wilYok); // Izgaranýn hangi eksendeki çizgilerinin gösterileceðini seçmeye yarar...
+  TGR32WidgetLines = (wilTumu, wilDikey, wilYatay, wilYok); // IzgaranÄ±n hangi eksendeki Ã§izgilerinin gÃ¶sterileceÄŸini seÃ§meye yarar...
   TGR32WidgetIzgara = class(TGR32CustomWidget)
     private
       FAralikDikey  : Integer;
@@ -169,7 +169,7 @@ end;
 
 procedure TGR32WidgetIzgara.PaintControl;
 var
-  T, L, W, H  : Integer;                // Genel çerçeve bilgisi
+  T, L, W, H  : Integer;                // Genel Ã§erÃ§eve bilgisi
   I, J        : Integer;
   Ressam      : TPolygonRenderer32VPR;  // TPolygonRenderer32; //  Tuval
   XY, QW      : TFloatPoint;
@@ -182,8 +182,8 @@ begin
   CCheckerBoardColor[0] := Color32(FBackground);
   CCheckerBoardColor[1] := Color32(FLineColor);
   Ressam          := TPolygonRenderer32VPR.Create;
-  Ressam.Filler   := nil; // henüz bir gradient kullanmadýk.
-  Ressam.FillMode := pfWinding;// FAyarlar.StyleFill.toPolyFillMode; // pfWinding; // bu ayar, iki çizgi üst üste kesiþtiðinde çizgilerin kesiþtiði kýsýmlarýn birbirini yok etmesini engeller...
+  Ressam.Filler   := nil; // henÃ¼z bir gradient kullanmadÄ±k.
+  Ressam.FillMode := pfWinding;// FAyarlar.StyleFill.toPolyFillMode; // pfWinding; // bu ayar, iki Ã§izgi Ã¼st Ã¼ste kesiÅŸtiÄŸinde Ã§izgilerin kesiÅŸtiÄŸi kÄ±sÄ±mlarÄ±n birbirini yok etmesini engeller...
   Ressam.Bitmap   := Self.FBuffer;
   Ressam.Bitmap.Clear( Color32(FBackground) );
 

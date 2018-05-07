@@ -1,7 +1,7 @@
-{-----------------------------------------------------------------------------------
+ï»¿{-----------------------------------------------------------------------------------
  Unit Name    : GR32_Widgets_Box.pas                                               /
- Author       : Uður PARLAYAN / uparlayan <ugurparlayan@gmail.com>                 /
- Copyright    : 2018 by Uður PARLAYAN. All rights reserved.                        /
+ Author       : UÄŸur PARLAYAN / uparlayan <ugurparlayan@gmail.com>                 /
+ Copyright    : 2018 by UÄŸur PARLAYAN. All rights reserved.                        /
  Component Set: Graphics32_RBC                                                     /
                                                                                    /
  Purpose      : Visual graphics for Business Intelligence applications on VCL      /
@@ -25,7 +25,7 @@ uses
   , GR32_Rubicube_Utils         //  Rubicube extensions
   , GR32                        //  TBitmap32
   , GR32_ColorGradients         //  TColor32, ColorTo
-  , GR32_Polygons               //  Poligon hesaplama formülleri
+  , GR32_Polygons               //  Poligon hesaplama formÃ¼lleri
   , System.Classes              //  TComponent
   , System.SysUtils             //  FreeAndNil
   , System.Math                 //  Min
@@ -192,8 +192,8 @@ end;
 
 procedure TGR32WidgetBox.TGR32WidgetBoxSettings.InlineChangeNotifier(Sender: TObject);
 begin
-  // Persistent sýnýfýn alt type'lerinde bir deðiþiklik olduðunda ana sýnýfýn grafiðinin yeniden çizilmesini tetikler...
-  // "Sender" parametresi bu noktada iþimize yaramadýðý için prosedürü çaðýrýrken NIL deðerini vermekte herhangi bir sakýnca yoktur.
+  // Persistent sÄ±nÄ±fÄ±n alt type'lerinde bir deÄŸiÅŸiklik olduÄŸunda ana sÄ±nÄ±fÄ±n grafiÄŸinin yeniden Ã§izilmesini tetikler...
+  // "Sender" parametresi bu noktada iÅŸimize yaramadÄ±ÄŸÄ± iÃ§in prosedÃ¼rÃ¼ Ã§aÄŸÄ±rÄ±rken NIL deÄŸerini vermekte herhangi bir sakÄ±nca yoktur.
   if Assigned(FOwner) then FOwner.Invalidate;
 end;
 
@@ -338,7 +338,7 @@ begin
   FHeaderText   := 'Header';
   FFooterText   := 'Footer';
   FSimgeChar    := '@';
-  FFiligranChar := 'ü';
+  FFiligranChar := 'Ã¼';
 end;
 
 destructor TGR32WidgetBox.Destroy;
@@ -379,23 +379,23 @@ end;
 
 procedure TGR32WidgetBox.PaintControl;
 var
-  T, L, W, H: Integer;                // Genel çerçeve bilgisi
-  BW_, FW_  : Integer;                // Border ve Frame çizgi kalýnlýðý
+  T, L, W, H: Integer;                // Genel Ã§erÃ§eve bilgisi
+  BW_, FW_  : Integer;                // Border ve Frame Ã§izgi kalÄ±nlÄ±ÄŸÄ±
   SM        : TFloatPoint;            // Simge Merkezi
-  SR        : TRect;                  // Simge Dörtgeni
+  SR        : TRect;                  // Simge DÃ¶rtgeni
   SWH       : Integer;
   Ressam    : TPolygonRenderer32VPR;  // TPolygonRenderer32; //  Tuval
   PL, PT, PR, PB: Integer;            // Paddings
 begin
   Ressam          := TPolygonRenderer32VPR.Create;
-  Ressam.Filler   := nil; // henüz bir gradient kullanmadýk.
-  Ressam.FillMode := pfWinding;// FAyarlar.StyleFill.toPolyFillMode; // pfWinding; // bu ayar, iki çizgi üst üste kesiþtiðinde çizgilerin kesiþtiði kýsýmlarýn birbirini yok etmesini engeller...
+  Ressam.Filler   := nil; // henÃ¼z bir gradient kullanmadÄ±k.
+  Ressam.FillMode := pfWinding;// FAyarlar.StyleFill.toPolyFillMode; // pfWinding; // bu ayar, iki Ã§izgi Ã¼st Ã¼ste kesiÅŸtiÄŸinde Ã§izgilerin kesiÅŸtiÄŸi kÄ±sÄ±mlarÄ±n birbirini yok etmesini engeller...
   Ressam.Bitmap   := Self.FBuffer;
   if MouseIsInside = True
   then Ressam.Bitmap.Clear( FAyarlar.BackgroundHover )
   else Ressam.Bitmap.Clear( Color32(FAyarlar.Background) ); // Tuvalin zemin rengi ve tam temizlik
 
-  // Genel çerçeve bilgileri hesaplanýyor.
+  // Genel Ã§erÃ§eve bilgileri hesaplanÄ±yor.
   T  := 0;
   L  := 0;
   W  := ClientWidth ;
@@ -417,15 +417,15 @@ begin
                     , H - (PB + PT + BW_)
                     );
 
-  // Filigran yazýlýyor
+  // Filigran yazÄ±lÄ±yor
   Ressam.YaziBas( SR, FFiligranChar, FAyarlar.Filigran.Color, FAyarlar.Filigran.Size, FAyarlar.Filigran.Name, FAyarlar.FiligranPos, FAyarlar.Filigran.Style);
 
-  // Border çiziliyor
+  // Border Ã§iziliyor
   if (FAyarlar.BorderWidth >= 1) and (FAyarlar.BorderColor <> FAyarlar.FBackground) then
   Ressam.SekilBas( Color32(FAyarlar.BorderColor), Ressam.DikDortgenCizgi(Merkez, W, H, FAyarlar.BorderWidth, FAyarlar.BorderStyle));
   SWH := FAyarlar.SimgeWidth;
 
-  // Simge çiziliyor
+  // Simge Ã§iziliyor
   SM.X := PL + BW_ + (SWH div 2);
   SM.Y := PT + BW_ + (SWH div 2);
   //Ressam.SekilBas( clBlue32, Ressam.DikDortgenCizgi(SM, SWH, SWH, 1, FAyarlar.BorderStyle));
@@ -437,7 +437,7 @@ begin
   SR.Offset(PL + BW_, PT + BW_);
   Ressam.YaziBas( SR, FSimgeChar, FAyarlar.Simge.Color, FAyarlar.Simge.Size, FAyarlar.Simge.Name, FAyarlar.SimgePos, FAyarlar.Simge.Style);
 
-  // Header ve Footer bölümü
+  // Header ve Footer bÃ¶lÃ¼mÃ¼
   SR := TRect.Create( BW_ + FW_
                     , BW_ + FW_
                     , W - BW_ - FW_ - PL - PR - SWH

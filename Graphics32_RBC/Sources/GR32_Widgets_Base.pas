@@ -1,7 +1,7 @@
-{-----------------------------------------------------------------------------------
+ï»¿{-----------------------------------------------------------------------------------
  Unit Name    : GR32_Widgets_Base.pas                                              /
- Author       : Uður PARLAYAN / uparlayan <ugurparlayan@gmail.com>                 /
- Copyright    : 2018 by Uður PARLAYAN. All rights reserved.                        /
+ Author       : UÄŸur PARLAYAN / uparlayan <ugurparlayan@gmail.com>                 /
+ Copyright    : 2018 by UÄŸur PARLAYAN. All rights reserved.                        /
  Component Set: Graphics32_RBC                                                     /
                                                                                    /
  Purpose      : Visual graphics for Business Intelligence applications on VCL      /
@@ -38,7 +38,8 @@ type
       FOnMouseEnter: TNotifyEvent;
       FOnMouseLeave: TNotifyEvent;
       procedure WMEraseBkgnd(var Message: TWmEraseBkgnd); message WM_ERASEBKGND;
-      procedure WMGetDlgCode(var Msg: TWmGetDlgCode); message WM_GETDLGCODE;
+
+      procedure WMGetDlgCode(var Msg: TWmGetDlgCode); message WM_GETDLGCODE;
       procedure WMMouseEnter (var Message: TWMMouse); message CM_MOUSEENTER;
       procedure WMMouseLeave (var Message: TMessage); message CM_MOUSELEAVE;
       function GetMouseIsInside: Boolean;
@@ -51,13 +52,13 @@ type
       destructor Destroy(); override;
       procedure Invalidate; override;
       procedure Resize; override;
-      procedure PaintControl; virtual;                                          // Bu, yavru nesnelerde tanýmlanacak. Bu noktada ise bu metod Paint metodunda çaðýrýlacak. Böylece iþleyiþ ve performans düzgün ilerleyecek...
+      procedure PaintControl; virtual;                                          // Bu, yavru nesnelerde tanÄ±mlanacak. Bu noktada ise bu metod Paint metodunda Ã§aÄŸÄ±rÄ±lacak. BÃ¶ylece iÅŸleyiÅŸ ve performans dÃ¼zgÃ¼n ilerleyecek...
     published
       property Align;
       property AlignWithMargins;
       property Anchors;
       property Margins;
-      property MouseIsInside: Boolean read GetMouseIsInside;                    // Hover olaylarýný windows mesajlarýný etkilemeyecek þekilde yönetebilmek için gerekir.
+      property MouseIsInside: Boolean read GetMouseIsInside;                    // Hover olaylarÄ±nÄ± windows mesajlarÄ±nÄ± etkilemeyecek ÅŸekilde yÃ¶netebilmek iÃ§in gerekir.
       property OnClick;
       property OnMouseEnter : TNotifyEvent read FOnMouseEnter write FOnMouseEnter;
       property OnMouseLeave : TNotifyEvent read FOnMouseLeave write FOnMouseLeave;

@@ -1,7 +1,7 @@
-{-----------------------------------------------------------------------------------
+ï»¿{-----------------------------------------------------------------------------------
  Unit Name    : GR32_Widgets_Bar.pas                                               /
- Author       : Uður PARLAYAN / uparlayan <ugurparlayan@gmail.com>                 /
- Copyright    : 2018 by Uður PARLAYAN. All rights reserved.                        /
+ Author       : UÄŸur PARLAYAN / uparlayan <ugurparlayan@gmail.com>                 /
+ Copyright    : 2018 by UÄŸur PARLAYAN. All rights reserved.                        /
  Component Set: Graphics32_RBC                                                     /
                                                                                    /
  Purpose      : Visual graphics for Business Intelligence applications on VCL      /
@@ -25,7 +25,7 @@ uses
   , GR32_Rubicube_Utils         //  Rubicube extensions
   , GR32                        //  TBitmap32
   , GR32_ColorGradients         //  TColor32, ColorTo
-  , GR32_Polygons               //  Poligon hesaplama formülleri
+  , GR32_Polygons               //  Poligon hesaplama formÃ¼lleri
   , System.Classes              //  TComponent
   , System.SysUtils             //  FreeAndNil
   , System.Math                 //  Min
@@ -70,7 +70,7 @@ type
           procedure ResetSettings;
         published
           property Background   : TColor      read FBackground    write SetBackground;
-          property BarColor     : TColor      read FBarColor      write SetBarColor;   //  Dairenin deðer dýþýnda kalan kýsmýnýn rengi
+          property BarColor     : TColor      read FBarColor      write SetBarColor;   //  Dairenin deÄŸer dÄ±ÅŸÄ±nda kalan kÄ±smÄ±nÄ±n rengi
           property BorderColor  : TColor      read FBorderColor   write SetBorderColor;
           property BorderStyle  : TPenStyle   read FBorderStyle   write SetBorderStyle;
           property BorderWidth  : Integer     read FBorderWidth   write SetBorderWidth;
@@ -79,7 +79,7 @@ type
           property HeaderHeight : Integer     read  FHeaderHeight write SetHeaderHeight;
           property Invert       : Boolean     read FInvert        write SetInvert;
           property Padding      : TPadding    read FPadding       write SetPadding;
-          property ValueColor   : TColor      read FValueColor    write SetValueColor;  //  Dairenin deðer içeren kýsmýnýn rengi
+          property ValueColor   : TColor      read FValueColor    write SetValueColor;  //  Dairenin deÄŸer iÃ§eren kÄ±smÄ±nÄ±n rengi
       end;
     private
       FAyarlar    : TGR32WidgetBarSettings;
@@ -185,7 +185,7 @@ end;
 
 procedure TGR32WidgetBar.TGR32WidgetBarSettings.InlineChangeNotifier(Sender: TObject);
 begin
-  // Persistent sýnýfýn alt type'lerinde bir deðiþiklik olduðunda ana sýnýfýn grafiðinin yeniden çizilmesini tetikler...
+  // Persistent sÄ±nÄ±fÄ±n alt type'lerinde bir deÄŸiÅŸiklik olduÄŸunda ana sÄ±nÄ±fÄ±n grafiÄŸinin yeniden Ã§izilmesini tetikler...
   if Assigned(FOwner) then FOwner.Invalidate;
 end;
 
@@ -277,12 +277,12 @@ var
   CA, CB          : TColor32;
 begin
   Ressam          := TPolygonRenderer32VPR.Create;
-  Ressam.Filler   := nil; // henüz bir gradient kullanmadýk.
-  Ressam.FillMode := pfWinding;// FAyarlar.StyleFill.toPolyFillMode; // pfWinding; // bu ayar, iki çizgi üst üste kesiþtiðinde çizgilerin kesiþtiði kýsýmlarýn birbirini yok etmesini engeller...
+  Ressam.Filler   := nil; // henÃ¼z bir gradient kullanmadÄ±k.
+  Ressam.FillMode := pfWinding;// FAyarlar.StyleFill.toPolyFillMode; // pfWinding; // bu ayar, iki Ã§izgi Ã¼st Ã¼ste kesiÅŸtiÄŸinde Ã§izgilerin kesiÅŸtiÄŸi kÄ±sÄ±mlarÄ±n birbirini yok etmesini engeller...
   Ressam.Bitmap   := Self.FBuffer;
   Ressam.Bitmap.Clear( FAyarlar.Background.ToColor32 ); // Tuvalin zemin rengi ve tam temizlik
 
-  // Genel çerçeve bilgileri hesaplanýyor.
+  // Genel Ã§erÃ§eve bilgileri hesaplanÄ±yor.
   W := ClientWidth;
   H := ClientHeight;
   MR := Merkez;
@@ -319,10 +319,10 @@ begin
                   MR.X := (Oran / 2) + BW_ + PL + 1;
                 end;
   end;
-  // Dýþ kenar çiziliyor
+  // DÄ±ÅŸ kenar Ã§iziliyor
   Ressam.SekilBas( FAyarlar.BorderColor.ToColor32, Ressam.DikDortgenCizgi( Merkez, W, H, BW_, FAyarlar.BorderStyle));
   //Ressam.SekilBas( cb, Ressam.Dikdortgen( MR, Oran, H - (BW_ * 2) ) );
-  // Frame kenarý çiziliyor
+  // Frame kenarÄ± Ã§iziliyor
   MR.Y := FR.Y;
   Ressam.SekilBas( FAyarlar.BarColor.ToColor32,    Ressam.DikDortgen( FR, FW, FH));
   Ressam.SekilBas( FAyarlar.ValueColor.ToColor32,  Ressam.Dikdortgen( MR, Oran, FH));

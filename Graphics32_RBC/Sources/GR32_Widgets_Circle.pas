@@ -1,7 +1,7 @@
-{-----------------------------------------------------------------------------------
+ï»¿{-----------------------------------------------------------------------------------
  Unit Name    : GR32_Widgets_Circle.pas                                            /
- Author       : Uður PARLAYAN / uparlayan <ugurparlayan@gmail.com>                 /
- Copyright    : 2018 by Uður PARLAYAN. All rights reserved.                        /
+ Author       : UÄŸur PARLAYAN / uparlayan <ugurparlayan@gmail.com>                 /
+ Copyright    : 2018 by UÄŸur PARLAYAN. All rights reserved.                        /
  Component Set: Graphics32_RBC                                                     /
                                                                                    /
  Purpose      : Visual graphics for Business Intelligence applications on VCL      /
@@ -25,7 +25,7 @@ uses
   , GR32_Rubicube_Utils         //  Rubicube extensions
   , GR32                        //  TBitmap32
   , GR32_ColorGradients         //  TColor32, ColorTo
-  , GR32_Polygons               //  Poligon hesaplama formülleri
+  , GR32_Polygons               //  Poligon hesaplama formÃ¼lleri
   , GR32_Paths
   , System.Classes              //  TComponent
   , System.SysUtils             //  FreeAndNil
@@ -108,10 +108,10 @@ type
           property Style        : TGR32WidgetCircleStyle      read FStyle         write SetStyle;
           property StyleFill    : TGR32WidgetCircleFillStyle  read FStyleFill     write SetStyleFill;
           property StyleLine    : TPenStyle                   read FStyleLine     write SetStyleLine;
-          property BaseColor    : TColor                      read FBaseColor     write SetBaseColor;   //  Dairenin deðer dýþýnda kalan kýsmýnýn rengi
-          property ValueColor   : TColor                      read FValueColor    write SetValueColor;  //  Dairenin deðer içeren kýsmýnýn rengi
-          property InnerColor   : TColor                      read FInnerColor    write SetInnerColor;  //  Dairenin iç çerçeve rengi
-          property OuterColor   : TColor                      read FOuterColor    write SetOuterColor;  //  Dairenin dýþ çerçeve rengi
+          property BaseColor    : TColor                      read FBaseColor     write SetBaseColor;   //  Dairenin deÄŸer dÄ±ÅŸÄ±nda kalan kÄ±smÄ±nÄ±n rengi
+          property ValueColor   : TColor                      read FValueColor    write SetValueColor;  //  Dairenin deÄŸer iÃ§eren kÄ±smÄ±nÄ±n rengi
+          property InnerColor   : TColor                      read FInnerColor    write SetInnerColor;  //  Dairenin iÃ§ Ã§erÃ§eve rengi
+          property OuterColor   : TColor                      read FOuterColor    write SetOuterColor;  //  Dairenin dÄ±ÅŸ Ã§erÃ§eve rengi
           property IntraColor   : TColor                      read FIntraColor    write SetIntraColor;  //  Dairenin merkezinin rengi
           property Padding      : TPadding                    read FPadding       write SetPadding;
       end;
@@ -209,7 +209,7 @@ end;
 
 procedure TGR32WidgetCircle.TGR32WidgetCircleSettings.InlineChangeNotifier(Sender: TObject);
 begin
-  // Persistent sýnýfýn alt type'lerinde bir deðiþiklik olduðunda ana sýnýfýn grafiðinin yeniden çizilmesini tetikler...
+  // Persistent sÄ±nÄ±fÄ±n alt type'lerinde bir deÄŸiÅŸiklik olduÄŸunda ana sÄ±nÄ±fÄ±n grafiÄŸinin yeniden Ã§izilmesini tetikler...
   if Assigned(FOwner) then FOwner.Invalidate;
 end;
 
@@ -410,12 +410,12 @@ end;
 
 procedure TGR32WidgetCircle.PaintControl;
 var
-  T, L, W, H{, W2, H2}  : Integer;  // Genel çerçeve bilgisi
-  HT,HL,HW,HH,HW2,HH2 : Integer;  // Header kýsmýnýn çerçeve bilgisi
-  FT, FL, FW, FH, FW2, FH2: Integer; // Frame kýsmýnýn çerçeve bilgisi
+  T, L, W, H{, W2, H2}  : Integer;  // Genel Ã§erÃ§eve bilgisi
+  HT,HL,HW,HH,HW2,HH2 : Integer;  // Header kÄ±smÄ±nÄ±n Ã§erÃ§eve bilgisi
+  FT, FL, FW, FH, FW2, FH2: Integer; // Frame kÄ±smÄ±nÄ±n Ã§erÃ§eve bilgisi
   _BW, _FW : Integer;
 
-  MinWH         : Integer;            //  Merkez deðiþkenin en ve boy arasýndaki en ufaðý kastediliyor.
+  MinWH         : Integer;            //  Merkez deÄŸiÅŸkenin en ve boy arasÄ±ndaki en ufaÄŸÄ± kastediliyor.
 
   MR            : TFloatPoint;
   HM            : TFloatPoint;
@@ -425,12 +425,12 @@ var
   Ressam        : TPolygonRenderer32VPR; // TPolygonRenderer32; //  Tuval
 begin
   Ressam          := TPolygonRenderer32VPR.Create;
-  Ressam.Filler   := nil; // henüz bir gradient kullanmadýk.
-  Ressam.FillMode := FAyarlar.StyleFill.toPolyFillMode; // pfWinding; // bu ayar, iki çizgi üst üste kesiþtiðinde çizgilerin kesiþtiði kýsýmlarýn birbirini yok etmesini engeller...
+  Ressam.Filler   := nil; // henÃ¼z bir gradient kullanmadÄ±k.
+  Ressam.FillMode := FAyarlar.StyleFill.toPolyFillMode; // pfWinding; // bu ayar, iki Ã§izgi Ã¼st Ã¼ste kesiÅŸtiÄŸinde Ã§izgilerin kesiÅŸtiÄŸi kÄ±sÄ±mlarÄ±n birbirini yok etmesini engeller...
   Ressam.Bitmap   := Self.FBuffer;
   Ressam.Bitmap.Clear( Color32(FAyarlar.Background) ); // Tuvalin zemin rengi ve tam temizlik
 
-  //  Genel çerçeve bilgileri hesaplanýyor.
+  //  Genel Ã§erÃ§eve bilgileri hesaplanÄ±yor.
   T  := 0;
   L  := 0;
   W  := ClientWidth ;
@@ -444,7 +444,7 @@ begin
   and (FAyarlar.BorderColor <> FAyarlar.FBackground)
   then Ressam.SekilBas( Color32(FAyarlar.BorderColor), Ressam.DikDortgenCizgi(MR, W, H, FAyarlar.BorderWidth, FAyarlar.StyleLine));
 
-  //  Header kýsmý hesaplanýyor
+  //  Header kÄ±smÄ± hesaplanÄ±yor
 
   _BW := FAyarlar.BorderWidth;
   _FW := FAyarlar.FrameWidth;
@@ -459,11 +459,11 @@ begin
   HM.Y := (HH * 0.5) + HT;
   R := TRect.Create(HL, HT, HW, HH);
 
-  //  Header kýsmý çiziliyor...
+  //  Header kÄ±smÄ± Ã§iziliyor...
   //Ressam.YaziBas( HL + HW2, HT + HH2, FHeaderText, FAyarlar.Header.Color, FAyarlar.Header.Size, FAyarlar.Header.Name, FAyarlar.HeaderPos, FAyarlar.Header.Style);
   Ressam.YaziBas( R, FHeaderText, FAyarlar.Header.Color, FAyarlar.Header.Size, FAyarlar.Header.Name, FAyarlar.HeaderPos, FAyarlar.Header.Style);
 
-  //  Frame kýsmý hesaplanýyor
+  //  Frame kÄ±smÄ± hesaplanÄ±yor
   FT   := HT + HH;
   FL   := HL;
   FW   := HW;
@@ -474,7 +474,7 @@ begin
   FM.X := (FW * 0.5) + FL;
   FM.Y := (FH * 0.5) + FT;
 
-  //  Frame kýsmý çiziliyor...
+  //  Frame kÄ±smÄ± Ã§iziliyor...
 
   if (FAyarlar.FrameWidth >= 1)
   and (FAyarlar.FrameColor <> FAyarlar.FBackground)
@@ -483,19 +483,19 @@ begin
   MinWH := (Min(FW, FH) div 2) - _FW;
 
   if (FAyarlar.Style = wgtDaire) then begin
-      Ressam.SekilBas( Color32(FAyarlar.OuterColor) , Ressam.Daire(FM, MinWH) );                              // Dýþ Kenar Daire
+      Ressam.SekilBas( Color32(FAyarlar.OuterColor) , Ressam.Daire(FM, MinWH) );                              // DÄ±ÅŸ Kenar Daire
       Ressam.SekilBas( Color32(FAyarlar.BaseColor)  , Ressam.Daire(FM, MinWH * 0.96  ) );                     // Yay zemin
 
       Ressam.SekilBas( Color32(FAyarlar.ValueColor) , Ressam.Pasta(FM, MinWH * 0.96  , FYuzde, Pi_0) );       // Yay
 
-      Ressam.SekilBas( Color32(FAyarlar.InnerColor) , Ressam.Daire(FM, MinWH * 0.64  ) );                     // Ýç Kenar Daire
-      Ressam.SekilBas( Color32(FAyarlar.IntraColor) , Ressam.Daire(FM, MinWH * 0.60  ) );                     // Ýç Zemin Daire
+      Ressam.SekilBas( Color32(FAyarlar.InnerColor) , Ressam.Daire(FM, MinWH * 0.64  ) );                     // Ä°Ã§ Kenar Daire
+      Ressam.SekilBas( Color32(FAyarlar.IntraColor) , Ressam.Daire(FM, MinWH * 0.60  ) );                     // Ä°Ã§ Zemin Daire
   end else
   if (FAyarlar.Style = wgtPasta) then begin
-      Ressam.SekilBas( Color32(FAyarlar.OuterColor) , Ressam.Daire(FM, MinWH) );                              // Dýþ Kenar Daire
+      Ressam.SekilBas( Color32(FAyarlar.OuterColor) , Ressam.Daire(FM, MinWH) );                              // DÄ±ÅŸ Kenar Daire
       Ressam.SekilBas( Color32(FAyarlar.BaseColor)  , Ressam.Daire(FM, MinWH * 0.96  ) );                     // Yay zemin
-      Ressam.SekilBas( Color32(FAyarlar.InnerColor) , Ressam.Daire(FM, MinWH * 0.64  ) );                     // Ýç Kenar Daire
-      Ressam.SekilBas( Color32(FAyarlar.IntraColor) , Ressam.Daire(FM, MinWH * 0.60  ) );                     // Ýç Zemin Daire
+      Ressam.SekilBas( Color32(FAyarlar.InnerColor) , Ressam.Daire(FM, MinWH * 0.64  ) );                     // Ä°Ã§ Kenar Daire
+      Ressam.SekilBas( Color32(FAyarlar.IntraColor) , Ressam.Daire(FM, MinWH * 0.60  ) );                     // Ä°Ã§ Zemin Daire
 
       Ressam.SekilBas( Color32(FAyarlar.ValueColor) , Ressam.Pasta(FM, MinWH * 0.96  , FYuzde, Pi_0) );       // Yay
   end;

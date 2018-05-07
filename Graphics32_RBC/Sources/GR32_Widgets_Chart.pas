@@ -113,7 +113,13 @@ type
         private
           FOwner            : TGR32WidgetChart;
           FPosition         : TGR32WidgetChartRulerPos;
+          FRulerWidth       : Integer;
+          FRulerHeight      : Integer;
+          FVisible          : Boolean;
           procedure SetPostion(const Value: TGR32WidgetChartRulerPos);
+          procedure SetRulerHeight(const Value: Integer);
+          procedure SetRulerWidth(const Value: Integer);
+          procedure SetVisible(const Value: Boolean);
         protected
           procedure InlineChangeNotifier(Sender: TObject);
         public
@@ -121,8 +127,12 @@ type
           procedure AfterConstruction; override;
           procedure BeforeDestruction; override;
           procedure ResetSettings;
+          procedure SetSize(aWidth, aHeight: Integer);
         published
-          property Postion  : TGR32WidgetChartRulerPos read FPosition write SetPostion;
+          property Postion      : TGR32WidgetChartRulerPos  read  FPosition     write SetPostion;
+          property RulerWidth   : Integer                   read  FRulerWidth   write SetRulerWidth;
+          property RulerHeight  : Integer                   read  FRulerHeight  write SetRulerHeight;
+          property Visible      : Boolean                   read  FVisible      write SetVisible;
       end;
     private
       FItems      : TList;
@@ -607,12 +617,21 @@ end;
 procedure TGR32WidgetChart.TGR32WidgetChartRuler.AfterConstruction;
 begin
   inherited;
-  //
+  ResetSettings;
 end;
 
 procedure TGR32WidgetChart.TGR32WidgetChartRuler.Assign(Source: TPersistent);
+var
+  aSors: TGR32WidgetChart.TGR32WidgetChartRuler;
 begin
-
+  if (Source is TGR32WidgetChart.TGR32WidgetChartRuler) then begin
+      aSors := TGR32WidgetChart.TGR32WidgetChartRuler(Source);
+      //FOwner      := BU KULLANILMAYACAK..
+      FPosition       := aSors.Postion      ;
+      FRulerWidth     := aSors.RulerWidth   ;
+      FRulerHeight    := aSors.RulerHeight  ;
+      FVisible        := aSors.Visible      ;
+  end else inherited;
 end;
 
 procedure TGR32WidgetChart.TGR32WidgetChartRuler.BeforeDestruction;
@@ -621,14 +640,45 @@ begin
   inherited;
 end;
 
+procedure TGR32WidgetChart.TGR32WidgetChartRuler.InlineChangeNotifier(Sender: TObject);
+begin
+  // Persistent sınıfın alt type'lerinde bir değişiklik olduğunda ana sınıfın grafiğinin yeniden çizilmesini tetikler...
+  // "Sender" parametresi bu noktada işimize yaramadığı için prosedürü çağırırken NIL değerini vermekte herhangi bir sakınca yoktur.
+  if Assigned(FOwner) then FOwner.Invalidate;
+end;
+
 procedure TGR32WidgetChart.TGR32WidgetChartRuler.ResetSettings;
 begin
   FPosition := wrpLeft;
+  FVisible  := True;
+  InlineChangeNotifier(nil);
 end;
 
 procedure TGR32WidgetChart.TGR32WidgetChartRuler.SetPostion(const Value: TGR32WidgetChartRulerPos);
 begin
   FPosition := Value; InlineChangeNotifier(nil);
+end;
+
+procedure TGR32WidgetChart.TGR32WidgetChartRuler.SetRulerHeight(const Value: Integer);
+begin
+  FRulerHeight := Value; InlineChangeNotifier(nil);
+end;
+
+procedure TGR32WidgetChart.TGR32WidgetChartRuler.SetRulerWidth(const Value: Integer);
+begin
+  FRulerWidth := Value; InlineChangeNotifier(nil);
+end;
+
+procedure TGR32WidgetChart.TGR32WidgetChartRuler.SetSize(aWidth, aHeight: Integer);
+begin
+  FRulerHeight := aWidth;
+  FRulerWidth  := aHeight;
+  InlineChangeNotifier(nil);
+end;
+
+procedure TGR32WidgetChart.TGR32WidgetChartRuler.SetVisible(const Value: Boolean);
+begin
+  FVisible := Value; InlineChangeNotifier(nil);
 end;
 
 end.

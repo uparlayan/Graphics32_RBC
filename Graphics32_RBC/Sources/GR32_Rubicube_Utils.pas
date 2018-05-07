@@ -1,7 +1,7 @@
-{-----------------------------------------------------------------------------------
+ï»¿{-----------------------------------------------------------------------------------
  Unit Name    : GR32_Rubicube_Utils.pas                                            /
- Author       : Uður PARLAYAN / uparlayan <ugurparlayan@gmail.com>                 /
- Copyright    : 2018 by Uður PARLAYAN. All rights reserved.                        /
+ Author       : UÄŸur PARLAYAN / uparlayan <ugurparlayan@gmail.com>                 /
+ Copyright    : 2018 by UÄŸur PARLAYAN. All rights reserved.                        /
  Component Set: Graphics32_RBC                                                     /
                                                                                    /
  Purpose      : Visual graphics for Business Intelligence applications on VCL      /
@@ -32,7 +32,7 @@ const
   Pi   = 3.141592653589793; // 270. derece
   Pi_1 = 1.570796326794897; // 180. derece
   Pi_3 = 4.712388980384690; // 90. derece...
-  Pi_4 = 6.283185307179586; // Bu özel hesaplamalar için kullanýlan Pi'nin 2. katýdýr...
+  Pi_4 = 6.283185307179586; // Bu Ã¶zel hesaplamalar iÃ§in kullanÄ±lan Pi'nin 2. katÄ±dÄ±r...
   Pi_004 = Pi_4 * 0.01;     // => 0.06283185307179586
 
 type
@@ -48,9 +48,9 @@ const
                                                                       , 3.141592653589793 // 270. derece
                                                                       );
 type                                                                    //            0          1              0          1    //
-  TGR32WidgetFillStyle      = (wfsWinding, wfsAlternatif ); //  TPolyFillMode; // (pfAlternate, pfWinding, pfEvenOdd = 0, pfNonZero); "= 0" atamasý yapýlmýþ dolayýsýyla object inspectorde çýkmýyor, o nedenle ek bir set tanýmlandý.
-  TGR32WidgetVerticalPos    = (wvpNone, wvpTop, wvpBottom); //  Dikey konumlandýrma bilgisi için...
-  TGR32WidgetHorizontalPos  = (whpNone, whpLeft, whpRight); //  Yatay konumlandýrma bilgisi için
+  TGR32WidgetFillStyle      = (wfsWinding, wfsAlternatif ); //  TPolyFillMode; // (pfAlternate, pfWinding, pfEvenOdd = 0, pfNonZero); "= 0" atamasÄ± yapÄ±lmÄ±ÅŸ dolayÄ±sÄ±yla object inspectorde Ã§Ä±kmÄ±yor, o nedenle ek bir set tanÄ±mlandÄ±.
+  TGR32WidgetVerticalPos    = (wvpNone, wvpTop, wvpBottom); //  Dikey konumlandÄ±rma bilgisi iÃ§in...
+  TGR32WidgetHorizontalPos  = (whpNone, whpLeft, whpRight); //  Yatay konumlandÄ±rma bilgisi iÃ§in
   TFontPos                  = (fpTopLeft, fpTopCenter, fpTopRight, fpCenterLeft, fpCenterCenter, fpCenterRight, fpBottomLeft, fpBottomCenter, fpBottomRight);
   TColor_Helper = record Helper for TColor
     public
@@ -58,7 +58,7 @@ type                                                                    //      
   end;
   TListHelper = class helper for TList
     public
-      procedure Flush; // Listenin içindeki TObject soyundan gelen nesneleri free etmeye yarar... Clear TList'in elemanlarýný yok ederken bu baðlantý kurulan o nesnelerin kendisini de yok eder...
+      procedure Flush; // Listenin iÃ§indeki TObject soyundan gelen nesneleri free etmeye yarar... Clear TList'in elemanlarÄ±nÄ± yok ederken bu baÄŸlantÄ± kurulan o nesnelerin kendisini de yok eder...
   end;
   TRenderHelper = class helper for TPolygonRenderer32VPR // TPolygonRenderer32
     public
@@ -227,11 +227,11 @@ end;
 
 function TRenderHelper.Pasta(aMerkez: TFloatPoint; aYariCap, aYuzde: Single; aOfset: TPiOfsetTipi = Pi_0): TArrayOfFloatPoint;
 begin
-  Result  := Pie ( { P}       aMerkez          // Merkez Noktasý
-                 , { Radius } aYariCap         // Yarýçap
-                 , { Angle }  aYuzde * Pi_004  // istenen açý... 100 üzrinden...
-                 , { Offset } PiOfset[aOfset]  // Sýfýrýncý açýnýn hangi derecede baþlayacaðý bilgisidir. 0 = 90, Pi/2 = 180, Pi = 270 ve Pi/2*3 = 360 derecedir...
-                 , { Steps }  360              // Yuvarlaðýn kenarýndaki poligon sayýsýdýr...
+  Result  := Pie ( { P}       aMerkez          // Merkez NoktasÄ±
+                 , { Radius } aYariCap         // YarÄ±Ã§ap
+                 , { Angle }  aYuzde * Pi_004  // istenen aÃ§Ä±... 100 Ã¼zrinden...
+                 , { Offset } PiOfset[aOfset]  // SÄ±fÄ±rÄ±ncÄ± aÃ§Ä±nÄ±n hangi derecede baÅŸlayacaÄŸÄ± bilgisidir. 0 = 90, Pi/2 = 180, Pi = 270 ve Pi/2*3 = 360 derecedir...
+                 , { Steps }  360              // YuvarlaÄŸÄ±n kenarÄ±ndaki poligon sayÄ±sÄ±dÄ±r...
                  );
 end;
 
@@ -249,7 +249,7 @@ end;
 
 function TRenderHelper.Yay(aMerkez: TFloatPoint; aStartYuzde, aEndYuzde, aYariCap: Single; aSteps: Integer = 360): TArrayOfFloatPoint;
 begin
-  Result  := BuildArc(aMerkez, aStartYuzde * Pi_004, aEndYuzde * Pi_004, aYariCap{, aSteps});
+  Result  := BuildArc(aMerkez, aStartYuzde * Pi_4, aEndYuzde * Pi_004, aYariCap{, aSteps});
 end;
 
 procedure TRenderHelper.YaziBas ( aRect: TRect

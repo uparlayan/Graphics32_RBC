@@ -1,7 +1,7 @@
-{-----------------------------------------------------------------------------------
+ï»¿{-----------------------------------------------------------------------------------
  Unit Name    : GR32_Rubicube_Consts.pas                                           /
- Author       : Uður PARLAYAN / uparlayan <ugurparlayan@gmail.com>                 /
- Copyright    : 2018 by Uður PARLAYAN. All rights reserved.                        /
+ Author       : UÄŸur PARLAYAN / uparlayan <ugurparlayan@gmail.com>                 /
+ Copyright    : 2018 by UÄŸur PARLAYAN. All rights reserved.                        /
  Component Set: Graphics32_RBC                                                     /
                                                                                    /
  Purpose      : Visual graphics for Business Intelligence applications on VCL      /
@@ -38,7 +38,7 @@ const
   clRbcAcikPortakal = TColor($00E3F0FF);
   clRbcKiremit      = TColor($005B35D5);
   clRbcAcikKiremit  = TColor($00E7E1FA);
-  clRbcMor          = TColor($00BD35AB); // Gri'nin Tonlarý                  //
+  clRbcMor          = TColor($00BD35AB); // Gri'nin TonlarÄ±                  //
   clRbcFume         = TColor($00564237);
   clRbcAcikFume     = TColor($00664C3C);
   clRbcKoyuGri      = TColor($00806453);
