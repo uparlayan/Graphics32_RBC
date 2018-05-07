@@ -1,38 +1,41 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
 	<Transactions>
+    <Transaction>1899.12.30 00:00:00.000.085,=P:\Dev\Delphi\LibGenel\Graphics32_RBC\Packages\Unit1.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.126,P:\Dev\Delphi\LibGenel\Graphics32_RBC\Packages\Unit1.pas=P:\Dev\Delphi\LibGenel\Graphics32_RBC\Sources\GR32_Rubicube_Utils.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.265,=P:\Dev\Delphi\LibGenel\Graphics32_RBC\Packages\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.013,P:\Dev\Delphi\LibGenel\Graphics32_RBC\Packages\Unit1.pas=P:\Dev\Delphi\LibGenel\Graphics32_RBC\Sources\GR32_Widgets_Chart.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.737,=P:\Dev\Delphi\LibGenel\Graphics32_RBC\Packages\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.432,P:\Dev\Delphi\LibGenel\Graphics32_RBC\Packages\Unit1.pas=P:\Dev\Delphi\LibGenel\Graphics32_RBC\Sources\GR32_Rubicube_Consts.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.549,P:\Dev\Delphi\LibGenel\Graphics32_RBC\Sources\GR32_Widgets_Base.pas=P:\Dev\Delphi\LibGenel\Graphics32_RBC\Packages\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.987,=GR32_R.dcp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.176,P:\Dev\Delphi\LibGenel\Graphics32_RBC\Packages\Unit1.pas=P:\Dev\Delphi\LibGenel\Graphics32_RBC\Sources\GR32_Widgets_Bar.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.923,P:\Dev\Delphi\LibGenel\Graphics32_RBC\Packages\Unit1.pas=P:\Dev\Delphi\LibGenel\Graphics32_RBC\Sources\GR32_Widgets_Box.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.621,=P:\Dev\Delphi\LibGenel\Graphics32_RBC\Packages\Unit1.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.265,=P:\Dev\Delphi\LibGenel\Graphics32_RBC\Packages\Unit1.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.315,=P:\Dev\Delphi\LibGenel\Graphics32_RBC\Packages\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.656,P:\Dev\Delphi\LibGenel\Graphics32_RBC\Packages\Unit1.pas=P:\Dev\Delphi\LibGenel\Graphics32_RBC\Sources\GR32_Widgets_Circle.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.581,P:\Dev\Delphi\LibGenel\Graphics32_RBC\Sources\GR32_Widgets_Izgara.pas=P:\Dev\Delphi\LibGenel\Graphics32_RBC\Packages\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.402,=rtl.dcp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.183,C:\Users\Ugur\Documents\Embarcadero\Studio\Projects\Package1.dproj=P:\Dev\Delphi\LibGenel\Graphics32_RBC\Packages\Graphics32_RBC.dproj</Transaction>
     <Transaction>1899.12.30 00:00:00.000.913,P:\Dev\Delphi\LibGenel\Graphics32_RBC\Sources\GR32_Widgets_Circle.pas=</Transaction>
     <Transaction>1899.12.30 00:00:00.000.597,P:\Dev\Delphi\LibGenel\Graphics32_RBC\Sources\GR32_Widgets_Circle.pas=P:\Dev\Delphi\LibGenel\Graphics32_RBC\Sources\GR32_Widgets_Donut.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.549,P:\Dev\Delphi\LibGenel\Graphics32_RBC\Sources\GR32_Widgets_Base.pas=P:\Dev\Delphi\LibGenel\Graphics32_RBC\Packages\Unit1.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.737,=P:\Dev\Delphi\LibGenel\Graphics32_RBC\Packages\Unit1.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.176,P:\Dev\Delphi\LibGenel\Graphics32_RBC\Packages\Unit1.pas=P:\Dev\Delphi\LibGenel\Graphics32_RBC\Sources\GR32_Widgets_Bar.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.013,P:\Dev\Delphi\LibGenel\Graphics32_RBC\Packages\Unit1.pas=P:\Dev\Delphi\LibGenel\Graphics32_RBC\Sources\GR32_Widgets_Chart.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.402,=rtl.dcp</Transaction>
     <Transaction>1899.12.30 00:00:00.000.703,=P:\Dev\Delphi\LibGenel\Graphics32_RBC\Sources\GR32_Widgets_Donut.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.581,P:\Dev\Delphi\LibGenel\Graphics32_RBC\Sources\GR32_Widgets_Izgara.pas=P:\Dev\Delphi\LibGenel\Graphics32_RBC\Packages\Unit1.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.987,=GR32_R.dcp</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.183,C:\Users\Ugur\Documents\Embarcadero\Studio\Projects\Package1.dproj=P:\Dev\Delphi\LibGenel\Graphics32_RBC\Packages\Graphics32_RBC.dproj</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.122,=P:\Dev\Delphi\LibGenel\Graphics32_RBC\Packages\Unit1.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.656,P:\Dev\Delphi\LibGenel\Graphics32_RBC\Packages\Unit1.pas=P:\Dev\Delphi\LibGenel\Graphics32_RBC\Sources\GR32_Widgets_Circle.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.085,=P:\Dev\Delphi\LibGenel\Graphics32_RBC\Packages\Unit1.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.974,=vcl.dcp</Transaction>
     <Transaction>1899.12.30 00:00:00.000.373,=P:\Dev\Delphi\LibGenel\Graphics32_RBC\Packages\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.315,=P:\Dev\Delphi\LibGenel\Graphics32_RBC\Packages\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.840,=P:\Dev\Delphi\LibGenel\Graphics32_RBC\Packages\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.974,=vcl.dcp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.122,=P:\Dev\Delphi\LibGenel\Graphics32_RBC\Packages\Unit1.pas</Transaction>
   </Transactions>
 	<ProjectSortOrder AutoSort="0" SortType="0">
     <File Path="..\..\Graphics32_RBC"/>
     <File Path="..\Sources"/>
+    <File Path="..\Sources\GR32_Rubicube_Consts.pas"/>
     <File Path="..\Sources\GR32_Rubicube_Utils.pas"/>
-    <File Path="..\Sources\GR32_Widgets_Bar.pas"/>
-    <File Path="..\Sources\GR32_Widgets_Base.pas"/>
-    <File Path="..\Sources\GR32_Widgets_Box.pas"/>
-    <File Path="..\Sources\GR32_Widgets_Chart.pas"/>
-    <File Path="..\Sources\GR32_Widgets_Circle.pas"/>
     <File Path="..\Sources\GR32_Widgets_Izgara.pas"/>
+    <File Path="..\Sources\GR32_Widgets_Base.pas"/>
+    <File Path="..\Sources\GR32_Widgets_Bar.pas"/>
+    <File Path="..\Sources\GR32_Widgets_Box.pas"/>
+    <File Path="..\Sources\GR32_Widgets_Circle.pas"/>
+    <File Path="..\Sources\GR32_Widgets_Chart.pas"/>
     <File Path="GR32_R.dcp"/>
     <File Path="rtl.dcp"/>
     <File Path="vcl.dcp"/>
