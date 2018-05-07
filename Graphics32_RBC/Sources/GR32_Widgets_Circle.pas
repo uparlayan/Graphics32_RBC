@@ -1,3 +1,21 @@
+{-----------------------------------------------------------------------------------
+ Unit Name    : GR32_Widgets_Circle.pas                                            /
+ Author       : Uður PARLAYAN / uparlayan <ugurparlayan@gmail.com>                 /
+ Copyright    : 2018 by Uður PARLAYAN. All rights reserved.                        /
+ Component Set: Graphics32_RBC                                                     /
+                                                                                   /
+ Purpose      : Visual graphics for Business Intelligence applications on VCL      /
+ Created      : 2018-05-01                                                         /
+ Version      : 1.0.0.0 beta                                                       /
+ Required     : https://github.com/graphics32/graphics32                           /
+ Source Codes : https://github.com/uparlayan/Graphics32_RBC                        /
+ Overview     : This Component Kit provides visual graphics for business           /
+                intelligence applications. Allows you to create Dashboard objects  /
+                for your applications. The codes contained here include a light    /
+                version of the actual component set. Please contact the author for /
+                more advanced options.                                             /
+-----------------------------------------------------------------------------------}
+
 unit GR32_Widgets_Circle;
 
 interface
@@ -8,6 +26,7 @@ uses
   , GR32                        //  TBitmap32
   , GR32_ColorGradients         //  TColor32, ColorTo
   , GR32_Polygons               //  Poligon hesaplama formülleri
+  , GR32_Paths
   , System.Classes              //  TComponent
   , System.SysUtils             //  FreeAndNil
   , System.Math                 //  Min
@@ -480,6 +499,7 @@ begin
 
       Ressam.SekilBas( Color32(FAyarlar.ValueColor) , Ressam.Pasta(FM, MinWH * 0.96  , FYuzde, Pi_0) );       // Yay
   end;
+  //Ressam.SekilBas( Color32(clRed) , Ressam.Yay( FM, 1, FYuzde, MinWH * 0.5) );       // Yay
 
   Ressam.YaziBas( FL + FW2
                 , FT + FH2
@@ -491,6 +511,8 @@ begin
                 , FAyarlar.Font.Style
                 , FAyarlar.AntiAliased
                 );
+
+
   Ressam.Free;
 end;
 

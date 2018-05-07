@@ -1,3 +1,21 @@
+{-----------------------------------------------------------------------------------
+ Unit Name    : GR32_Rubicube_Utils.pas                                            /
+ Author       : Uður PARLAYAN / uparlayan <ugurparlayan@gmail.com>                 /
+ Copyright    : 2018 by Uður PARLAYAN. All rights reserved.                        /
+ Component Set: Graphics32_RBC                                                     /
+                                                                                   /
+ Purpose      : Visual graphics for Business Intelligence applications on VCL      /
+ Created      : 2018-05-01                                                         /
+ Version      : 1.0.0.0 beta                                                       /
+ Required     : https://github.com/graphics32/graphics32                           /
+ Source Codes : https://github.com/uparlayan/Graphics32_RBC                        /
+ Overview     : This Component Kit provides visual graphics for business           /
+                intelligence applications. Allows you to create Dashboard objects  /
+                for your applications. The codes contained here include a light    /
+                version of the actual component set. Please contact the author for /
+                more advanced options.                                             /
+-----------------------------------------------------------------------------------}
+
 unit GR32_Rubicube_Utils;
 
 interface
@@ -30,9 +48,9 @@ const
                                                                       , 3.141592653589793 // 270. derece
                                                                       );
 type                                                                    //            0          1              0          1    //
-  TGR32WidgetFillStyle      = (wfsWinding, wfsAlternatif );     //  TPolyFillMode; // (pfAlternate, pfWinding, pfEvenOdd = 0, pfNonZero); "= 0" atamasý yapýlmýþ dolayýsýyla object inspectorde çýkmýyor, o nedenle ek bir set tanýmlandý.
-  TGR32WidgetVerticalPos    = (wvpNone, wvpTop, wvpBottom);    //  Dikey konumlandýrma bilgisi için...
-  TGR32WidgetHorizontalPos  = (whpNone, whpLeft, whpRight);  //  Yatay konumlandýrma bilgisi için
+  TGR32WidgetFillStyle      = (wfsWinding, wfsAlternatif ); //  TPolyFillMode; // (pfAlternate, pfWinding, pfEvenOdd = 0, pfNonZero); "= 0" atamasý yapýlmýþ dolayýsýyla object inspectorde çýkmýyor, o nedenle ek bir set tanýmlandý.
+  TGR32WidgetVerticalPos    = (wvpNone, wvpTop, wvpBottom); //  Dikey konumlandýrma bilgisi için...
+  TGR32WidgetHorizontalPos  = (whpNone, whpLeft, whpRight); //  Yatay konumlandýrma bilgisi için
   TFontPos                  = (fpTopLeft, fpTopCenter, fpTopRight, fpCenterLeft, fpCenterCenter, fpCenterRight, fpBottomLeft, fpBottomCenter, fpBottomRight);
   TColor_Helper = record Helper for TColor
     public
@@ -40,7 +58,7 @@ type                                                                    //      
   end;
   TListHelper = class helper for TList
     public
-      procedure Flush; // Listenin içindeki TObject soyundan gelen nesneleri free etmeye yarar... Clear'dan daha etkilidir !
+      procedure Flush; // Listenin içindeki TObject soyundan gelen nesneleri free etmeye yarar... Clear TList'in elemanlarýný yok ederken bu baðlantý kurulan o nesnelerin kendisini de yok eder...
   end;
   TRenderHelper = class helper for TPolygonRenderer32VPR // TPolygonRenderer32
     public
@@ -53,6 +71,7 @@ type                                                                    //      
       function CizgiDama(aXY, aWH: TFloatPoint; aKalinlik: Single; aDamaSize: Single): TArrayOfArrayOfFloatPoint;
       function Daire(aMerkez: TFloatPoint; aYariCap: Single): TArrayOfFloatPoint;
       function Pasta(aMerkez: TFloatPoint; aYariCap: Single; aYuzde: Single; aOfset: TPiOfsetTipi = Pi_0): TArrayOfFloatPoint;
+      function Yay(aMerkez: TFloatPoint; aStartYuzde, aEndYuzde, aYariCap: Single; aSteps: Integer = 360): TArrayOfFloatPoint;
       procedure SekilBas(aRenk: TColor32; const aPoints: TArrayOfFloatPoint); overload; // Filler eklenecek
       procedure SekilBas(aRenk: TColor32; const aPoints: TArrayOfArrayOfFloatPoint); overload; // Filler eklenecek
       procedure YaziBas(X, Y: Integer; aString: String; aColor: TColor = cldefault; aFontSize: Integer = 0; aFontName: String = ''; aFontPos: TFontPos = fpCenterCenter; aFontStyle: TFontStyles = []; aAntiAliased: Boolean = False); overload;
@@ -226,6 +245,11 @@ procedure TRenderHelper.SekilBas(aRenk: TColor32; const aPoints: TArrayOfFloatPo
 begin
   Color := aRenk;
   PolyPolygonFS(PolyPolygon(aPoints), FloatRect(Self.Bitmap.ClipRect));
+end;
+
+function TRenderHelper.Yay(aMerkez: TFloatPoint; aStartYuzde, aEndYuzde, aYariCap: Single; aSteps: Integer = 360): TArrayOfFloatPoint;
+begin
+  Result  := BuildArc(aMerkez, aStartYuzde * Pi_004, aEndYuzde * Pi_004, aYariCap{, aSteps});
 end;
 
 procedure TRenderHelper.YaziBas ( aRect: TRect

@@ -1,3 +1,21 @@
+{-----------------------------------------------------------------------------------
+ Unit Name    : GR32_Widgets_Izgara.pas                                            /
+ Author       : Uður PARLAYAN / uparlayan <ugurparlayan@gmail.com>                 /
+ Copyright    : 2018 by Uður PARLAYAN. All rights reserved.                        /
+ Component Set: Graphics32_RBC                                                     /
+                                                                                   /
+ Purpose      : Visual graphics for Business Intelligence applications on VCL      /
+ Created      : 2018-05-01                                                         /
+ Version      : 1.0.0.0 beta                                                       /
+ Required     : https://github.com/graphics32/graphics32                           /
+ Source Codes : https://github.com/uparlayan/Graphics32_RBC                        /
+ Overview     : This Component Kit provides visual graphics for business           /
+                intelligence applications. Allows you to create Dashboard objects  /
+                for your applications. The codes contained here include a light    /
+                version of the actual component set. Please contact the author for /
+                more advanced options.                                             /
+-----------------------------------------------------------------------------------}
+
 unit GR32_Widgets_Izgara;
 
 interface

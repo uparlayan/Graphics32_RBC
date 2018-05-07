@@ -1,4 +1,22 @@
-﻿unit GR32_Widgets_Chart;
+﻿{-----------------------------------------------------------------------------------
+ Unit Name    : GR32_Widgets_Chart.pas                                             /
+ Author       : Uğur PARLAYAN / uparlayan <ugurparlayan@gmail.com>                 /
+ Copyright    : 2018 by Uğur PARLAYAN. All rights reserved.                        /
+ Component Set: Graphics32_RBC                                                     /
+                                                                                   /
+ Purpose      : Visual graphics for Business Intelligence applications on VCL      /
+ Created      : 2018-05-01                                                         /
+ Version      : 1.0.0.0 beta                                                       /
+ Required     : https://github.com/graphics32/graphics32                           /
+ Source Codes : https://github.com/uparlayan/Graphics32_RBC                        /
+ Overview     : This Component Kit provides visual graphics for business           /
+                intelligence applications. Allows you to create Dashboard objects  /
+                for your applications. The codes contained here include a light    /
+                version of the actual component set. Please contact the author for /
+                more advanced options.                                             /
+-----------------------------------------------------------------------------------}
+
+unit GR32_Widgets_Chart;
 
 interface
 
@@ -11,10 +29,12 @@ uses
   , System.SysUtils             //  FreeAndNil
   , Vcl.Graphics                //  TColor
   , Vcl.Controls                //  TCustomControl
+  , GR32_Rubicube_Consts        //  clRBC renk kodları
   ;
 
 type
   TGR32WidgetChartTypes = (wctAlan, wctCizgi, wctCubuk);
+  TGR32WidgetChartRulerPos = (wrpLeft, wrpTop, wrpRight, wrpBottom);
   TGR32WidgetChartItem = class
     public
       Grup: String;
@@ -31,10 +51,12 @@ type
           FBorderStyle      : TPenStyle;
           FBorderWidth      : Integer;
           FChartType        : TGR32WidgetChartTypes;
+          FCizgi_Cember     : TColor;
           FCizgi_Dolgusu    : TColor;
           FCizgi_Kalinlik   : Single;
           FCizgi_Renk       : TColor;
           FCizgi_YariCap    : Single;
+          FFrameBG          : TColor;
           FFrameColor       : TColor;
           FFrameStyle       : TPenStyle;
           FFrameWidth       : Integer;
@@ -42,17 +64,17 @@ type
           FHeaderHeight     : Integer;
           FHeaderPos        : TFontPos;
           FPadding          : TPadding;
-        FCizgi_Cember: TColor;
-          procedure InlineChangeNotifier(Sender: TObject);
           procedure SetBackground(const Value: TColor);
           procedure SetBorderColor(const Value: TColor);
           procedure SetBorderStyle(const Value: TPenStyle);
           procedure SetBorderWidth(const Value: Integer);
           procedure SetChartType(const Value: TGR32WidgetChartTypes);
+          procedure SetCizgi_Cember(const Value: TColor);
           procedure SetCizgi_Dolgusu(const Value: TColor);
           procedure SetCizgi_Kalinlik(const Value: Single);
           procedure SetCizgi_Renk(const Value: TColor);
           procedure SetCizgi_YariCap(const Value: Single);
+          procedure SetFrameBG(const Value: TColor);
           procedure SetFrameColor(const Value: TColor);
           procedure SetFrameStyle(const Value: TPenStyle);
           procedure SetFrameWidth(const Value: Integer);
@@ -60,8 +82,8 @@ type
           procedure SetHeaderHeight(const Value: Integer);
           procedure SetHeaderPos(const Value: TFontPos);
           procedure SetPadding(const Value: TPadding);
-        procedure SetCizgi_Cember(const Value: TColor);
         protected
+          procedure InlineChangeNotifier(Sender: TObject);
         public
           procedure Assign(Source: TPersistent); reintroduce;
           procedure AfterConstruction; override;
@@ -78,6 +100,7 @@ type
           property Cizgi_Kalinlik : Single                read  FCizgi_Kalinlik   write SetCizgi_Kalinlik ;
           property Cizgi_Renk     : TColor                read  FCizgi_Renk       write SetCizgi_Renk     ;
           property Cizgi_YariCap  : Single                read  FCizgi_YariCap    write SetCizgi_YariCap  ;
+          property FrameBG        : TColor                read  FFrameBG          write SetFrameBG        ;
           property FrameColor     : TColor                read  FFrameColor       write SetFrameColor     ;
           property FrameStyle     : TPenStyle             read  FFrameStyle       write SetFrameStyle     ;
           property FrameWidth     : Integer               read  FFrameWidth       write SetFrameWidth     ;
@@ -85,6 +108,21 @@ type
           property HeaderHeight   : Integer               read  FHeaderHeight     write SetHeaderHeight   ;
           property HeaderPos      : TFontPos              read  FHeaderPos        write SetHeaderPos      ;
           property Padding        : TPadding              read  FPadding          write SetPadding        ;
+      end;
+      TGR32WidgetChartRuler = class(TPersistent)
+        private
+          FOwner            : TGR32WidgetChart;
+          FPosition         : TGR32WidgetChartRulerPos;
+          procedure SetPostion(const Value: TGR32WidgetChartRulerPos);
+        protected
+          procedure InlineChangeNotifier(Sender: TObject);
+        public
+          procedure Assign(Source: TPersistent); reintroduce;
+          procedure AfterConstruction; override;
+          procedure BeforeDestruction; override;
+          procedure ResetSettings;
+        published
+          property Postion  : TGR32WidgetChartRulerPos read FPosition write SetPostion;
       end;
     private
       FItems      : TList;
@@ -158,6 +196,7 @@ begin
       FCizgi_Kalinlik   := aSors.Cizgi_Kalinlik ;
       FCizgi_Renk       := aSors.Cizgi_Renk     ;
       FCizgi_YariCap    := aSors.Cizgi_YariCap  ;
+      FFrameBG          := aSors.FrameBG        ;
       FFrameColor       := aSors.FrameColor     ;
       FFrameStyle       := aSors.FrameStyle     ;
       FFrameWidth       := aSors.FrameWidth     ;
@@ -204,6 +243,7 @@ begin
   FCizgi_Kalinlik   := 2;
   FCizgi_Renk       := clPurple;
   FCizgi_YariCap    := 5;
+  FFrameBG          := clWindow;
   FFrameColor       := clWindowFrame;
   FFrameStyle       := psDot;
   FFrameWidth       := 1;
@@ -266,6 +306,11 @@ end;
 procedure TGR32WidgetChart.TGR32WidgetChartSettings.SetCizgi_YariCap(const Value: Single);
 begin
   FCizgi_YariCap := Value; InlineChangeNotifier(nil);
+end;
+
+procedure TGR32WidgetChart.TGR32WidgetChartSettings.SetFrameBG(const Value: TColor);
+begin
+  FFrameBG := Value; InlineChangeNotifier(nil);
 end;
 
 procedure TGR32WidgetChart.TGR32WidgetChartSettings.SetFrameColor(const Value: TColor);
@@ -372,48 +417,30 @@ begin
 end;
 
 procedure TGR32WidgetChart.DemoData;
+var
+  I, J: Integer;
 begin
   Self.FItems.Flush;
-  Self.Add('Dolar',100);
-  Self.Add('Dolar',  2);
-  Self.Add('Dolar',100);
+  Self.Add('Dolar',  0);
   Self.Add('Dolar',  5);
-  Self.Add('Dolar',100);
   Self.Add('Dolar', 10);
-  Self.Add('Dolar',100);
-  Self.Add('Dolar', 15);
-  Self.Add('Dolar',100);
+  Self.Add('Dolar',  8);
   Self.Add('Dolar', 20);
-  Self.Add('Dolar',100);
-  Self.Add('Dolar', 25);
-  Self.Add('Dolar',100);
+  Self.Add('Dolar', 18);
   Self.Add('Dolar', 30);
-  Self.Add('Dolar',100);
-  Self.Add('Dolar', 35);
-  Self.Add('Dolar',100);
+  Self.Add('Dolar', 26);
   Self.Add('Dolar', 40);
-  Self.Add('Dolar',100);
-  Self.Add('Dolar', 45);
-  Self.Add('Dolar',100);
+  Self.Add('Dolar', 35);
   Self.Add('Dolar', 50);
-  Self.Add('Dolar',100);
-  Self.Add('Dolar', 55);
-  Self.Add('Dolar',100);
+  Self.Add('Dolar', 44);
   Self.Add('Dolar', 60);
-  Self.Add('Dolar',100);
-  Self.Add('Dolar', 65);
-  Self.Add('Dolar',100);
+  Self.Add('Dolar', 53);
   Self.Add('Dolar', 70);
-  Self.Add('Dolar',100);
-  Self.Add('Dolar', 75);
-  Self.Add('Dolar',100);
+  Self.Add('Dolar', 62);
   Self.Add('Dolar', 80);
-  Self.Add('Dolar',100);
-  Self.Add('Dolar', 85);
-  Self.Add('Dolar',100);
+  Self.Add('Dolar', 70);
   Self.Add('Dolar', 90);
-  Self.Add('Dolar',100);
-  Self.Add('Dolar', 95);
+  Self.Add('Dolar', 80);
   Self.Add('Dolar',100);
 end;
 
@@ -510,6 +537,7 @@ begin
   FM := Merkez;
   Boy := H - BW_ - PT - FW_ - FAyarlar.HeaderHeight - FW_ - PB - BW_;
   FM.Y := Merkez.Y + (FAyarlar.HeaderHeight div 2);
+  Ressam.SekilBas ( FAyarlar.FrameBG.ToColor32, Ressam.DikDortgen( FM, En, Boy));
   Ressam.SekilBas ( FAyarlar.FrameColor.ToColor32, Ressam.DikDortgenCizgi( FM, En, Boy, FW_, FAyarlar.FrameStyle));
   MXV := Self.MaxValue;
   // Chart'ın içindeki çizim bölgesinin ölçüleri alınıyor...
@@ -572,6 +600,35 @@ begin
                   end;
   end;
   Ressam.Free;
+end;
+
+{ TGR32WidgetChart.TGR32WidgetChartRuler }
+
+procedure TGR32WidgetChart.TGR32WidgetChartRuler.AfterConstruction;
+begin
+  inherited;
+  //
+end;
+
+procedure TGR32WidgetChart.TGR32WidgetChartRuler.Assign(Source: TPersistent);
+begin
+
+end;
+
+procedure TGR32WidgetChart.TGR32WidgetChartRuler.BeforeDestruction;
+begin
+  //
+  inherited;
+end;
+
+procedure TGR32WidgetChart.TGR32WidgetChartRuler.ResetSettings;
+begin
+  FPosition := wrpLeft;
+end;
+
+procedure TGR32WidgetChart.TGR32WidgetChartRuler.SetPostion(const Value: TGR32WidgetChartRulerPos);
+begin
+  FPosition := Value; InlineChangeNotifier(nil);
 end;
 
 end.

@@ -1,3 +1,21 @@
+{-----------------------------------------------------------------------------------
+ Unit Name    : GR32_Widgets_Base.pas                                              /
+ Author       : Uður PARLAYAN / uparlayan <ugurparlayan@gmail.com>                 /
+ Copyright    : 2018 by Uður PARLAYAN. All rights reserved.                        /
+ Component Set: Graphics32_RBC                                                     /
+                                                                                   /
+ Purpose      : Visual graphics for Business Intelligence applications on VCL      /
+ Created      : 2018-05-01                                                         /
+ Version      : 1.0.0.0 beta                                                       /
+ Required     : https://github.com/graphics32/graphics32                           /
+ Source Codes : https://github.com/uparlayan/Graphics32_RBC                        /
+ Overview     : This Component Kit provides visual graphics for business           /
+                intelligence applications. Allows you to create Dashboard objects  /
+                for your applications. The codes contained here include a light    /
+                version of the actual component set. Please contact the author for /
+                more advanced options.                                             /
+-----------------------------------------------------------------------------------}
+
 unit GR32_Widgets_Base;
 
 interface
@@ -27,19 +45,19 @@ type
     protected
       procedure Paint; override;
     public
-      FBuffer: TBitmap32;
-      Merkez: TFloatPoint;
+      FBuffer : TBitmap32;
+      Merkez  : TFloatPoint;
       constructor Create(AOwner: TComponent); override;
       destructor Destroy(); override;
       procedure Invalidate; override;
       procedure Resize; override;
-      procedure PaintControl; virtual;  // Bu, yavru nesnelerde tanýmlanacak. Bu noktada ise bu metod Paint metodunda çaðýrýlacak. Böylece iþleyiþ ve performans düzgün ilerleyecek...
+      procedure PaintControl; virtual;                                          // Bu, yavru nesnelerde tanýmlanacak. Bu noktada ise bu metod Paint metodunda çaðýrýlacak. Böylece iþleyiþ ve performans düzgün ilerleyecek...
     published
       property Align;
       property AlignWithMargins;
       property Anchors;
       property Margins;
-      property MouseIsInside: Boolean read GetMouseIsInside; // Hover olaylarýný windows mesajlarýný etkilemeyecek þekilde yönetebilmek için gerekir.
+      property MouseIsInside: Boolean read GetMouseIsInside;                    // Hover olaylarýný windows mesajlarýný etkilemeyecek þekilde yönetebilmek için gerekir.
       property OnClick;
       property OnMouseEnter : TNotifyEvent read FOnMouseEnter write FOnMouseEnter;
       property OnMouseLeave : TNotifyEvent read FOnMouseLeave write FOnMouseLeave;
@@ -125,8 +143,8 @@ end;
 procedure TGR32CustomWidget.Resize;
 begin
   inherited;
-  Merkez.X := Width * 0.5;
-  Merkez.Y := Height * 0.5;
+  Merkez.X  := Width  * 0.5;
+  Merkez.Y  := Height * 0.5;
   FBuffer.SetSize(Width, Height);
   FBufferValid := False;
 end;
