@@ -499,7 +499,18 @@ begin
 
       Ressam.SekilBas( Color32(FAyarlar.ValueColor) , Ressam.Pasta(FM, MinWH * 0.96  , FYuzde, Pi_0) );       // Yay
   end;
-  //Ressam.SekilBas( Color32(clRed) , Ressam.Yay( FM, 1, FYuzde, MinWH * 0.5) );       // Yay
+      Ressam.SekilBas( Color32(clRed)               , Ressam.Yay( FM, 0, FYuzde, MinWH * 0.5, MinWH * 0.1) );       // Yay
+
+  //Ressam.SekilBas( Color32(clRed) , Ressam.AngleArc( FM, MinWH, PiOfset[Pi_0], FYuzde * Pi_004, 360) );       // Yay
+
+  (*
+  Result  := Pie ( { P}       aMerkez          // Merkez Noktası
+                 , { Radius } aYariCap         // Yarıçap
+                 , { Angle }  aYuzde * Pi_004  // istenen açı... 100 üzrinden...
+                 , { Offset } PiOfset[aOfset]  // Sıfırıncı açının hangi derecede başlayacağı bilgisidir. 0 = 90, Pi/2 = 180, Pi = 270 ve Pi/2*3 = 360 derecedir...
+                 , { Steps }  360              // Yuvarlağın kenarındaki poligon sayısıdır...
+                 );
+  *)
 
   Ressam.YaziBas( FL + FW2
                 , FT + FH2
