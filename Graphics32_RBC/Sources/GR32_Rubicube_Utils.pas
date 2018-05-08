@@ -30,12 +30,14 @@ uses
   ;
 
 const
-  //Pi   = 3.141592653589793; // 270. derece
-  Pi   = 3.14159265358979323846;
-  Pi_1 = Pi / 2; // 1.570796326794897; // 180. derece
-  Pi_3 = (Pi / 2) * 3; // 4.712388980384690; // 90. derece...
-  Pi_4 = Pi * 2; //6.283185307179586; // Bu özel hesaplamalar için kullanılan Pi'nin 2. katıdır...
-  Pi_004 = Pi_4 * 0.01;     // => 0.06283185307179586
+  Pi     = 3.14159265358979323846;  // 270. derece
+  Pi_000 = Pi   * 0.01;
+  Pi_1   = Pi   / 2;                // 1.570796326794897; // 180. derece
+  Pi_001 = Pi_1 * 0.01;
+  Pi_3   = (Pi  / 2) * 3;           // 4.712388980384690; // 90. derece...
+  Pi_003 = Pi_3 * 0.01;
+  Pi_4   = Pi   * 2;                // 6.283185307179586; // Bu özel hesaplamalar için kullanılan Pi'nin 2. katıdır...
+  Pi_004 = Pi_4 * 0.01;             // => 0.06283185307179586
 
 
 type
@@ -46,7 +48,7 @@ type
   end;
 const
   PiOfset : array [low(TPiOfsetTipi)..High(TPiOfsetTipi)] of Single = ( 4.71238898038469  //   0. derece (Veya 360. derece)
-                                                                      , 0.0               //  90. derece
+                                                                      , 0.000000000000001 //  90. derece
                                                                       , 1.570796326794897 // 180. derece
                                                                       , 3.141592653589793 // 270. derece
                                                                       );
@@ -65,9 +67,6 @@ type                                                                    //      
   end;
   TRenderHelper = class helper for TPolygonRenderer32VPR // TPolygonRenderer32
     public
-      function GetArcPoints(const ellipseRect: TFloatRect; start_degrees, end_degrees: single): TArrayOfFloatPoint;
-      function AngleToEccentricAngle(const ellipseRect: TFloatRect; radians: single): single;
-
       function ArrayOfFloat(Values: array of TFloat): TArrayOfFloat;
       function Kare(aMerkez: TFloatPoint; aKenar: Single): TArrayOfFloatPoint;
       function Dikdortgen(aMerkez: TFloatPoint; aWidth, aHeight: Single): TArrayOfFloatPoint;
@@ -77,8 +76,8 @@ type                                                                    //      
       function CizgiDama(aXY, aWH: TFloatPoint; aKalinlik: Single; aDamaSize: Single): TArrayOfArrayOfFloatPoint;
       function Daire(aMerkez: TFloatPoint; aYariCap: Single): TArrayOfFloatPoint;
       function Pasta(aMerkez: TFloatPoint; aYariCap: Single; aYuzde: Single; aOfset: TPiOfsetTipi = Pi_0): TArrayOfFloatPoint;
-      function Yay(aMerkez: TFloatPoint; aStartYuzde, aEndYuzde, aYariCap, aKalinlik: Single; aSteps: Integer = 1571): TArrayOfFloatPoint;
-      function AngleArc(aCenter: TFloatPoint; const aRadius, aThickness: TFloat; const aAngle, aOffset: TFloat; Steps: Integer = 1571): TArrayOfFloatPoint;
+      function Yay(aMerkez: TFloatPoint; aYuzde, aYariCap, aKalinlik: Single; aSteps: Integer = 4000): TArrayOfFloatPoint;
+      function AngleArc(aCenter: TFloatPoint; const aRadius, aThickness: TFloat; const aAngle, aOffset: TFloat; Steps: Integer = 4000): TArrayOfFloatPoint;
       procedure SekilBas(aRenk: TColor32; const aPoints: TArrayOfFloatPoint); overload; // Filler eklenecek
       procedure SekilBas(aRenk: TColor32; const aPoints: TArrayOfArrayOfFloatPoint); overload; // Filler eklenecek
       procedure YaziBas(X, Y: Integer; aString: String; aColor: TColor = cldefault; aFontSize: Integer = 0; aFontName: String = ''; aFontPos: TFontPos = fpCenterCenter; aFontStyle: TFontStyles = []; aAntiAliased: Boolean = False); overload;
@@ -119,42 +118,6 @@ begin
   R.Top    := aMerkez.Y - (aHeight * 0.5);
   R.Bottom := aMerkez.Y + (aHeight * 0.5);
   Result := RoundRect(R, YariCap);
-end;
-
-function TRenderHelper.GetArcPoints(const ellipseRect: TFloatRect; start_degrees, end_degrees: single): TArrayOfFloatPoint;
-var
-  start_radians, end_radians: single;
-begin
-  {
-  start_radians := AngleToEccentricAngle(ellipseRect,start_degrees*DegToRad);
-  end_radians := AngleToEccentricAngle(ellipseRect,end_degrees*DegToRad);
-  result := GetArcPointsEccentric(ellipseRect,start_radians, end_radians);
-  }
-end;
-
-function TRenderHelper.AngleToEccentricAngle(const ellipseRect: TFloatRect; radians: single): single;
-var
-  a, b: single;
-  quadrant: integer;
-begin
-  {
-  quadrant := trunc(radians/rad90) mod 4;
-  if radians < 0 then inc(quadrant,4) else inc(quadrant);
-
-  with ellipseRect do begin
-       a := (right-left)/2;
-       b := (bottom-top)/2;
-  end;
-  result := 0;
-  if (a = 0) or (b = 0) then exit;
-  result := abs(arctan(tan(radians) * a/b));
-  case quadrant of
-    2 : result := rad180 - result;
-    3 : result := rad180 + result;
-    4 : result := rad360 - result;
-  end;
-  end;
-  }
 end;
 
 function TRenderHelper.ArrayOfFloat(Values: array of TFloat): TArrayOfFloat;
@@ -268,25 +231,6 @@ begin
   Result := Rectangle(R);
 end;
 
-function TRenderHelper.Pasta(aMerkez: TFloatPoint; aYariCap, aYuzde: Single; aOfset: TPiOfsetTipi = Pi_0): TArrayOfFloatPoint;
-begin
-  Result  := Pie ( { P}       aMerkez          // Merkez Noktası
-                 , { Radius } aYariCap         // Yarıçap
-                 , { Angle }  aYuzde * Pi_004  // istenen açı... 100 üzrinden...
-                 , { Offset } PiOfset[aOfset]  // Sıfırıncı açının hangi derecede başlayacağı bilgisidir. 0 = 90, Pi/2 = 180, Pi = 270 ve Pi/2*3 = 360 derecedir...
-                 , { Steps }  360              // Yuvarlağın kenarındaki poligon sayısıdır...
-                 );
-  (*
-  Result := Yay2( { aMerkez   } aMerkez
-                , { Radius    } aYariCap
-                , { thickness } aKalinlik
-                , { Angle     } aYuzde * Pi_004
-                , { Offset    } PiOfset[aOfset]
-                , { Steps     } 360
-                );//: TArrayOfFloatPoint;
-  *)
-end;
-
 procedure TRenderHelper.SekilBas(aRenk: TColor32; const aPoints: TArrayOfArrayOfFloatPoint);
 begin
   Color := aRenk;
@@ -299,19 +243,30 @@ begin
   PolyPolygonFS(PolyPolygon(aPoints), FloatRect(Self.Bitmap.ClipRect));
 end;
 
-function TRenderHelper.Yay(aMerkez: TFloatPoint; aStartYuzde, aEndYuzde, aYariCap, aKalinlik: Single; aSteps: Integer = 1571): TArrayOfFloatPoint;
+function TRenderHelper.Pasta(aMerkez: TFloatPoint; aYariCap, aYuzde: Single; aOfset: TPiOfsetTipi = Pi_0): TArrayOfFloatPoint;
+begin
+  Result  := Pie ( { P}       aMerkez          // Merkez Noktası
+                 , { Radius } aYariCap         // Yarıçap
+                 , { Angle }  aYuzde * Pi_004  // istenen açı... 100 üzrinden...
+                 , { Offset } PiOfset[aOfset]  // Sıfırıncı açının hangi derecede başlayacağı bilgisidir. 0 = 90, Pi/2 = 180, Pi = 270 ve Pi/2*3 = 360 derecedir...
+                 , { Steps }  360              // Yuvarlağın kenarındaki poligon sayısıdır...
+                 );
+end;
+
+function TRenderHelper.Yay(aMerkez: TFloatPoint; aYuzde, aYariCap, aKalinlik: Single; aSteps: Integer = 4000): TArrayOfFloatPoint;
 begin
   //Result  := BuildArc(aMerkez, aStartYuzde * Pi_4, aEndYuzde * Pi_004, aYariCap{, aSteps});
   Result := AngleArc( { aMerkez   } aMerkez
                     , { Radius    } aYariCap
                     , { thickness } aKalinlik
-                    , { Angle     } aEndYuzde   * Pi_004 // (aStartYuzde + 0.000000000001) * Pi_4
-                    , { Offset    } PiOfset[Pi_0]
+                    , { Angle     } aYuzde  * Pi_004 // (aStartYuzde + 0.000000000001) * Pi_4
+                    , { Offset    } PiOfset[Pi_0] // PiOfset[Pi_270] // + ( (aStartYuzde + 0.000000000001) * Pi_4 )
+                    , { Steps     } aSteps
                     );//: TArrayOfFloatPoint;
 
 end;
 
-function TRenderHelper.AngleArc(aCenter: TFloatPoint; const aRadius, aThickness, aAngle, aOffset: TFloat; Steps: Integer = 1571): TArrayOfFloatPoint;
+function TRenderHelper.AngleArc(aCenter: TFloatPoint; const aRadius, aThickness, aAngle, aOffset: TFloat; Steps: Integer = 4000): TArrayOfFloatPoint;
 var
   I, J: Integer;
   Origin, Outer, Inner: TFloatPoint;
@@ -322,7 +277,7 @@ begin
   // calculate outer edge of complex offset
   GR32_Math.SinCos(aAngle / (Steps-2), Origin.Y, Origin.X);
   // The internal edge start point of the arc is being calculated.
-  GR32_Math.SinCos(aOffset, aRadius + aThickness, Inner.Y, Inner.X);
+  GR32_Math.SinCos(aOffset, aRadius - aThickness, Inner.Y, Inner.X);
   // other items
   for I := 0 to Steps do begin
       J := ((Steps * 2) - I) + 1;

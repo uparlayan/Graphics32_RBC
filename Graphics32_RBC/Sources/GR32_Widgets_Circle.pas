@@ -66,6 +66,8 @@ type
           FOuterColor   : TColor;
           FIntraColor   : TColor;
           FPadding      : TPadding;
+          FValueOnInner : Boolean;
+          FValueOnOuter : Boolean;
           procedure SetAntiAliased(const Value: Boolean);
           procedure SetBackground(const Value: TColor);
           procedure SetBorderColor(const Value: TColor);
@@ -86,6 +88,8 @@ type
           procedure SetOuterColor(const Value: TColor);
           procedure SetIntraColor(const Value: TColor);
           procedure SetPadding(const Value: TPadding);
+          procedure SetValueOnInner(const Value: Boolean);
+          procedure SetValueOnOuter(const Value: Boolean);
           procedure InlineChangeNotifier(Sender: TObject);
         protected
         public
@@ -114,6 +118,8 @@ type
           property OuterColor   : TColor                      read FOuterColor    write SetOuterColor;  //  Dairenin dış çerçeve rengi
           property IntraColor   : TColor                      read FIntraColor    write SetIntraColor;  //  Dairenin merkezinin rengi
           property Padding      : TPadding                    read FPadding       write SetPadding;
+          property ValueOnInner : Boolean                     read FValueOnInner  write SetValueOnInner;
+          property ValueOnOuter : Boolean                     read FValueOnOuter  write SetValueOnOuter;
       end;
     private
       FAyarlar    : TGR32WidgetCircleSettings;
@@ -196,6 +202,8 @@ begin
       FOuterColor   := aSors.OuterColor   ;
       FIntraColor   := aSors.IntraColor   ;
       FPadding      := aSors.Padding      ;
+      ValueOnInner  := aSors.ValueOnInner ;
+      ValueOnOuter  := aSors.ValueOnOuter ;
   end else inherited;
 end;
 
@@ -365,6 +373,16 @@ begin
   FOwner.Invalidate;
 end;
 
+procedure TGR32WidgetCircle.TGR32WidgetCircleSettings.SetValueOnInner(const Value: Boolean);
+begin
+  FValueOnInner := Value; InlineChangeNotifier(nil);
+end;
+
+procedure TGR32WidgetCircle.TGR32WidgetCircleSettings.SetValueOnOuter(const Value: Boolean);
+begin
+  FValueOnOuter := Value; InlineChangeNotifier(nil);
+end;
+
 { TGR32WidgetCircle }
 
 procedure TGR32WidgetCircle.Changed;
@@ -423,6 +441,8 @@ var
   R             : TRect;
 
   Ressam        : TPolygonRenderer32VPR; // TPolygonRenderer32; //  Tuval
+  _Outer, _Base, _Inner, _Intra: Single; // Çember kalınlıkları
+
 begin
   Ressam          := TPolygonRenderer32VPR.Create;
   Ressam.Filler   := nil; // henüz bir gradient kullanmadık.
@@ -483,13 +503,30 @@ begin
   MinWH := (Min(FW, FH) div 2) - _FW;
 
   if (FAyarlar.Style = wgtDaire) then begin
+
+      _Outer := MinWH  * 0.1;
+      _Base  := MinWH  * 0.3 ; // _Outer;
+      _Inner := _Outer; // _Base  - (MinWH * 0.1);
+      _Intra := _Inner - (MinWH * 0.1);
+
+      if  (FAyarlar.FValueOnOuter)
+      then Ressam.SekilBas( FAyarlar.OuterColor.ToColor32  , Ressam.Yay( FM, FYuzde, MinWH                 , _Outer+1) )  // Dış Kenar
+      else Ressam.SekilBas( FAyarlar.OuterColor.ToColor32  , Ressam.Yay( FM,    100, MinWH                 , _Outer+1) );  // Dış Kenar
+
+           Ressam.SekilBas( FAyarlar.BaseColor.ToColor32   , Ressam.Yay( FM,    100, MinWH - _Outer        ,  _Base+1) );  // Et Kalınlığı
+           Ressam.SekilBas( FAyarlar.ValueColor.ToColor32  , Ressam.Yay( FM, FYuzde, MinWH - _Outer        ,  _Base+1) );  // Gösterilecek Değer
+      if  (FAyarlar.FValueOnInner)
+      then Ressam.SekilBas( FAyarlar.InnerColor.ToColor32  , Ressam.Yay( FM, FYuzde, MinWH - _Outer - _Base, _Inner+1) )  // İç Kenar
+      else Ressam.SekilBas( FAyarlar.InnerColor.ToColor32  , Ressam.Yay( FM,    100, MinWH - _Outer - _Base, _Inner+1) );  // İç Kenar
+           Ressam.SekilBas( FAyarlar.IntraColor.ToColor32  , Ressam.Daire(FM       , MinWH - _Outer - _Base - _Inner) );  // İç Zemin Daire
+
+      {
       Ressam.SekilBas( Color32(FAyarlar.OuterColor) , Ressam.Daire(FM, MinWH) );                              // Dış Kenar Daire
       Ressam.SekilBas( Color32(FAyarlar.BaseColor)  , Ressam.Daire(FM, MinWH * 0.96  ) );                     // Yay zemin
-
       Ressam.SekilBas( Color32(FAyarlar.ValueColor) , Ressam.Pasta(FM, MinWH * 0.96  , FYuzde, Pi_0) );       // Yay
-
       Ressam.SekilBas( Color32(FAyarlar.InnerColor) , Ressam.Daire(FM, MinWH * 0.64  ) );                     // İç Kenar Daire
       Ressam.SekilBas( Color32(FAyarlar.IntraColor) , Ressam.Daire(FM, MinWH * 0.60  ) );                     // İç Zemin Daire
+      }
   end else
   if (FAyarlar.Style = wgtPasta) then begin
       Ressam.SekilBas( Color32(FAyarlar.OuterColor) , Ressam.Daire(FM, MinWH) );                              // Dış Kenar Daire
@@ -499,7 +536,6 @@ begin
 
       Ressam.SekilBas( Color32(FAyarlar.ValueColor) , Ressam.Pasta(FM, MinWH * 0.96  , FYuzde, Pi_0) );       // Yay
   end;
-      Ressam.SekilBas( Color32(clRed)               , Ressam.Yay( FM, 0, FYuzde, MinWH * 0.5, MinWH * 0.1) );       // Yay
 
   //Ressam.SekilBas( Color32(clRed) , Ressam.AngleArc( FM, MinWH, PiOfset[Pi_0], FYuzde * Pi_004, 360) );       // Yay
 
