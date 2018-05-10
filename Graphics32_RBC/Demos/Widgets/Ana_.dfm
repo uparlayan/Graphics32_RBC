@@ -11,8 +11,6 @@ object Ana: TAna
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
-  GlassFrame.Enabled = True
-  GlassFrame.SheetOfGlass = True
   OldCreateOrder = False
   OnCreate = FormCreate
   PixelsPerInch = 96
@@ -128,8 +126,6 @@ object Ana: TAna
         Value = 90.000000000000000000
       end>
     TabOrder = 0
-    ExplicitWidth = 1034
-    ExplicitHeight = 614
     object GR32WidgetBox6: TGR32WidgetBox
       AlignWithMargins = True
       Left = 10
@@ -182,8 +178,6 @@ object Ana: TAna
       FooterText = 'Sipari'#351
       SimgeChar = '}'
       FiligranChar = 'z'
-      ExplicitTop = 534
-      ExplicitWidth = 496
     end
     object GR32WidgetBox3: TGR32WidgetBox
       AlignWithMargins = True
@@ -237,8 +231,6 @@ object Ana: TAna
       FooterText = 'Kesilen Fatura'
       SimgeChar = '#'
       FiligranChar = '#'
-      ExplicitLeft = 268
-      ExplicitWidth = 496
     end
     object GR32WidgetCircle1: TGR32WidgetCircle
       AlignWithMargins = True
@@ -286,9 +278,6 @@ object Ana: TAna
       Ayarlar.ValueOnOuter = False
       HeaderText = #304#351'lem Y'#252'zdesi'
       Yuzde = 10
-      ExplicitLeft = 268
-      ExplicitWidth = 238
-      ExplicitHeight = 291
     end
     object GR32WidgetCircle2: TGR32WidgetCircle
       AlignWithMargins = True
@@ -336,8 +325,6 @@ object Ana: TAna
       Ayarlar.ValueOnOuter = True
       HeaderText = 'G'#246'rev Y'#252'zdesi'
       Yuzde = 75
-      ExplicitWidth = 238
-      ExplicitHeight = 291
     end
     object PNL_2: TPanel
       Left = 410
@@ -347,9 +334,6 @@ object Ana: TAna
       Align = alClient
       BevelOuter = bvNone
       TabOrder = 4
-      ExplicitLeft = 516
-      ExplicitWidth = 518
-      ExplicitHeight = 311
       object Splitter1: TSplitter
         Left = 0
         Top = 125
@@ -440,9 +424,6 @@ object Ana: TAna
         Ayarlar.Padding.Bottom = 10
         AntiAliased = True
         Header = 'Gram Alt'#305'n Analizi'
-        ExplicitTop = 180
-        ExplicitWidth = 498
-        ExplicitHeight = 121
       end
     end
     object GR32WidgetBar2: TGR32WidgetBar
@@ -477,7 +458,6 @@ object Ana: TAna
       Header = 'Click Me !'
       Yuzde = 25
       OnClick = GR32WidgetBar2Click
-      ExplicitWidth = 238
     end
     object Panel2: TPanel
       AlignWithMargins = True
@@ -493,8 +473,6 @@ object Ana: TAna
       Color = clWindow
       ParentBackground = False
       TabOrder = 6
-      ExplicitLeft = 784
-      ExplicitWidth = 240
       object GR32WidgetBar4: TGR32WidgetBar
         AlignWithMargins = True
         Left = 1
@@ -526,7 +504,6 @@ object Ana: TAna
         Ayarlar.ValueColor = 37119
         Header = 'Header'
         Yuzde = 25
-        ExplicitWidth = 238
       end
       object GR32WidgetBar5: TGR32WidgetBar
         AlignWithMargins = True
@@ -559,7 +536,6 @@ object Ana: TAna
         Ayarlar.ValueColor = 1616246
         Header = 'Header'
         Yuzde = 25
-        ExplicitWidth = 238
       end
       object GR32WidgetBar6: TGR32WidgetBar
         AlignWithMargins = True
@@ -592,7 +568,6 @@ object Ana: TAna
         Ayarlar.ValueColor = 5387228
         Header = 'Header'
         Yuzde = 25
-        ExplicitWidth = 238
       end
       object GR32WidgetBar7: TGR32WidgetBar
         AlignWithMargins = True
@@ -625,7 +600,6 @@ object Ana: TAna
         Ayarlar.ValueColor = 5387228
         Header = 'Header'
         Yuzde = 25
-        ExplicitWidth = 238
       end
     end
     object GR32WidgetTitle1: TGR32WidgetTitle
@@ -639,28 +613,23 @@ object Ana: TAna
       Margins.Right = 10
       Margins.Bottom = 10
       Align = alClient
-      Background = clWindow
-      BorderColor = 13285804
-      BorderStyle = psSolid
-      BorderWidth = 2
-      CloseChar = 'o'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -21
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      Icons.Charset = DEFAULT_CHARSET
-      Icons.Color = 9203545
-      Icons.Height = -40
-      Icons.Name = 'UgurFonts'
-      Icons.Style = []
+      Ayarlar.Background = clWindow
+      Ayarlar.BorderColor = clWindowFrame
+      Ayarlar.Font.Charset = DEFAULT_CHARSET
+      Ayarlar.Font.Color = clWindowText
+      Ayarlar.Font.Height = -33
+      Ayarlar.Font.Name = 'zai Seagull Felt-tip Pen'
+      Ayarlar.Font.Style = []
+      Ayarlar.Icons.Charset = DEFAULT_CHARSET
+      Ayarlar.Icons.Color = clWindowText
+      Ayarlar.Icons.Height = -47
+      Ayarlar.Icons.Name = 'UgurFonts'
+      Ayarlar.Icons.Style = []
       HeaderLeft = 'Rubicube'
       HeaderCenter = 'Demo'
       HeaderRight = 'Widgets'
-      MaximizeChar = 'd'
+      CloseChar = 'o'
       MenuChar = 'v'
-      Gap = 0
-      ExplicitWidth = 754
     end
     object GR32WidgetBar1: TGR32WidgetBar
       AlignWithMargins = True
@@ -693,9 +662,6 @@ object Ana: TAna
       Ayarlar.ValueColor = 5387228
       Header = 'Header'
       Yuzde = 25
-      ExplicitLeft = 526
-      ExplicitTop = 534
-      ExplicitWidth = 238
     end
     object GR32WidgetBar3: TGR32WidgetBar
       AlignWithMargins = True
@@ -728,9 +694,6 @@ object Ana: TAna
       Ayarlar.ValueColor = 14057217
       Header = 'Header'
       Yuzde = 25
-      ExplicitLeft = 784
-      ExplicitTop = 534
-      ExplicitWidth = 240
     end
   end
   object Panel1: TPanel
@@ -741,8 +704,6 @@ object Ana: TAna
     Align = alBottom
     BevelOuter = bvNone
     TabOrder = 1
-    ExplicitTop = 614
-    ExplicitWidth = 1034
     object FREQ: TTrackBar
       AlignWithMargins = True
       Left = 289
@@ -759,7 +720,6 @@ object Ana: TAna
       Position = 1
       TabOrder = 0
       OnChange = FREQChange
-      ExplicitLeft = 501
     end
     object TRA: TTrackBar
       AlignWithMargins = True
@@ -776,7 +736,6 @@ object Ana: TAna
       Position = 66
       TabOrder = 1
       OnChange = TRAChange
-      ExplicitLeft = 730
     end
     object BT_Animasyon: TButton
       AlignWithMargins = True
@@ -792,7 +751,6 @@ object Ana: TAna
       Caption = 'Animasyon'
       TabOrder = 2
       OnClick = BT_AnimasyonClick
-      ExplicitLeft = 959
     end
   end
   object Timer1: TTimer
@@ -809,12 +767,12 @@ object Ana: TAna
     Top = 12
   end
   object GR32WidgetPopupForm1: TGR32WidgetPopupForm
-    Animasyon.AnimasyonStili = wasHarmanlama
     Bosluk_Kenar = 1
     Bosluk_Ust = 1
     Nesne = GR32WidgetBar2
+    OtomatikKapat = False
     OnBeforePopup = GR32WidgetPopupForm1BeforePopup
-    Left = 516
-    Top = 56
+    Left = 180
+    Top = 12
   end
 end

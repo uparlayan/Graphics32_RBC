@@ -20,16 +20,16 @@ object PopupForm: TPopupForm
   TextHeight = 13
   object GR32WidgetIzgara1: TGR32WidgetIzgara
     Left = 0
-    Top = 49
+    Top = 43
     Width = 482
-    Height = 215
+    Height = 221
     Align = alClient
     AralikDikey = 15
     AralikYatay = 15
     Background = clWindow
-    BorderColor = clBlack
+    BorderColor = 105180
     BorderStyle = psSolid
-    BorderWidth = 0
+    BorderWidth = 1
     DamaModu = True
     LineColor = 13361128
     LineStyle = psDot
@@ -72,31 +72,26 @@ object PopupForm: TPopupForm
     end
   end
   object WTT: TGR32WidgetTitle
-    AlignWithMargins = True
-    Left = 3
-    Top = 3
-    Width = 476
+    Left = 0
+    Top = 0
+    Width = 482
     Height = 43
     Align = alTop
-    Background = 3391998
-    BorderColor = 13285804
-    BorderStyle = psSolid
-    BorderWidth = 1
-    CloseChar = 'o'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clBlack
-    Font.Height = -20
-    Font.Name = 'Trebuchet MS'
-    Font.Style = []
-    Icons.Charset = DEFAULT_CHARSET
-    Icons.Color = clWindowText
-    Icons.Height = -32
-    Icons.Name = 'UgurFonts'
-    Icons.Style = []
+    Ayarlar.Font.Charset = DEFAULT_CHARSET
+    Ayarlar.Font.Color = clWindowText
+    Ayarlar.Font.Height = -21
+    Ayarlar.Font.Name = 'Trebuchet MS'
+    Ayarlar.Font.Style = []
+    Ayarlar.Icons.Charset = DEFAULT_CHARSET
+    Ayarlar.Icons.Color = clWindowText
+    Ayarlar.Icons.Height = -32
+    Ayarlar.Icons.Name = 'UgurFonts'
+    Ayarlar.Icons.Style = []
+    Ayarlar.Gap = 0
     HeaderLeft = 'Demo'
     HeaderCenter = 'TForm'
     HeaderRight = 'Close'
-    MaximizeChar = 'v'
+    CloseChar = 'o'
     MenuChar = 'n'
     OnMenuClick = WTTMenuClick
     OnCloseClick = WTTCloseClick

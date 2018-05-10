@@ -136,8 +136,7 @@ end;
 procedure TAna.TRAChange(Sender: TObject);
 var
   I, J, K, Z: Integer;
-  //C: TComponent;
-  //V: Single;
+  // '{301EE6C6-56EC-403A-9E20-663F0D09316D}'
 begin
   for I := 0 to ComponentCount - 1 do begin
       if Components[I] is TGR32WidgetCircle then begin
