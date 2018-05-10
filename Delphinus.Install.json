@@ -1,0 +1,19 @@
+{
+	"source_folders":
+	[
+		{
+			"folder": "Graphics32_RBC\\Graphics32_RBC\\Sources",
+			"recursive": true,
+			"filter": "*"
+		}
+	],
+	
+	"projects":
+	[
+		{
+			"project": "Graphics32_RBC\\Graphics32_RBC\\Graphics32_RBC_XE7Group.groupproj",
+			"compiler_min": 28,
+			"compiler_max": 32
+		}
+	]
+}
