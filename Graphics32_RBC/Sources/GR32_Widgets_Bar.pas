@@ -51,17 +51,17 @@ type
           FInvert       : Boolean;
           FHeaderHeight : Integer;
           procedure SetBackground(const Value: TColor);
+          procedure SetBarColor(const Value: TColor);
           procedure SetBorderColor(const Value: TColor);
+          procedure SetBorderStyle(const Value: TPenStyle);
           procedure SetBorderWidth(const Value: Integer);
           procedure SetDisplayFormat(const Value: String);
           procedure SetFont(const Value: TFont);
-          procedure SetBorderStyle(const Value: TPenStyle);
-          procedure SetBarColor(const Value: TColor);
-          procedure SetValueColor(const Value: TColor);
-          procedure SetPadding(const Value: TPadding);
-          procedure SetInvert(const Value: Boolean);
-          procedure InlineChangeNotifier(Sender: TObject);
           procedure SetHeaderHeight(const Value: Integer);
+          procedure SetInvert(const Value: Boolean);
+          procedure SetPadding(const Value: TPadding);
+          procedure SetValueColor(const Value: TColor);
+          procedure InlineChangeNotifier(Sender: TObject);
         protected
         public
           procedure Assign(Source: TPersistent); reintroduce;

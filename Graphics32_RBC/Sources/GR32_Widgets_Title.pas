@@ -39,25 +39,52 @@ uses
 type
 
   TGR32WidgetTitle = class(TGR32CustomWidget)
+    type
+      TGR32WidgetTitleSettings = class(TPersistent)
+        private
+          FOwner            : TGR32WidgetTitle;
+          FBackground       : TColor;
+          FBorderColor      : TColor;
+          FBorderStyle      : TPenStyle;
+          FBorderWidth      : Integer;
+          FFont             : TFont;
+          FIcons            : TFont;
+          FGap              : Integer;
+          procedure SetBackground(const Value: TColor);
+          procedure SetBorderColor(const Value: TColor);
+          procedure SetBorderStyle(const Value: TPenStyle);
+          procedure SetBorderWidth(const Value: Integer);
+          procedure SetFont(const Value: TFont);
+          procedure SetIcons(const Value: TFont);
+          procedure SetGap(const Value: Integer);
+          procedure InlineChangeNotifier(Sender: TObject);
+        protected
+        public
+          procedure Assign(Source: TPersistent); reintroduce;
+          procedure AfterConstruction; override;
+          procedure BeforeDestruction; override;
+          procedure ResetSettings;
+        published
+          property Background     : TColor        read  FBackground   write SetBackground     default $0033C1FE;
+          property BorderColor    : TColor        read  FBorderColor  write SetBorderColor    default $00019ADC;
+          property BorderStyle    : TPenStyle     read  FBorderStyle  write SetBorderStyle    default psSolid;
+          property BorderWidth    : Integer       read  FBorderWidth  write SetBorderWidth    default 1;
+          property Font           : TFont         read  FFont         write SetFont;
+          property Icons          : TFont         read  FIcons        write SetIcons;
+          property Gap            : Integer       read  FGap          write SetGap            default 10;
+      end;
     private
       Zone_Menu         : TRect;
       Zone_Close        : TRect;
       Zone_H_Left       : TRect;
       Zone_H_Right      : TRect;
 
-      FBackground       : TColor;
-      FBorderStyle      : TPenStyle;
-      FBorderWidth      : Integer;
-      FCloseChar        : Char;
-      FFont             : TFont;
-      FIcons            : TFont;
+      FAyarlar          : TGR32WidgetTitleSettings;
       FHeaderLeft       : String;
       FHeaderCenter     : String;
       FHeaderRight      : String;
-      FMaximizeChar     : Char;
+      FCloseChar        : Char;
       FMenuChar         : Char;
-      FBorderColor      : TColor;
-      FGap              : Integer;
       FOnMouseMove      : TNotifyEvent;
       FOnMenuClick      : TNotifyEvent;
       FOnCloseClick     : TNotifyEvent;
@@ -65,19 +92,12 @@ type
       procedure WMLMouseDown(var Message: TWMLButtonDown); message WM_LBUTTONDOWN; // Click olayları burada işlenir...
       procedure WMMouseMove (var Message: TWMMouseMove); message WM_MOUSEMOVE;
 
-      procedure SetBackground(const Value: TColor);
-      procedure SetBorderColor(const Value: TColor);
-      procedure SetBorderStyle(const Value: TPenStyle);
-      procedure SetBorderWidth(const Value: Integer);
-      procedure SetCloseChar(const Value: Char);
-      procedure SetFont(const Value: TFont);
-      procedure SetIcons(const Value: TFont);
+      procedure SetAyarlar(const Value: TGR32WidgetTitleSettings);
       procedure SetHeaderLeft(const Value: String);
       procedure SetHeaderCenter(const Value: String);
       procedure SetHeaderRight(const Value: String);
-      procedure SetMaximizeChar(const Value: Char);
+      procedure SetCloseChar(const Value: Char);
       procedure SetMenuChar(const Value: Char);
-      procedure SetGap(const Value: Integer);
     protected
     public
       constructor Create(AOwner: TComponent); override;
@@ -86,23 +106,16 @@ type
       procedure Resize; override;
     published
       property Align;
-      property Background     : TColor        read  FBackground   write SetBackground;
-      property BorderColor    : TColor        read  FBorderColor  write SetBorderColor;
-      property BorderStyle    : TPenStyle     read  FBorderStyle  write SetBorderStyle;
-      property BorderWidth    : Integer       read  FBorderWidth  write SetBorderWidth;
-      property CloseChar      : Char          read  FCloseChar    write SetCloseChar;
-      property Font           : TFont         read  FFont         write SetFont;
-      property Icons          : TFont         read  FIcons        write SetIcons;
-      property HeaderLeft     : String        read  FHeaderLeft   write SetHeaderLeft;
-      property HeaderCenter   : String        read  FHeaderCenter write SetHeaderCenter;
-      property HeaderRight    : String        read  FHeaderRight  write SetHeaderRight;
-      property MaximizeChar   : Char          read  FMaximizeChar write SetMaximizeChar;
-      property MenuChar       : Char          read  FMenuChar     write SetMenuChar;
       property Margins;
-      property Gap            : Integer       read  FGap          write SetGap            default 10;
-      property OnMouseMove    : TNotifyEvent  read  FOnMouseMove  write FOnMouseMove;
-      property OnMenuClick    : TNotifyEvent  read  FOnMenuClick  write FOnMenuClick;
-      property OnCloseClick   : TNotifyEvent  read  FOnCloseClick write FOnCloseClick;
+      property Ayarlar        : TGR32WidgetTitleSettings  read  FAyarlar      write SetAyarlar;
+      property HeaderLeft     : String                    read  FHeaderLeft   write SetHeaderLeft;
+      property HeaderCenter   : String                    read  FHeaderCenter write SetHeaderCenter;
+      property HeaderRight    : String                    read  FHeaderRight  write SetHeaderRight;
+      property CloseChar      : Char                      read  FCloseChar    write SetCloseChar;
+      property MenuChar       : Char                      read  FMenuChar     write SetMenuChar;
+      property OnMouseMove    : TNotifyEvent              read  FOnMouseMove  write FOnMouseMove;
+      property OnMenuClick    : TNotifyEvent              read  FOnMenuClick  write FOnMenuClick;
+      property OnCloseClick   : TNotifyEvent              read  FOnCloseClick write FOnCloseClick;
   end;
 
 procedure Register;
@@ -114,66 +127,115 @@ begin
   RegisterComponents('Graphics32RBC', [TGR32WidgetTitle]);
 end;
 
+{ TGR32WidgetTitle.TGR32WidgetTitleSettings }
+
+procedure TGR32WidgetTitle.TGR32WidgetTitleSettings.AfterConstruction;
+begin
+  inherited;
+  FFont             := TFont.Create;
+  FFont.OnChange    := InlineChangeNotifier;
+  FIcons            := TFont.Create;
+  FIcons.OnChange   := InlineChangeNotifier;
+  ResetSettings;
+end;
+
+procedure TGR32WidgetTitle.TGR32WidgetTitleSettings.Assign(Source: TPersistent);
+var
+  aSors: TGR32WidgetTitle.TGR32WidgetTitleSettings;
+begin
+  if (Source is TGR32WidgetTitle.TGR32WidgetTitleSettings) then begin
+      aSors := TGR32WidgetTitle.TGR32WidgetTitleSettings(Source);
+      //FOwner      := BU KULLANILMAYACAK..
+      FBackground       := aSors.Background     ;
+      FBorderColor      := aSors.BorderColor    ;
+      FBorderStyle      := aSors.BorderStyle    ;
+      FBorderWidth      := aSors.BorderWidth    ;
+      FFont             := aSors.Font           ;
+      FIcons            := aSors.Icons          ;
+      FGap              := aSors.Gap            ;
+  end else inherited;
+end;
+
+procedure TGR32WidgetTitle.TGR32WidgetTitleSettings.BeforeDestruction;
+begin
+  FreeAndNil(FFont);
+  FreeAndNil(FIcons);
+  inherited;
+end;
+
+procedure TGR32WidgetTitle.TGR32WidgetTitleSettings.InlineChangeNotifier(Sender: TObject);
+begin
+  // Persistent sınıfın alt type'lerinde bir değişiklik olduğunda ana sınıfın grafiğinin yeniden çizilmesini tetikler...
+  if Assigned(FOwner) then FOwner.Invalidate;
+end;
+
+procedure TGR32WidgetTitle.TGR32WidgetTitleSettings.ResetSettings;
+begin
+  FBackground     := $0033C1FE;
+  FBorderColor    := $00019ADC;
+  FBorderStyle    := psSolid;
+  FBorderWidth    := 1;
+  FGap            := 10;
+end;
+
+procedure TGR32WidgetTitle.TGR32WidgetTitleSettings.SetBackground(const Value: TColor);
+begin
+  FBackground := Value; InlineChangeNotifier(nil);
+end;
+
+procedure TGR32WidgetTitle.TGR32WidgetTitleSettings.SetBorderColor(const Value: TColor);
+begin
+  FBorderColor := Value; InlineChangeNotifier(nil);
+end;
+
+procedure TGR32WidgetTitle.TGR32WidgetTitleSettings.SetBorderStyle(const Value: TPenStyle);
+begin
+  FBorderStyle := Value; InlineChangeNotifier(nil);
+end;
+
+procedure TGR32WidgetTitle.TGR32WidgetTitleSettings.SetBorderWidth(const Value: Integer);
+begin
+  FBorderWidth := Value; InlineChangeNotifier(nil);
+end;
+
+procedure TGR32WidgetTitle.TGR32WidgetTitleSettings.SetFont(const Value: TFont);
+begin
+  FFont.Assign(Value); InlineChangeNotifier(nil);
+end;
+
+procedure TGR32WidgetTitle.TGR32WidgetTitleSettings.SetIcons(const Value: TFont);
+begin
+  FIcons.Assign(Value); InlineChangeNotifier(nil);
+end;
+
+procedure TGR32WidgetTitle.TGR32WidgetTitleSettings.SetGap(const Value: Integer);
+begin
+  FGap := Value; InlineChangeNotifier(nil);
+end;
+
 { TGR32WidgetTitle }
 
 constructor TGR32WidgetTitle.Create(AOwner: TComponent);
 begin
   inherited Create(AOwner);
-  FFont         := TFont.Create;
-  FIcons        := TFont.Create;
-  FBackground   := clWindow;
-  FBorderWidth  := 2;
-  FBorderStyle  := psSolid;
-  FBorderColor  := $00CAB9AC;
-  FGap          := 10;
+  FAyarlar        := TGR32WidgetTitleSettings.Create;
+  FAyarlar.FOwner := Self;
 end;
 
 destructor TGR32WidgetTitle.Destroy;
 begin
-  FreeAndNil(FIcons);
-  FreeAndNil(FFont);
+  FreeAndNil(FAyarlar);
   inherited;
 end;
 
-procedure TGR32WidgetTitle.SetBackground(const Value: TColor);
+procedure TGR32WidgetTitle.SetAyarlar(const Value: TGR32WidgetTitleSettings);
 begin
-  FBackground := Value; Invalidate;
-end;
-
-procedure TGR32WidgetTitle.SetBorderStyle(const Value: TPenStyle);
-begin
-  FBorderStyle := Value; Invalidate;
-end;
-
-procedure TGR32WidgetTitle.SetBorderWidth(const Value: Integer);
-begin
-  FBorderWidth := Value; Invalidate;
+  FAyarlar.Assign(Value); Invalidate;
 end;
 
 procedure TGR32WidgetTitle.SetCloseChar(const Value: Char);
 begin
   FCloseChar := Value; Invalidate;
-end;
-
-procedure TGR32WidgetTitle.SetBorderColor(const Value: TColor);
-begin
-  FBorderColor := Value; Invalidate;
-end;
-
-procedure TGR32WidgetTitle.SetIcons(const Value: TFont);
-begin
-  FIcons.Assign(Value); Invalidate;
-  //FIcons.FontAdapter.Changed
-end;
-
-procedure TGR32WidgetTitle.SetFont(const Value: TFont);
-begin
-  FFont.Assign(Value); Invalidate;
-end;
-
-procedure TGR32WidgetTitle.SetGap(const Value: Integer);
-begin
-  FGap := Value; Invalidate;
 end;
 
 procedure TGR32WidgetTitle.SetHeaderCenter(const Value: String);
@@ -189,11 +251,6 @@ end;
 procedure TGR32WidgetTitle.SetHeaderRight(const Value: String);
 begin
   FHeaderRight := Value; Resize; Invalidate;
-end;
-
-procedure TGR32WidgetTitle.SetMaximizeChar(const Value: Char);
-begin
-  FMaximizeChar := Value; Invalidate;
 end;
 
 procedure TGR32WidgetTitle.SetMenuChar(const Value: Char);
@@ -234,16 +291,16 @@ begin
   Ressam.Filler   := nil;
   Ressam.FillMode := pfWinding;
   Ressam.Bitmap   := Self.FBuffer;
-  Ressam.Bitmap.Clear( FBackground.ToColor32 ); // Tuvalin zemin rengi ve tam temizlik
+  Ressam.Bitmap.Clear( FAyarlar.FBackground.ToColor32 ); // Tuvalin zemin rengi ve tam temizlik
 
   // Genel çerçeve bilgileri hesaplanıyor.
-  Ressam.YaziBas( Zone_Menu     , FMenuChar     , FIcons.Color  , FIcons.Size , FIcons.Name , fpCenterCenter  , FFont.Style);
-  Ressam.YaziBas( Zone_Close    , FCloseChar    , FIcons.Color  , FIcons.Size , FIcons.Name , fpCenterCenter  , FFont.Style);
+  Ressam.YaziBas( Zone_Menu     , FMenuChar     , FAyarlar.FIcons.Color  , FAyarlar.FIcons.Size , FAyarlar.FIcons.Name , fpCenterCenter  , FAyarlar.FFont.Style);
+  Ressam.YaziBas( Zone_Close    , FCloseChar    , FAyarlar.FIcons.Color  , FAyarlar.FIcons.Size , FAyarlar.FIcons.Name , fpCenterCenter  , FAyarlar.FFont.Style);
 
-  Ressam.YaziBas( Zone_H_Left   , FHeaderLeft   , FFont.Color   , FFont.Size  , FFont.Name  , fpCenterLeft    , FFont.Style);
-  Ressam.YaziBas( ClientRect    , FHeaderCenter , FFont.Color   , FFont.Size  , FFont.Name  , fpCenterCenter  , FFont.Style);
-  Ressam.YaziBas( Zone_H_Right  , FHeaderRight  , FFont.Color   , FFont.Size  , FFont.Name  , fpCenterRight   , FFont.Style);
-  Ressam.SekilBas( FBorderColor.ToColor32, Ressam.DikDortgenCizgi( Merkez, Width, Height, FBorderWidth, FBorderStyle));
+  Ressam.YaziBas( Zone_H_Left   , FHeaderLeft   , FAyarlar.FFont.Color   , FAyarlar.FFont.Size  , FAyarlar.FFont.Name  , fpCenterLeft    , FAyarlar.FFont.Style);
+  Ressam.YaziBas( ClientRect    , FHeaderCenter , FAyarlar.FFont.Color   , FAyarlar.FFont.Size  , FAyarlar.FFont.Name  , fpCenterCenter  , FAyarlar.FFont.Style);
+  Ressam.YaziBas( Zone_H_Right  , FHeaderRight  , FAyarlar.FFont.Color   , FAyarlar.FFont.Size  , FAyarlar.FFont.Name  , fpCenterRight   , FAyarlar.FFont.Style);
+  Ressam.SekilBas( FAyarlar.FBorderColor.ToColor32, Ressam.DikDortgenCizgi( Merkez, Width, Height, FAyarlar.FBorderWidth, FAyarlar.FBorderStyle));
   Ressam.Free;
 end;
 
@@ -264,7 +321,7 @@ begin
   end;
   with  Zone_H_Left do begin
         Top    := 0;
-        Left   := Zone_Menu.Left + Zone_Menu.Width + FGap;
+        Left   := Zone_Menu.Left + Zone_Menu.Width + FAyarlar.FGap;
         Width  := FBuffer.TextWidth(FHeaderLeft);
         Height := MinWH;// FBuffer.TextHeight(FHeaderLeft);
   end;
@@ -272,7 +329,7 @@ begin
         Height := MinWH;// FBuffer.TextHeight(FHeaderRight);
         Width  := FBuffer.TextWidth(FHeaderRight);
         Top    := 0;
-        Left   := TGR32WidgetTitle(Self).Width - Zone_Close.Width - FGap - Zone_H_Right.Width;
+        Left   := TGR32WidgetTitle(Self).Width - Zone_Close.Width - FAyarlar.FGap - Zone_H_Right.Width;
   end;
 end;
 
