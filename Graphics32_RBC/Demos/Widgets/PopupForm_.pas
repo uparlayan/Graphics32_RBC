@@ -17,10 +17,14 @@ type
     Button2: TButton;
     WTT: TGR32WidgetTitle;
     Label1: TLabel;
+    Edit1: TEdit;
+    Button1: TButton;
+    Memo1: TMemo;
     procedure Button2MouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure WTTMenuClick(Sender: TObject);
     procedure WTTCloseClick(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
     //procedure GR32WidgetTitle1MouseMove(Sender: TObject);
   private
     { Private declarations }
@@ -43,8 +47,14 @@ end;
 
 { TPopupForm }
 
+procedure TPopupForm.Button1Click(Sender: TObject);
+begin
+  Memo1.Lines.Add(Edit1.Text);
+end;
+
 procedure TPopupForm.Button2MouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 begin
+  // Resize this window...
   ReleaseCapture;
   Perform(WM_SYSCOMMAND, SC_SIZE + 8, 0);
 end;
