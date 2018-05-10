@@ -141,6 +141,8 @@
         <DCCReference Include="..\Sources\GR32_Rubicube_Consts.pas"/>
         <DCCReference Include="..\Sources\GR32_Widgets_PopupForm.pas"/>
         <DCCReference Include="..\Sources\GR32_Widgets_Title.pas"/>
+        <None Include="..\Delphinus.Info.json"/>
+        <None Include="..\Delphinus.Install.json"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
