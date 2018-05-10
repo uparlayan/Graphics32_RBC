@@ -11,6 +11,7 @@ Bu bileşen paketi Graphics32 grafik kütüphanesinin yeteneklerinden faydalanar
 Bu bileşen paketi hali hazırda geliştirilmesi tamamlanmış daha büyük bir paketin çok ufak bir bölümünü kapsamakta ve programlama açısından bilgilendirme maksadıyla yayınlanmıştır.
 
 Uğur PARLAYAN
+![widget7](https://user-images.githubusercontent.com/24311198/39867766-309cac8e-545f-11e8-9ade-6a0ba6819725.gif)
 
 ![widgets5](https://user-images.githubusercontent.com/24311198/39690888-4c394312-51e4-11e8-81df-54e0f042be72.gif)
 
