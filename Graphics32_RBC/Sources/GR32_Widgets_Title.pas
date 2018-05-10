@@ -221,6 +221,7 @@ end;
 procedure TGR32WidgetTitle.WMMouseMove(var Message: TWMMouseMove);
 begin
   // Nesnenin iç işleyişi için gerekli... Farenin nesne içindeki konumunu okutuyoruz...
+  Resize;
   if (Assigned(FOnMouseMove) = True) then FOnMouseMove(Self);
 end;
 
@@ -238,6 +239,7 @@ begin
   // Genel çerçeve bilgileri hesaplanıyor.
   Ressam.YaziBas( Zone_Menu     , FMenuChar     , FIcons.Color  , FIcons.Size , FIcons.Name , fpCenterCenter  , FFont.Style);
   Ressam.YaziBas( Zone_Close    , FCloseChar    , FIcons.Color  , FIcons.Size , FIcons.Name , fpCenterCenter  , FFont.Style);
+
   Ressam.YaziBas( Zone_H_Left   , FHeaderLeft   , FFont.Color   , FFont.Size  , FFont.Name  , fpCenterLeft    , FFont.Style);
   Ressam.YaziBas( ClientRect    , FHeaderCenter , FFont.Color   , FFont.Size  , FFont.Name  , fpCenterCenter  , FFont.Style);
   Ressam.YaziBas( Zone_H_Right  , FHeaderRight  , FFont.Color   , FFont.Size  , FFont.Name  , fpCenterRight   , FFont.Style);
