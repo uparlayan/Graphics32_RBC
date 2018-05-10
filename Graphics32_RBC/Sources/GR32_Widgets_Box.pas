@@ -379,8 +379,7 @@ end;
 
 procedure TGR32WidgetBox.PaintControl;
 var
-  T, L, W, H: Integer;                // Genel çerçeve bilgisi
-  BW_, FW_  : Integer;                // Border ve Frame çizgi kalınlığı
+  W, H, BW_, FW_  : Integer;                // Border ve Frame çizgi kalınlığı
   SM        : TFloatPoint;            // Simge Merkezi
   SR        : TRect;                  // Simge Dörtgeni
   SWH       : Integer;
@@ -396,8 +395,8 @@ begin
   else Ressam.Bitmap.Clear( Color32(FAyarlar.Background) ); // Tuvalin zemin rengi ve tam temizlik
 
   // Genel çerçeve bilgileri hesaplanıyor.
-  T  := 0;
-  L  := 0;
+  //T  := 0;
+  //L  := 0;
   W  := ClientWidth ;
   H  := ClientHeight;
   //W2 := W div 2;

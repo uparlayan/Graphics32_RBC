@@ -49,7 +49,7 @@ type
           FValueColor   : TColor;
           FPadding      : TPadding;
           FInvert       : Boolean;
-        FHeaderHeight: Integer;
+          FHeaderHeight : Integer;
           procedure SetBackground(const Value: TColor);
           procedure SetBorderColor(const Value: TColor);
           procedure SetBorderWidth(const Value: Integer);
@@ -76,7 +76,7 @@ type
           property BorderWidth  : Integer     read FBorderWidth   write SetBorderWidth;
           property DisplayFormat: String      read FDisplayFormat write SetDisplayFormat;
           property Font         : TFont       read FFont          write SetFont;
-          property HeaderHeight : Integer     read  FHeaderHeight write SetHeaderHeight;
+          property HeaderHeight : Integer     read FHeaderHeight  write SetHeaderHeight;
           property Invert       : Boolean     read FInvert        write SetInvert;
           property Padding      : TPadding    read FPadding       write SetPadding;
           property ValueColor   : TColor      read FValueColor    write SetValueColor;  //  Dairenin değer içeren kısmının rengi
@@ -101,6 +101,7 @@ type
       property Left;
       property Top;
       property Width;
+      property OnClick;
   end;
 
 procedure Register;
@@ -190,8 +191,6 @@ begin
 end;
 
 procedure TGR32WidgetBar.TGR32WidgetBarSettings.ResetSettings;
-var
-  XX: TBitmap32;
 begin
   FBackground   := clWhite;
   FBorderColor  := $00CAB9AC;
@@ -267,14 +266,14 @@ end;
 
 procedure TGR32WidgetBar.PaintControl;
 var
-  BW_, TW, TH, W,H: Integer;
+  BW_, TH, W,H: Integer;
   PL, PT, PR, PB  : Integer;
   FW, FH          : Single;
   TR              : TRect;
   Oran            : Single;
   FR, MR          : TFloatPoint;
   Ressam          : TPolygonRenderer32VPR;  // TPolygonRenderer32; //  Tuval
-  CA, CB          : TColor32;
+  //CA, CB          : TColor32;
 begin
   Ressam          := TPolygonRenderer32VPR.Create;
   Ressam.Filler   := nil; // henüz bir gradient kullanmadık.
@@ -308,20 +307,19 @@ begin
   Oran := (FYuzde * FW) / 100;
   case  FAyarlar.Invert  of
         True  : begin
-                  ca := FAyarlar.BarColor.ToColor32;
-                  cb := FAyarlar.ValueColor.ToColor32;
+                  //ca := FAyarlar.BarColor.ToColor32;
+                  //cb := FAyarlar.ValueColor.ToColor32;
                   //MR.X := (FW - (Oran / 2) - BW_) + BW_ + PL;
                   MR.X := (FW - (Oran / 2)) + BW_ + PR;
                 end;
         False : begin
-                  ca := FAyarlar.ValueColor.ToColor32;
-                  cb := FAyarlar.BarColor.ToColor32;
+                  //ca := FAyarlar.ValueColor.ToColor32;
+                  //cb := FAyarlar.BarColor.ToColor32;
                   MR.X := (Oran / 2) + BW_ + PL + 1;
                 end;
   end;
   // Dış kenar çiziliyor
   Ressam.SekilBas( FAyarlar.BorderColor.ToColor32, Ressam.DikDortgenCizgi( Merkez, W, H, BW_, FAyarlar.BorderStyle));
-  //Ressam.SekilBas( cb, Ressam.Dikdortgen( MR, Oran, H - (BW_ * 2) ) );
   // Frame kenarı çiziliyor
   MR.Y := FR.Y;
   Ressam.SekilBas( FAyarlar.BarColor.ToColor32,    Ressam.DikDortgen( FR, FW, FH));

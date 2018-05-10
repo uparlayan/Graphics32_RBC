@@ -169,8 +169,7 @@ end;
 
 procedure TGR32WidgetIzgara.PaintControl;
 var
-  T, L, W, H  : Integer;                // Genel çerçeve bilgisi
-  I, J        : Integer;
+  W, H, I, J  : Integer;
   Ressam      : TPolygonRenderer32VPR;  // TPolygonRenderer32; //  Tuval
   XY, QW      : TFloatPoint;
 
@@ -187,8 +186,6 @@ begin
   Ressam.Bitmap   := Self.FBuffer;
   Ressam.Bitmap.Clear( Color32(FBackground) );
 
-  T  := 0;
-  L  := 0;
   W  := ClientWidth ;
   H  := ClientHeight;
   if (FDamaModu = False) then begin

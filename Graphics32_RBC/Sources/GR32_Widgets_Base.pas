@@ -33,21 +33,21 @@ uses
 type
   TGR32CustomWidget = class(TCustomControl)
     private
-      FBufferValid: Boolean;
       FMouseIsInside: Boolean;
       FOnMouseEnter: TNotifyEvent;
       FOnMouseLeave: TNotifyEvent;
       procedure WMEraseBkgnd(var Message: TWmEraseBkgnd); message WM_ERASEBKGND;
-
-      procedure WMGetDlgCode(var Msg: TWmGetDlgCode); message WM_GETDLGCODE;
-      procedure WMMouseEnter (var Message: TWMMouse); message CM_MOUSEENTER;
-      procedure WMMouseLeave (var Message: TMessage); message CM_MOUSELEAVE;
+      procedure WMGetDlgCode(var Message: TWmGetDlgCode); message WM_GETDLGCODE;
+      procedure WMMouseEnter(var Message: TWMMouse); message CM_MOUSEENTER;
+      procedure WMMouseLeave(var Message: TMessage); message CM_MOUSELEAVE;
       function GetMouseIsInside: Boolean;
     protected
       procedure Paint; override;
     public
-      FBuffer : TBitmap32;
-      Merkez  : TFloatPoint;
+      FBuffer     : TBitmap32;
+      FBufferValid: Boolean;
+      Merkez      : TFloatPoint;
+      MinWH       : Integer;
       constructor Create(AOwner: TComponent); override;
       destructor Destroy(); override;
       procedure Invalidate; override;
@@ -58,13 +58,15 @@ type
       property AlignWithMargins;
       property Anchors;
       property Margins;
-      property MouseIsInside: Boolean read GetMouseIsInside;                    // Hover olaylarını windows mesajlarını etkilemeyecek şekilde yönetebilmek için gerekir.
-      property OnClick;
-      property OnMouseEnter : TNotifyEvent read FOnMouseEnter write FOnMouseEnter;
-      property OnMouseLeave : TNotifyEvent read FOnMouseLeave write FOnMouseLeave;
+      property MouseIsInside: Boolean       read  GetMouseIsInside;                    // Hover olaylarını windows mesajlarını etkilemeyecek şekilde yönetebilmek için gerekir.
+      property OnMouseEnter : TNotifyEvent  read  FOnMouseEnter write FOnMouseEnter;
+      property OnMouseLeave : TNotifyEvent  read  FOnMouseLeave write FOnMouseLeave;
   end;
 
 implementation
+
+uses
+  System.Math;      //  Min , Max
 
 { TGR32_Widget_Circle }
 
@@ -97,9 +99,9 @@ begin
   Message.Result := 1;
 end;
 
-procedure TGR32CustomWidget.WMGetDlgCode(var Msg: TWmGetDlgCode);
+procedure TGR32CustomWidget.WMGetDlgCode(var Message: TWmGetDlgCode);
 begin
-  with Msg do Result := Result or DLGC_WANTARROWS;
+  with Message do Result := Result or DLGC_WANTARROWS;
 end;
 
 procedure TGR32CustomWidget.WMMouseEnter(var Message: TWMMouse);
@@ -124,7 +126,7 @@ begin
 
   if not FBufferValid then begin
       (FBuffer.Backend as IPaintSupport).ImageNeeded;
-       PaintControl;
+       PaintControl;                                      // Virtual metodumuzu bu noktada çağırarak yavru bileşenimizi ekrana fiilen bu noktada çizdiriyoruz...
       (FBuffer.Backend as IPaintSupport).CheckPixmap;
       FBufferValid := True;
   end;
@@ -138,16 +140,17 @@ end;
 
 procedure TGR32CustomWidget.PaintControl;
 begin
-  inherited;
+  inherited; // bu prosedürün içeriği YAVRU BİLEŞENLERDE YAZILMALIDIR. BU KISIM SADECE BU KADAR OLMAK DURUMUNDA... (UP)
 end;
 
 procedure TGR32CustomWidget.Resize;
 begin
   inherited;
-  Merkez.X  := Width  * 0.5;
-  Merkez.Y  := Height * 0.5;
+  MinWH         := Min(Width, Height);
+  Merkez.X      := Width  * 0.5;
+  Merkez.Y      := Height * 0.5;
+  FBufferValid  := False;
   FBuffer.SetSize(Width, Height);
-  FBufferValid := False;
 end;
 
 end.

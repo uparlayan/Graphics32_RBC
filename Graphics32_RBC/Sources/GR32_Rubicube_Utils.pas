@@ -132,7 +132,7 @@ function TRenderHelper.DikDortgenCizgi(aMerkez: TFloatPoint; aWidth, aHeight, aK
 var
   X, Y, W, H, Z: Single;
   Noktalar: TArrayOfFloatPoint;
-  AOF: Array of Single; // : TArrayOfFloat;
+  //AOF: Array of Single; // : TArrayOfFloat;
   Dash, Dot: Single;
 begin
   if (aKalinlik < 1)
@@ -200,10 +200,7 @@ end;
 
 function TRenderHelper.CizgiDama(aXY, aWH: TFloatPoint; aKalinlik, aDamaSize: Single): TArrayOfArrayOfFloatPoint;
 var
-  //X, Y, W, H,
-  Z: Single;
   Noktalar: TArrayOfFloatPoint;
-  Dash, Dot: Single;
 begin
   if (aKalinlik < 1)
   or (aDamaSize < 1)
@@ -214,9 +211,6 @@ begin
   SetLength(Noktalar, 2);
   Noktalar[0] := FloatPoint(aXY.X, aXY.Y);
   Noktalar[1] := FloatPoint(aWH.X, aWH.Y);
-  Z := aKalinlik;
-  Dash := Z * 3;
-  Dot  := Z * 1;
   Result := BuildPolyPolyline(BuildDashedLine(Noktalar, ArrayOfFloat([aDamaSize, aDamaSize])), False, aKalinlik, jsRound, esRound); // BuildPolyline(Noktalar, aKalinlik, jsRound, esRound);
 end;
 

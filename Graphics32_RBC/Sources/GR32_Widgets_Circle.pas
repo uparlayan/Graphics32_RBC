@@ -140,6 +140,7 @@ type
       property HeaderText : String                    read FHeaderText  write SetHeaderText;
       property Yuzde      : Integer                   read FYuzde       write SetYuzde;
       property OnChange   : TNotifyEvent              read FOnChange    write FOnChange;
+      property OnClick;
   end;
 
 procedure Register;
@@ -155,11 +156,12 @@ end;
 
 function TGR32WidgetCircleFillStyle_Helper.toPolyFillMode: TPolyFillMode;
 begin
+  Result := pfEvenOdd;
   case Self of
-    wfsEventOdd   : Result := pfEvenOdd;
-    wfsAlternatif : Result := pfAlternate;
-    wfsWinding    : Result := pfWinding;
-    wfsNonZero    : Result := pfNonZero;
+       //wfsEventOdd   : Result := pfEvenOdd; // DEFAULT... Remarked for clean warning messages of compiling...
+       wfsAlternatif : Result := pfAlternate;
+       wfsWinding    : Result := pfWinding;
+       wfsNonZero    : Result := pfNonZero;
   end;
 end;
 
@@ -429,7 +431,7 @@ end;
 procedure TGR32WidgetCircle.PaintControl;
 var
   T, L, W, H{, W2, H2}  : Integer;  // Genel çerçeve bilgisi
-  HT,HL,HW,HH,HW2,HH2 : Integer;  // Header kısmının çerçeve bilgisi
+  HT,HL,HW,HH,HW2: Integer;  // Header kısmının çerçeve bilgisi
   FT, FL, FW, FH, FW2, FH2: Integer; // Frame kısmının çerçeve bilgisi
   _BW, _FW : Integer;
 
@@ -441,7 +443,7 @@ var
   R             : TRect;
 
   Ressam        : TPolygonRenderer32VPR; // TPolygonRenderer32; //  Tuval
-  _Outer, _Base, _Inner, _Intra: Single; // Çember kalınlıkları
+  _Outer, _Base, _Inner: Single; // Çember kalınlıkları
 
 begin
   Ressam          := TPolygonRenderer32VPR.Create;
@@ -474,13 +476,12 @@ begin
   HW   := W - (FAyarlar.FPadding.Left + FAyarlar.FPadding.Right + (_BW * 2));
   HW2  := HW div 2;
   HH   := FAyarlar.HeaderHeight + _BW;
-  HH2  := HH div 2;
+  //HH2  := HH div 2;
   HM.X := (HW * 0.5) + HL;
   HM.Y := (HH * 0.5) + HT;
   R := TRect.Create(HL, HT, HW, HH);
 
   //  Header kısmı çiziliyor...
-  //Ressam.YaziBas( HL + HW2, HT + HH2, FHeaderText, FAyarlar.Header.Color, FAyarlar.Header.Size, FAyarlar.Header.Name, FAyarlar.HeaderPos, FAyarlar.Header.Style);
   Ressam.YaziBas( R, FHeaderText, FAyarlar.Header.Color, FAyarlar.Header.Size, FAyarlar.Header.Name, FAyarlar.HeaderPos, FAyarlar.Header.Style);
 
   //  Frame kısmı hesaplanıyor
@@ -507,26 +508,17 @@ begin
       _Outer := MinWH  * 0.1;
       _Base  := MinWH  * 0.3 ; // _Outer;
       _Inner := _Outer; // _Base  - (MinWH * 0.1);
-      _Intra := _Inner - (MinWH * 0.1);
 
       if  (FAyarlar.FValueOnOuter)
-      then Ressam.SekilBas( FAyarlar.OuterColor.ToColor32  , Ressam.Yay( FM, FYuzde, MinWH                 , _Outer+1) )  // Dış Kenar
+      then Ressam.SekilBas( FAyarlar.OuterColor.ToColor32  , Ressam.Yay( FM, FYuzde, MinWH                 , _Outer+1) )   // Dış Kenar
       else Ressam.SekilBas( FAyarlar.OuterColor.ToColor32  , Ressam.Yay( FM,    100, MinWH                 , _Outer+1) );  // Dış Kenar
 
            Ressam.SekilBas( FAyarlar.BaseColor.ToColor32   , Ressam.Yay( FM,    100, MinWH - _Outer        ,  _Base+1) );  // Et Kalınlığı
            Ressam.SekilBas( FAyarlar.ValueColor.ToColor32  , Ressam.Yay( FM, FYuzde, MinWH - _Outer        ,  _Base+1) );  // Gösterilecek Değer
       if  (FAyarlar.FValueOnInner)
-      then Ressam.SekilBas( FAyarlar.InnerColor.ToColor32  , Ressam.Yay( FM, FYuzde, MinWH - _Outer - _Base, _Inner+1) )  // İç Kenar
+      then Ressam.SekilBas( FAyarlar.InnerColor.ToColor32  , Ressam.Yay( FM, FYuzde, MinWH - _Outer - _Base, _Inner+1) )   // İç Kenar
       else Ressam.SekilBas( FAyarlar.InnerColor.ToColor32  , Ressam.Yay( FM,    100, MinWH - _Outer - _Base, _Inner+1) );  // İç Kenar
-           Ressam.SekilBas( FAyarlar.IntraColor.ToColor32  , Ressam.Daire(FM       , MinWH - _Outer - _Base - _Inner) );  // İç Zemin Daire
-
-      {
-      Ressam.SekilBas( Color32(FAyarlar.OuterColor) , Ressam.Daire(FM, MinWH) );                              // Dış Kenar Daire
-      Ressam.SekilBas( Color32(FAyarlar.BaseColor)  , Ressam.Daire(FM, MinWH * 0.96  ) );                     // Yay zemin
-      Ressam.SekilBas( Color32(FAyarlar.ValueColor) , Ressam.Pasta(FM, MinWH * 0.96  , FYuzde, Pi_0) );       // Yay
-      Ressam.SekilBas( Color32(FAyarlar.InnerColor) , Ressam.Daire(FM, MinWH * 0.64  ) );                     // İç Kenar Daire
-      Ressam.SekilBas( Color32(FAyarlar.IntraColor) , Ressam.Daire(FM, MinWH * 0.60  ) );                     // İç Zemin Daire
-      }
+           Ressam.SekilBas( FAyarlar.IntraColor.ToColor32  , Ressam.Daire(FM       , MinWH - _Outer - _Base -_Inner) );    // İç Zemin Daire
   end else
   if (FAyarlar.Style = wgtPasta) then begin
       Ressam.SekilBas( Color32(FAyarlar.OuterColor) , Ressam.Daire(FM, MinWH) );                              // Dış Kenar Daire
@@ -536,18 +528,6 @@ begin
 
       Ressam.SekilBas( Color32(FAyarlar.ValueColor) , Ressam.Pasta(FM, MinWH * 0.96  , FYuzde, Pi_0) );       // Yay
   end;
-
-  //Ressam.SekilBas( Color32(clRed) , Ressam.AngleArc( FM, MinWH, PiOfset[Pi_0], FYuzde * Pi_004, 360) );       // Yay
-
-  (*
-  Result  := Pie ( { P}       aMerkez          // Merkez Noktası
-                 , { Radius } aYariCap         // Yarıçap
-                 , { Angle }  aYuzde * Pi_004  // istenen açı... 100 üzrinden...
-                 , { Offset } PiOfset[aOfset]  // Sıfırıncı açının hangi derecede başlayacağı bilgisidir. 0 = 90, Pi/2 = 180, Pi = 270 ve Pi/2*3 = 360 derecedir...
-                 , { Steps }  360              // Yuvarlağın kenarındaki poligon sayısıdır...
-                 );
-  *)
-
   Ressam.YaziBas( FL + FW2
                 , FT + FH2
                 , Format(FAyarlar.DisplayFormat, [FYuzde])
@@ -558,8 +538,6 @@ begin
                 , FAyarlar.Font.Style
                 , FAyarlar.AntiAliased
                 );
-
-
   Ressam.Free;
 end;
 

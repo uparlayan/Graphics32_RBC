@@ -427,8 +427,6 @@ begin
 end;
 
 procedure TGR32WidgetChart.DemoData;
-var
-  I, J: Integer;
 begin
   Self.FItems.Flush;
   Self.Add('Dolar',  0);
@@ -515,7 +513,7 @@ var
   HR            : TRect;                  //  Header Rect
   Aralik        : Single; // frekans aralığı kastediliyor...
   XY, QW        : TFloatPoint;
-  MXV, MNV, ZeroX, ZeroY, ValY: Single;
+  MXV, ZeroX, ZeroY, ValY: Single;
 begin
   Ressam          := TPolygonRenderer32VPR.Create;
   Ressam.Filler   := nil;
