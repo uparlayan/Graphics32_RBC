@@ -24,11 +24,9 @@ uses
     GR32_Widgets_Base
   , GR32_Rubicube_Utils         //  Rubicube extensions
   , GR32                        //  TBitmap32
-  , GR32_ColorGradients         //  TColor32, ColorTo
   , GR32_Polygons               //  Poligon hesaplama formülleri
   , System.Classes              //  TComponent
   , System.SysUtils             //  FreeAndNil
-  , System.Math                 //  Min
   , Vcl.Graphics                //  TColor
   , Vcl.Controls                //  TCustomControl
   , Vcl.Forms                   //
@@ -37,7 +35,6 @@ uses
   ;
 
 type
-
   TGR32WidgetTitle = class(TGR32CustomWidget)
     type
       TGR32WidgetTitleSettings = class(TPersistent)
@@ -65,13 +62,13 @@ type
           procedure BeforeDestruction; override;
           procedure ResetSettings;
         published
-          property Background     : TColor        read  FBackground   write SetBackground     default $0033C1FE;
-          property BorderColor    : TColor        read  FBorderColor  write SetBorderColor    default $00019ADC;
-          property BorderStyle    : TPenStyle     read  FBorderStyle  write SetBorderStyle    default psSolid;
-          property BorderWidth    : Integer       read  FBorderWidth  write SetBorderWidth    default 1;
+          property Background     : TColor        read  FBackground   write SetBackground   stored True  default $0033C1FE ;
+          property BorderColor    : TColor        read  FBorderColor  write SetBorderColor  stored True  default $00019ADC ;
+          property BorderStyle    : TPenStyle     read  FBorderStyle  write SetBorderStyle  stored True  default psSolid   ;
+          property BorderWidth    : Integer       read  FBorderWidth  write SetBorderWidth  stored True  default 1         ;
           property Font           : TFont         read  FFont         write SetFont;
           property Icons          : TFont         read  FIcons        write SetIcons;
-          property Gap            : Integer       read  FGap          write SetGap            default 10;
+          property Gap            : Integer       read  FGap          write SetGap          stored True  default 10        ;
       end;
     private
       Zone_Menu         : TRect;
@@ -294,12 +291,12 @@ begin
   Ressam.Bitmap.Clear( FAyarlar.FBackground.ToColor32 ); // Tuvalin zemin rengi ve tam temizlik
 
   // Genel çerçeve bilgileri hesaplanıyor.
-  Ressam.YaziBas( Zone_Menu     , FMenuChar     , FAyarlar.FIcons.Color  , FAyarlar.FIcons.Size , FAyarlar.FIcons.Name , fpCenterCenter  , FAyarlar.FFont.Style);
-  Ressam.YaziBas( Zone_Close    , FCloseChar    , FAyarlar.FIcons.Color  , FAyarlar.FIcons.Size , FAyarlar.FIcons.Name , fpCenterCenter  , FAyarlar.FFont.Style);
+  Ressam.YaziBas( Zone_Menu     , FMenuChar     , FAyarlar.FIcons, fpCenterCenter);
+  Ressam.YaziBas( Zone_Close    , FCloseChar    , FAyarlar.FIcons, fpCenterCenter);
+  Ressam.YaziBas( Zone_H_Left   , FHeaderLeft   , FAyarlar.FFont , fpCenterLeft);
+  Ressam.YaziBas( ClientRect    , FHeaderCenter , FAyarlar.FFont , fpCenterCenter);
+  Ressam.YaziBas( Zone_H_Right  , FHeaderRight  , FAyarlar.FFont , fpCenterRight);
 
-  Ressam.YaziBas( Zone_H_Left   , FHeaderLeft   , FAyarlar.FFont.Color   , FAyarlar.FFont.Size  , FAyarlar.FFont.Name  , fpCenterLeft    , FAyarlar.FFont.Style);
-  Ressam.YaziBas( ClientRect    , FHeaderCenter , FAyarlar.FFont.Color   , FAyarlar.FFont.Size  , FAyarlar.FFont.Name  , fpCenterCenter  , FAyarlar.FFont.Style);
-  Ressam.YaziBas( Zone_H_Right  , FHeaderRight  , FAyarlar.FFont.Color   , FAyarlar.FFont.Size  , FAyarlar.FFont.Name  , fpCenterRight   , FAyarlar.FFont.Style);
   Ressam.SekilBas( FAyarlar.FBorderColor.ToColor32, Ressam.DikDortgenCizgi( Merkez, Width, Height, FAyarlar.FBorderWidth, FAyarlar.FBorderStyle));
   Ressam.Free;
 end;

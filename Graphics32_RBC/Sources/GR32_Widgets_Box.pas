@@ -21,14 +21,12 @@ unit GR32_Widgets_Box;
 interface
 
 uses
-    GR32_Widgets_Base
-  , GR32_Rubicube_Utils         //  Rubicube extensions
-  , GR32                        //  TBitmap32
-  , GR32_ColorGradients         //  TColor32, ColorTo
+    GR32                        //  TBitmap32
   , GR32_Polygons               //  Poligon hesaplama formülleri
+  , GR32_Widgets_Base
+  , GR32_Rubicube_Utils         //  Rubicube extensions
   , System.Classes              //  TComponent
   , System.SysUtils             //  FreeAndNil
-  , System.Math                 //  Min
   , Vcl.Graphics                //  TColor
   , Vcl.Controls                //  TCustomControl
   ;
@@ -124,6 +122,7 @@ type
       property FooterText   : String                  read FFooterText    write SetFooterText;
       property SimgeChar    : Char                    read FSimgeChar     write SetSimgeChar;
       property FiligranChar : Char                    read FFiligranChar  write SetFiligranChar;
+      property OnClick;
   end;
 
 procedure Register;

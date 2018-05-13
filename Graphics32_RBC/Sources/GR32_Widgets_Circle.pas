@@ -21,12 +21,10 @@ unit GR32_Widgets_Circle;
 interface
 
 uses
-    GR32_Widgets_Base
-  , GR32_Rubicube_Utils         //  Rubicube extensions
-  , GR32                        //  TBitmap32
-  , GR32_ColorGradients         //  TColor32, ColorTo
+    GR32                        //  TBitmap32
   , GR32_Polygons               //  Poligon hesaplama formülleri
-  , GR32_Paths
+  , GR32_Widgets_Base
+  , GR32_Rubicube_Utils         //  Rubicube extensions
   , System.Classes              //  TComponent
   , System.SysUtils             //  FreeAndNil
   , System.Math                 //  Min

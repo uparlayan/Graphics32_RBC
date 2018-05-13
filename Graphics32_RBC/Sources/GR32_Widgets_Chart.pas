@@ -29,7 +29,6 @@ uses
   , System.SysUtils             //  FreeAndNil
   , Vcl.Graphics                //  TColor
   , Vcl.Controls                //  TCustomControl
-  , GR32_Rubicube_Consts        //  clRBC renk kodları
   ;
 
 type

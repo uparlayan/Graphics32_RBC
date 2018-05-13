@@ -27,6 +27,7 @@ uses
   , GR32_Math
   , VCL.Graphics                //  TColor
   , System.Classes              //  TList
+  , System.Types                //  TRect,  TSize
   ;
 
 const
@@ -61,6 +62,10 @@ type                                                                    //      
     public
       function ToColor32: TColor32;
   end;
+  TRect_Helper = record Helper for TRect
+    public
+      function ToCenterPointFloat: TFloatPoint;
+  end;
   TListHelper = class helper for TList
     public
       procedure Flush; // Listenin içindeki TObject soyundan gelen nesneleri free etmeye yarar... Clear TList'in elemanlarını yok ederken bu bağlantı kurulan o nesnelerin kendisini de yok eder...
@@ -82,13 +87,13 @@ type                                                                    //      
       procedure SekilBas(aRenk: TColor32; const aPoints: TArrayOfArrayOfFloatPoint); overload; // Filler eklenecek
       procedure YaziBas(X, Y: Integer; aString: String; aColor: TColor = cldefault; aFontSize: Integer = 0; aFontName: String = ''; aFontPos: TFontPos = fpCenterCenter; aFontStyle: TFontStyles = []; aAntiAliased: Boolean = False); overload;
       procedure YaziBas(aRect: TRect; aString: String; aColor: TColor = cldefault; aFontSize: Integer = 0; aFontName: String = ''; aFontPos: TFontPos = fpCenterCenter; aFontStyle: TFontStyles = []; aAntiAliased: Boolean = False); overload;
+      procedure YaziBas(aRect: TRect; aString: String; aFont: TFont; aFontPos: TFontPos = fpCenterCenter; aAntiAliased: Boolean = False); overload;
   end;
 
 implementation
 
 uses
-    System.Types    //  TSize
-  , System.SysUtils //  FreeAndNil
+    System.SysUtils //  FreeAndNil
   ;
 
 { TRenderHelper }
@@ -260,6 +265,11 @@ begin
 
 end;
 
+procedure TRenderHelper.YaziBas(aRect: TRect; aString: String; aFont: TFont; aFontPos: TFontPos; aAntiAliased: Boolean);
+begin
+  YaziBas(aRect, aString, aFont.Color, aFont.Size, aFont.Name, aFontPos, aFont.Style, aAntiAliased);
+end;
+
 function TRenderHelper.AngleArc(aCenter: TFloatPoint; const aRadius, aThickness, aAngle, aOffset: TFloat; Steps: Integer = 4000): TArrayOfFloatPoint;
 var
   I, J: Integer;
@@ -393,6 +403,14 @@ begin
       TObject( Self[I] ).Free;
       Self.Delete( I );
   end;
+end;
+
+{ TRect_Helper }
+
+function TRect_Helper.ToCenterPointFloat: TFloatPoint;
+begin
+  Result.X := Self.CenterPoint.X;
+  Result.Y := Self.CenterPoint.Y;
 end;
 
 end.

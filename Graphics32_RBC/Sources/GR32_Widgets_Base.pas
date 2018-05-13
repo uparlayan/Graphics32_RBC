@@ -48,6 +48,7 @@ type
       FBufferValid: Boolean;
       Merkez      : TFloatPoint;
       MinWH       : Integer;
+      WidgetRect  : TRect;
       constructor Create(AOwner: TComponent); override;
       destructor Destroy(); override;
       procedure Invalidate; override;
@@ -151,6 +152,10 @@ begin
   Merkez.Y      := Height * 0.5;
   FBufferValid  := False;
   FBuffer.SetSize(Width, Height);
+  WidgetRect.Top := 0;
+  WidgetRect.Left := 0;
+  WidgetRect.Width := Width;
+  WidgetRect.Height := Height;
 end;
 
 end.

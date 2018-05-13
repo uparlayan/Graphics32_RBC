@@ -22,10 +22,7 @@ interface
 
 uses
     GR32
-  , GR32_Polygons
-  , GR32_VectorUtils
-  , VCL.Graphics                //  TColor
-  , System.Classes              //  TList
+  , VCL.Graphics
   ;
 
 const

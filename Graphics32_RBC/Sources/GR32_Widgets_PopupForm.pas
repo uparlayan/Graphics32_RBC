@@ -21,12 +21,7 @@ unit GR32_Widgets_PopupForm;
 interface
 
 uses
-{$IF CompilerVersion > 18}
-  System.SysUtils, System.Classes, vcl.Forms, vcl.Controls, vcl.StdCtrls,
-  System.Types, Winapi.Windows;
-{$ELSE}
-  SysUtils, Classes, Forms, Controls, StdCtrls, Types, Windows;
-{$IFEND}
+  System.SysUtils, System.Classes, System.Types, Winapi.Windows, Vcl.Forms, Vcl.Controls;
 
 type
   TGR32WidgetsPopupYonu           = (wpyLeftToRight, wpyCenter, wpyRightToLeft);
