@@ -42,6 +42,7 @@ contains
   GR32_Widgets_Chart in '..\Sources\GR32_Widgets_Chart.pas',
   GR32_Rubicube_Consts in '..\Sources\GR32_Rubicube_Consts.pas',
   GR32_Widgets_PopupForm in '..\Sources\GR32_Widgets_PopupForm.pas',
-  GR32_Widgets_Title in '..\Sources\GR32_Widgets_Title.pas';
+  GR32_Widgets_Title in '..\Sources\GR32_Widgets_Title.pas',
+  GR32_Widgets_Statusbar in '..\Sources\GR32_Widgets_Statusbar.pas';
 
 end.
