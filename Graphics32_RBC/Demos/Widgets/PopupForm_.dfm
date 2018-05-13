@@ -1,10 +1,9 @@
 object PopupForm: TPopupForm
   Left = 0
   Top = 0
-  BorderStyle = bsNone
   Caption = 'PopupForm'
-  ClientHeight = 304
-  ClientWidth = 482
+  ClientHeight = 272
+  ClientWidth = 440
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -14,69 +13,35 @@ object PopupForm: TPopupForm
   OldCreateOrder = False
   OnClose = FormClose
   DesignSize = (
-    482
-    304)
+    440
+    272)
   PixelsPerInch = 96
   TextHeight = 13
   object GR32WidgetIzgara1: TGR32WidgetIzgara
     Left = 0
-    Top = 43
-    Width = 482
-    Height = 221
+    Top = 40
+    Width = 440
+    Height = 207
     Align = alClient
     AralikDikey = 15
     AralikYatay = 15
     Background = clWindow
     BorderColor = 105180
     BorderStyle = psSolid
-    BorderWidth = 1
+    BorderWidth = 0
     DamaModu = True
     LineColor = 13361128
     LineStyle = psDot
     LineWidth = 1
     LineView = wilTumu
   end
-  object Panel2: TPanel
-    Left = 0
-    Top = 264
-    Width = 482
-    Height = 40
-    Align = alBottom
-    BevelOuter = bvNone
-    TabOrder = 1
-    object Label1: TLabel
-      Left = 396
-      Top = 0
-      Width = 46
-      Height = 40
-      Align = alRight
-      Caption = 'Drag --->'
-      Layout = tlCenter
-      ExplicitHeight = 13
-    end
-    object Button2: TButton
-      Left = 442
-      Top = 0
-      Width = 40
-      Height = 40
-      Align = alRight
-      Caption = '$'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -21
-      Font.Name = 'UgurFonts'
-      Font.Style = []
-      ParentFont = False
-      TabOrder = 0
-      OnMouseDown = Button2MouseDown
-    end
-  end
   object WTT: TGR32WidgetTitle
     Left = 0
     Top = 0
-    Width = 482
-    Height = 43
+    Width = 440
+    Height = 40
     Align = alTop
+    Ayarlar.BorderWidth = 0
     Ayarlar.Font.Charset = DEFAULT_CHARSET
     Ayarlar.Font.Color = clWindowText
     Ayarlar.Font.Height = -21
@@ -87,47 +52,66 @@ object PopupForm: TPopupForm
     Ayarlar.Icons.Height = -32
     Ayarlar.Icons.Name = 'UgurFonts'
     Ayarlar.Icons.Style = []
-    Ayarlar.Gap = 0
-    HeaderLeft = 'Demo'
     HeaderCenter = 'TForm'
-    HeaderRight = 'Close'
     CloseChar = 'o'
     MenuChar = 'n'
     OnMenuClick = WTTMenuClick
     OnCloseClick = WTTCloseClick
   end
   object Edit1: TEdit
-    Left = 20
-    Top = 64
-    Width = 403
-    Height = 21
+    Left = 8
+    Top = 49
+    Width = 384
+    Height = 26
     Anchors = [akLeft, akTop, akRight]
-    TabOrder = 3
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -15
+    Font.Name = 'Calibri'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 2
     Text = 'Text'
   end
   object Button1: TButton
-    Left = 425
-    Top = 62
+    Left = 398
+    Top = 49
     Width = 34
-    Height = 25
+    Height = 26
     Anchors = [akTop, akRight]
     Caption = '+'
-    TabOrder = 4
+    TabOrder = 3
     OnClick = Button1Click
   end
   object Memo1: TMemo
-    Left = 20
-    Top = 91
-    Width = 439
-    Height = 153
+    Left = 8
+    Top = 81
+    Width = 424
+    Height = 156
     Anchors = [akLeft, akTop, akRight, akBottom]
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -11
-    Font.Name = 'Tahoma'
+    Font.Height = -15
+    Font.Name = 'Calibri'
     Font.Style = []
     ParentFont = False
     ScrollBars = ssVertical
-    TabOrder = 5
+    TabOrder = 4
+  end
+  object GR32WidgetStatusBar1: TGR32WidgetStatusBar
+    Left = 0
+    Top = 247
+    Width = 440
+    Height = 25
+    Align = alBottom
+    Ayarlar.BorderWidth = 0
+    Ayarlar.BracketWidth = 10
+    Ayarlar.Font.Charset = DEFAULT_CHARSET
+    Ayarlar.Font.Color = clWindowText
+    Ayarlar.Font.Height = -11
+    Ayarlar.Font.Name = 'Tahoma'
+    Ayarlar.Font.Style = []
+    Ayarlar.Gap = 4
+    FooterText = 'StatusBar'
   end
 end

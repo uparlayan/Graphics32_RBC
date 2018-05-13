@@ -3,9 +3,8 @@ object Ana: TAna
   Top = 0
   Caption = 'Ana'
   ClientHeight = 580
-  ClientWidth = 822
+  ClientWidth = 946
   Color = 14734538
-  DoubleBuffered = True
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
@@ -18,7 +17,7 @@ object Ana: TAna
   object GP: TGridPanel
     Left = 0
     Top = 0
-    Width = 822
+    Width = 946
     Height = 550
     Align = alClient
     BevelOuter = bvNone
@@ -130,7 +129,7 @@ object Ana: TAna
       AlignWithMargins = True
       Left = 10
       Top = 470
-      Width = 390
+      Width = 452
       Height = 70
       Margins.Left = 10
       Margins.Top = 10
@@ -181,9 +180,9 @@ object Ana: TAna
     end
     object GR32WidgetBox3: TGR32WidgetBox
       AlignWithMargins = True
-      Left = 215
+      Left = 246
       Top = 130
-      Width = 390
+      Width = 452
       Height = 73
       Margins.Left = 10
       Margins.Top = 10
@@ -228,15 +227,16 @@ object Ana: TAna
       Ayarlar.SimgeWidth = 60
       Ayarlar.SimgePos = fpCenterCenter
       HeaderText = '39143$'
-      FooterText = 'Kesilen Fatura'
+      FooterText = 'Send Invoices (Click)'
       SimgeChar = '#'
       FiligranChar = '#'
+      OnClick = GR32WidgetBox3Click
     end
     object GR32WidgetCircle1: TGR32WidgetCircle
       AlignWithMargins = True
-      Left = 215
+      Left = 246
       Top = 223
-      Width = 185
+      Width = 216
       Height = 227
       Margins.Left = 10
       Margins.Top = 10
@@ -283,7 +283,7 @@ object Ana: TAna
       AlignWithMargins = True
       Left = 10
       Top = 223
-      Width = 185
+      Width = 216
       Height = 227
       Margins.Left = 10
       Margins.Top = 10
@@ -314,7 +314,7 @@ object Ana: TAna
       Ayarlar.StyleLine = psSolid
       Ayarlar.BaseColor = 13285804
       Ayarlar.ValueColor = 14798444
-      Ayarlar.InnerColor = 14798444
+      Ayarlar.InnerColor = 5387228
       Ayarlar.OuterColor = 14798444
       Ayarlar.IntraColor = clWindow
       Ayarlar.Padding.Left = 10
@@ -327,9 +327,9 @@ object Ana: TAna
       Yuzde = 75
     end
     object PNL_2: TPanel
-      Left = 410
+      Left = 472
       Top = 213
-      Width = 412
+      Width = 474
       Height = 247
       Align = alClient
       BevelOuter = bvNone
@@ -337,7 +337,7 @@ object Ana: TAna
       object Splitter1: TSplitter
         Left = 0
         Top = 125
-        Width = 412
+        Width = 474
         Height = 10
         Cursor = crVSplit
         Align = alTop
@@ -351,7 +351,7 @@ object Ana: TAna
         AlignWithMargins = True
         Left = 10
         Top = 10
-        Width = 392
+        Width = 454
         Height = 115
         Margins.Left = 10
         Margins.Top = 10
@@ -390,7 +390,7 @@ object Ana: TAna
         AlignWithMargins = True
         Left = 10
         Top = 135
-        Width = 392
+        Width = 454
         Height = 102
         Margins.Left = 10
         Margins.Top = 0
@@ -430,7 +430,7 @@ object Ana: TAna
       AlignWithMargins = True
       Left = 10
       Top = 130
-      Width = 185
+      Width = 216
       Height = 73
       Margins.Left = 10
       Margins.Top = 10
@@ -461,9 +461,9 @@ object Ana: TAna
     end
     object Panel2: TPanel
       AlignWithMargins = True
-      Left = 625
+      Left = 718
       Top = 10
-      Width = 187
+      Width = 218
       Height = 193
       Margins.Left = 10
       Margins.Top = 10
@@ -477,7 +477,7 @@ object Ana: TAna
         AlignWithMargins = True
         Left = 1
         Top = 1
-        Width = 185
+        Width = 216
         Height = 48
         Margins.Left = 0
         Margins.Top = 0
@@ -509,7 +509,7 @@ object Ana: TAna
         AlignWithMargins = True
         Left = 1
         Top = 49
-        Width = 185
+        Width = 216
         Height = 48
         Margins.Left = 0
         Margins.Top = 0
@@ -541,7 +541,7 @@ object Ana: TAna
         AlignWithMargins = True
         Left = 1
         Top = 97
-        Width = 185
+        Width = 216
         Height = 48
         Margins.Left = 0
         Margins.Top = 0
@@ -573,7 +573,7 @@ object Ana: TAna
         AlignWithMargins = True
         Left = 1
         Top = 145
-        Width = 185
+        Width = 216
         Height = 48
         Margins.Left = 0
         Margins.Top = 0
@@ -606,7 +606,7 @@ object Ana: TAna
       AlignWithMargins = True
       Left = 10
       Top = 10
-      Width = 595
+      Width = 688
       Height = 100
       Margins.Left = 10
       Margins.Top = 10
@@ -625,17 +625,19 @@ object Ana: TAna
       Ayarlar.Icons.Height = -47
       Ayarlar.Icons.Name = 'UgurFonts'
       Ayarlar.Icons.Style = []
+      Ayarlar.Gap = 11
       HeaderLeft = 'Rubicube'
       HeaderCenter = 'Demo'
       HeaderRight = 'Widgets'
       CloseChar = 'o'
       MenuChar = 'v'
+      OnCloseClick = GR32WidgetTitle1CloseClick
     end
     object GR32WidgetBar1: TGR32WidgetBar
       AlignWithMargins = True
-      Left = 420
+      Left = 482
       Top = 470
-      Width = 185
+      Width = 216
       Height = 70
       Margins.Left = 10
       Margins.Top = 10
@@ -665,9 +667,9 @@ object Ana: TAna
     end
     object GR32WidgetBar3: TGR32WidgetBar
       AlignWithMargins = True
-      Left = 625
+      Left = 718
       Top = 470
-      Width = 187
+      Width = 218
       Height = 70
       Margins.Left = 10
       Margins.Top = 10
@@ -699,14 +701,14 @@ object Ana: TAna
   object Panel1: TPanel
     Left = 0
     Top = 550
-    Width = 822
+    Width = 946
     Height = 30
     Align = alBottom
     BevelOuter = bvNone
     TabOrder = 1
     object FREQ: TTrackBar
       AlignWithMargins = True
-      Left = 289
+      Left = 413
       Top = 0
       Width = 219
       Height = 30
@@ -723,7 +725,7 @@ object Ana: TAna
     end
     object TRA: TTrackBar
       AlignWithMargins = True
-      Left = 518
+      Left = 642
       Top = 0
       Width = 219
       Height = 30
@@ -739,7 +741,7 @@ object Ana: TAna
     end
     object BT_Animasyon: TButton
       AlignWithMargins = True
-      Left = 747
+      Left = 871
       Top = 0
       Width = 75
       Height = 30
@@ -770,9 +772,18 @@ object Ana: TAna
     Bosluk_Kenar = 1
     Bosluk_Ust = 1
     Nesne = GR32WidgetBar2
-    OtomatikKapat = False
     OnBeforePopup = GR32WidgetPopupForm1BeforePopup
     Left = 180
+    Top = 12
+  end
+  object GR32WidgetPopupForm2: TGR32WidgetPopupForm
+    Animasyon.AnimasyonStili = wasHarmanlama
+    Bosluk_Kenar = 1
+    Bosluk_Ust = 1
+    Nesne = GR32WidgetBox3
+    PopupYonu = wpyRightToLeft
+    OnBeforePopup = GR32WidgetPopupForm2BeforePopup
+    Left = 212
     Top = 12
   end
 end

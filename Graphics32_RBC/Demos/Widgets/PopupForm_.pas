@@ -3,24 +3,18 @@ unit PopupForm_;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, GR32_Widgets_Base, GR32_Widgets_Chart, cxGraphics, cxControls, cxLookAndFeels,
-  cxLookAndFeelPainters, cxStyles, dxSkinsCore, dxSkinVS2010, dxSkinscxPCPainter, cxCustomData, cxFilter, cxData,
-  cxDataStorage, cxEdit, cxNavigator, Data.DB, cxDBData, cxGridCustomTableView, cxGridTableView, cxGridDBTableView,
-  cxGridLevel, cxClasses, cxGridCustomView, cxGrid, dxSkinsdxStatusBarPainter, dxStatusBar, dxRibbonStatusBar,
-  Vcl.ComCtrls, Vcl.StdCtrls, GR32_Widgets_Izgara, Vcl.ExtCtrls, GR32_Widgets_Title;
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes,
+  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ComCtrls, Vcl.StdCtrls,
+  Vcl.ExtCtrls, GR32_Widgets_Izgara, GR32_Widgets_Title, GR32_Widgets_Base, GR32_Widgets_Statusbar;
 
 type
   TPopupForm = class(TForm)
     GR32WidgetIzgara1: TGR32WidgetIzgara;
-    Panel2: TPanel;
-    Button2: TButton;
     WTT: TGR32WidgetTitle;
-    Label1: TLabel;
     Edit1: TEdit;
     Button1: TButton;
     Memo1: TMemo;
-    procedure Button2MouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+    GR32WidgetStatusBar1: TGR32WidgetStatusBar;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure WTTMenuClick(Sender: TObject);
     procedure WTTCloseClick(Sender: TObject);
@@ -50,13 +44,6 @@ end;
 procedure TPopupForm.Button1Click(Sender: TObject);
 begin
   Memo1.Lines.Add(Edit1.Text);
-end;
-
-procedure TPopupForm.Button2MouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
-begin
-  // Resize this window...
-  ReleaseCapture;
-  Perform(WM_SYSCOMMAND, SC_SIZE + 8, 0);
 end;
 
 procedure TPopupForm.FormClose(Sender: TObject; var Action: TCloseAction);

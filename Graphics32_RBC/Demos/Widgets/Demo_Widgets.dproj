@@ -1,7 +1,7 @@
 ﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
         <ProjectGuid>{994DF748-254D-44CC-8901-72DF8C5F02C4}</ProjectGuid>
-        <ProjectVersion>16.1</ProjectVersion>
+        <ProjectVersion>18.2</ProjectVersion>
         <FrameworkType>VCL</FrameworkType>
         <MainSource>Demo_Widgets.dpr</MainSource>
         <Base>True</Base>
@@ -39,6 +39,12 @@
         <CfgParent>Base</CfgParent>
         <Base>true</Base>
     </PropertyGroup>
+    <PropertyGroup Condition="('$(Platform)'=='OSX32' and '$(Cfg_2)'=='true') or '$(Cfg_2_OSX32)'!=''">
+        <Cfg_2_OSX32>true</Cfg_2_OSX32>
+        <CfgParent>Cfg_2</CfgParent>
+        <Cfg_2>true</Cfg_2>
+        <Base>true</Base>
+    </PropertyGroup>
     <PropertyGroup Condition="('$(Platform)'=='Win32' and '$(Cfg_2)'=='true') or '$(Cfg_2_Win32)'!=''">
         <Cfg_2_Win32>true</Cfg_2_Win32>
         <CfgParent>Cfg_2</CfgParent>
@@ -62,11 +68,16 @@
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
         <DCC_UsePackage>dxPScxSchedulerLnkRS21;cxSchedulerRibbonStyleEventEditorRS21;cxSchedulerRS21;FireDACPgDriver;vquery210;dxSkinOffice2007BlueRS21;RaizeComponentsVcl;tb2k_d12;cxTreeListdxBarPopupMenuRS21;dxSkinHighContrastRS21;TMSCloudPkgDXE7;dxSkinSevenRS21;cxPivotGridRS21;DBXInterBaseDriver;DataSnapServer;DataSnapCommon;dxHttpIndyRequestRS21;GR32_DSGN_RSXE5;dxSpreadSheetReportDesignerRS21;dxSkinVisualStudio2013DarkRS21;dxGaugeControlRS21;cxEditorsRS21;DropBoxApi_XE7;DbxCommonDriver;vclimg;dxSkinSilverRS21;cxPivotGridOLAPRS21;dbxcds;dxPsPrVwAdvRS21;DatasnapConnectorsFreePascal;dxPSdxGaugeControlLnkRS21;ActiveX_DXE2;dxSkinMoneyTwinsRS21;dxTileControlRS21;UpGrafik;vcldb;cxTreeListRS21;dxdborRS21;dxOfficeCoreRS21;frxDBX21;dxWizardControlRS21;dxSkinBlueprintRS21;dxBarExtItemsRS21;CustomIPTransport;rubiCODE;dxSkinOffice2016ColorfulRS21;dsnap;IndyIPServer;dxSkinOffice2010BlackRS21;IndyCore;dxSkinsdxBarPainterRS21;dxSkinValentineRS21;CloudService;dxSkinDevExpressStyleRS21;TMSCloudPkgDEDXE7;FmxTeeUI;FireDACIBDriver;dac210;frxADO21;dxPScxPCProdRS21;dxSkinCaramelRS21;dxSkinOffice2013DarkGrayRS21;dxPSRichEditControlLnkRS21;dxDockingRS21;tmsdXE7;dxLayoutControlRS21;dsnapxml;FireDACDb2Driver;dxSkinscxSchedulerPainterRS21;dxPSLnksRS21;dxPSdxDBOCLnkRS21;dxSkinVS2010RS21;Intraweb_14_DXE7;cxLibraryRS21;bindcompfmx;dxPSdxMapControlLnkRS21;dxPSdxPDFViewerLnkRS21;cxDataRS21;dxComnRS21;FireDACODBCDriver;RESTBackendComponents;dxSkinBlackRS21;dxSkinDarkSideRS21;dbrtl;FireDACCommon;bindcomp;inetdb;dxPScxTLLnkRS21;DBXOdbcDriver;XE7_ActiveX;vclFireDAC;xmlrtl;ibxpress;cxExportRS21;FireDACCommonDriver;dxSkinOffice2007PinkRS21;dxFlowChartRS21;bindengine;vclactnband;soaprtl;FMXTee;dacvcl210;bindcompvcl;dclExcelExportPackXE7;cxPageControlRS21;dxCoreRS21;vclie;dxSkinOffice2007BlackRS21;dxPSCoreRS21;dxSpreadSheetConditionalFormattingDialogsRS21;dxPSdxDBTVLnkRS21;dxPScxCommonRS21;TMSFMXPackPkgDEDXE6;dxADOServerModeRS21;FireDACMSSQLDriver;DBXInformixDriver;dxSkinLilianRS21;PCSCConnectorD2007;DataSnapServerMidas;dxSkinWhiteprintRS21;dxPSTeeChartRS21;dsnapcon;DBXFirebirdDriver;tmsexdXE7;inet;dxNavBarRS21;dxRibbonRS21;dxSkinsdxNavBarPainterRS21;FireDACMySQLDriver;soapmidas;vclx;unidacvcl210;dxSkinOffice2013WhiteRS21;dxSkinsCoreRS21;DBXSybaseASADriver;dxSkinSharpPlusRS21;dxFireDACServerModeRS21;RESTComponents;DelphiModbusXE7;fsIBX21;dbexpress;dxSkinSevenClassicRS21;IndyIPClient;dxThemeRS21;FireDACSqliteDriver;dxSkinBlueRS21;FireDACDSDriver;dxDBXServerModeRS21;DBXSqliteDriver;dxSkinsdxDLPainterRS21;dxRichEditControlRS21;fmx;dxSkinMetropolisDarkRS21;dxSkinMetropolisRS21;IndySystem;frxe21;TeeDB;tethering;dxSpreadSheetRS21;cxVerticalGridRS21;dxSkinGlassOceansRS21;vclib;dxSkinSummer2008RS21;DataSnapClient;frxIBX21;dxPScxPivotGridLnkRS21;frx21;UpDevEx_DXE2;DataSnapProviderClient;EmbeddedWebBrowser_XE7;DBXSybaseASEDriver;unidac210;dxPSPrVwRibbonRS21;dxSkinVisualStudio2013BlueRS21;cxGridRS21;dxPDFViewerRS21;MetropolisUILiveTile;unidacfmx210;vcldsnap;dxSkinMcSkinRS21;dxSkinLondonLiquidSkyRS21;dxSkinOffice2010SilverRS21;fsTee21;dxSkinOffice2007GreenRS21;dxSpellCheckerRS21;crcontrols210;fmxFireDAC;DBXDb2Driver;dxSkinFoggyRS21;DBXOracleDriver;vclribbon;dxtrmdRS21;fmxase;vcl;dxBarExtDBItemsRS21;dxGDIPlusRS21;DBXMSSQLDriver;IndyIPCommon;dxPSDBTeeChartRS21;dxSkinOffice2007SilverRS21;DataSnapFireDAC;FireDACDBXDriver;dxSkinStardustRS21;dxPSdxSpreadSheetLnkRS21;soapserver;dxdbtrRS21;inetdbxpress;FireDACInfxDriver;dxSkinCoffeeRS21;dxPScxGridLnkRS21;dxPSdxFCLnkRS21;GLib_XE7;adortl;tmswizdXE7;dxSkinOffice2016DarkRS21;FireDACASADriver;dxSkinVisualStudio2013LightRS21;fsADO21;dxTabbedMDIRS21;RaizeComponentsVclDb;emsclientfiredac;rtl;dxPSdxOCLnkRS21;DbxClientDriver;dxSkinDarkRoomRS21;frxTee21;BMThreadPkgDXE7;dxPScxExtCommonRS21;dxorgcRS21;Tee;dxPSdxLCLnkRS21;frxDB21;dacfmx210;dxMapControlRS21;DataSnapNativeClient;svnui;rbcFMX;dxSkinSpringTimeRS21;IndyProtocols;DBXMySQLDriver;cxPivotGridChartRS21;dxSkinOffice2013LightGrayRS21;dxSkinPumpkinRS21;bindcompdbx;TeeUI;ExcelExportPackXE7;fsDB21;upPack_DXE2;TMSFMXPackPkgDXE6;fs21;cxSchedulerTreeBrowserRS21;dxmdsRS21;dxSkinDevExpressDarkStyleRS21;dxSkinSharpRS21;FireDACADSDriver;vcltouch;dxSkinscxPCPainterRS21;dxServerModeRS21;emsclient;clinetsuite_xe7;dxSkinsdxRibbonPainterRS21;VCLRESTComponents;FireDAC;VclSmp;dxSkinTheAsphaltWorldRS21;dxSkinXmas2008BlueRS21;dxRibbonCustomizationFormRS21;dxBarDBNavRS21;DataSnapConnectors;GR32_RSXE5;dxSkinLiquidSkyRS21;cxSchedulerGridRS21;fmxobj;tmsxlsdXE7;dxPScxVGridLnkRS21;svn;dxBarRS21;FireDACOracleDriver;fmxdae;dxSkinOffice2010BlueRS21;FireDACMSAccDriver;DataSnapIndy10ServerTransport;SpTBXLib;dxSkiniMaginaryRS21;$(DCC_UsePackage)</DCC_UsePackage>
-        <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductVersion=1.0.0.0;Comments=;ProgramID=com.embarcadero.$(MSBuildProjectName);FileDescription=$(MSBuildProjectName);ProductName=$(MSBuildProjectName)</VerInfo_Keys>
         <VerInfo_Locale>1033</VerInfo_Locale>
+        <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
+        <UWP_DelphiLogo44>$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_44.png</UWP_DelphiLogo44>
+        <UWP_DelphiLogo150>$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_150.png</UWP_DelphiLogo150>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win64)'!=''">
         <DCC_UsePackage>dxPScxSchedulerLnkRS21;cxSchedulerRibbonStyleEventEditorRS21;cxSchedulerRS21;FireDACPgDriver;dxSkinOffice2007BlueRS21;RaizeComponentsVcl;cxTreeListdxBarPopupMenuRS21;dxSkinHighContrastRS21;dxSkinSevenRS21;cxPivotGridRS21;DBXInterBaseDriver;DataSnapServer;DataSnapCommon;dxHttpIndyRequestRS21;dxSpreadSheetReportDesignerRS21;dxSkinVisualStudio2013DarkRS21;dxGaugeControlRS21;cxEditorsRS21;DbxCommonDriver;vclimg;dxSkinSilverRS21;cxPivotGridOLAPRS21;dbxcds;dxPsPrVwAdvRS21;DatasnapConnectorsFreePascal;dxPSdxGaugeControlLnkRS21;dxSkinMoneyTwinsRS21;dxTileControlRS21;vcldb;cxTreeListRS21;dxdborRS21;dxOfficeCoreRS21;dxWizardControlRS21;dxSkinBlueprintRS21;dxBarExtItemsRS21;CustomIPTransport;dxSkinOffice2016ColorfulRS21;dsnap;IndyIPServer;dxSkinOffice2010BlackRS21;IndyCore;dxSkinsdxBarPainterRS21;dxSkinValentineRS21;CloudService;dxSkinDevExpressStyleRS21;FmxTeeUI;FireDACIBDriver;dxPScxPCProdRS21;dxSkinCaramelRS21;dxSkinOffice2013DarkGrayRS21;dxPSRichEditControlLnkRS21;dxDockingRS21;tmsdXE7;dxLayoutControlRS21;dsnapxml;FireDACDb2Driver;dxSkinscxSchedulerPainterRS21;dxPSLnksRS21;dxPSdxDBOCLnkRS21;dxSkinVS2010RS21;cxLibraryRS21;bindcompfmx;dxPSdxMapControlLnkRS21;dxPSdxPDFViewerLnkRS21;cxDataRS21;dxComnRS21;FireDACODBCDriver;RESTBackendComponents;dxSkinBlackRS21;dxSkinDarkSideRS21;dbrtl;FireDACCommon;bindcomp;inetdb;dxPScxTLLnkRS21;DBXOdbcDriver;vclFireDAC;xmlrtl;ibxpress;cxExportRS21;FireDACCommonDriver;dxSkinOffice2007PinkRS21;dxFlowChartRS21;bindengine;vclactnband;soaprtl;FMXTee;bindcompvcl;cxPageControlRS21;dxCoreRS21;vclie;dxSkinOffice2007BlackRS21;dxPSCoreRS21;dxSpreadSheetConditionalFormattingDialogsRS21;dxPSdxDBTVLnkRS21;dxPScxCommonRS21;TMSFMXPackPkgDEDXE6;dxADOServerModeRS21;FireDACMSSQLDriver;DBXInformixDriver;dxSkinLilianRS21;DataSnapServerMidas;dxSkinWhiteprintRS21;dxPSTeeChartRS21;dsnapcon;DBXFirebirdDriver;tmsexdXE7;inet;dxNavBarRS21;dxRibbonRS21;dxSkinsdxNavBarPainterRS21;FireDACMySQLDriver;soapmidas;vclx;dxSkinOffice2013WhiteRS21;dxSkinsCoreRS21;DBXSybaseASADriver;dxSkinSharpPlusRS21;dxFireDACServerModeRS21;RESTComponents;dbexpress;dxSkinSevenClassicRS21;IndyIPClient;dxThemeRS21;FireDACSqliteDriver;dxSkinBlueRS21;FireDACDSDriver;dxDBXServerModeRS21;DBXSqliteDriver;dxSkinsdxDLPainterRS21;dxRichEditControlRS21;fmx;dxSkinMetropolisDarkRS21;dxSkinMetropolisRS21;IndySystem;TeeDB;tethering;dxSpreadSheetRS21;cxVerticalGridRS21;dxSkinGlassOceansRS21;vclib;dxSkinSummer2008RS21;DataSnapClient;dxPScxPivotGridLnkRS21;DataSnapProviderClient;DBXSybaseASEDriver;dxPSPrVwRibbonRS21;dxSkinVisualStudio2013BlueRS21;cxGridRS21;dxPDFViewerRS21;MetropolisUILiveTile;vcldsnap;dxSkinMcSkinRS21;dxSkinLondonLiquidSkyRS21;dxSkinOffice2010SilverRS21;dxSkinOffice2007GreenRS21;dxSpellCheckerRS21;fmxFireDAC;DBXDb2Driver;dxSkinFoggyRS21;DBXOracleDriver;vclribbon;dxtrmdRS21;fmxase;vcl;dxBarExtDBItemsRS21;dxGDIPlusRS21;DBXMSSQLDriver;IndyIPCommon;dxPSDBTeeChartRS21;dxSkinOffice2007SilverRS21;DataSnapFireDAC;FireDACDBXDriver;dxSkinStardustRS21;dxPSdxSpreadSheetLnkRS21;soapserver;dxdbtrRS21;inetdbxpress;FireDACInfxDriver;dxSkinCoffeeRS21;dxPScxGridLnkRS21;dxPSdxFCLnkRS21;adortl;dxSkinOffice2016DarkRS21;FireDACASADriver;dxSkinVisualStudio2013LightRS21;dxTabbedMDIRS21;RaizeComponentsVclDb;emsclientfiredac;rtl;dxPSdxOCLnkRS21;DbxClientDriver;dxSkinDarkRoomRS21;BMThreadPkgDXE7;dxPScxExtCommonRS21;dxorgcRS21;Tee;dxPSdxLCLnkRS21;dxMapControlRS21;DataSnapNativeClient;dxSkinSpringTimeRS21;IndyProtocols;DBXMySQLDriver;cxPivotGridChartRS21;dxSkinOffice2013LightGrayRS21;dxSkinPumpkinRS21;bindcompdbx;TeeUI;ExcelExportPackXE7;TMSFMXPackPkgDXE6;cxSchedulerTreeBrowserRS21;dxmdsRS21;dxSkinDevExpressDarkStyleRS21;dxSkinSharpRS21;FireDACADSDriver;vcltouch;dxSkinscxPCPainterRS21;dxServerModeRS21;emsclient;clinetsuite_xe7;dxSkinsdxRibbonPainterRS21;VCLRESTComponents;FireDAC;VclSmp;dxSkinTheAsphaltWorldRS21;dxSkinXmas2008BlueRS21;dxRibbonCustomizationFormRS21;dxBarDBNavRS21;DataSnapConnectors;dxSkinLiquidSkyRS21;cxSchedulerGridRS21;fmxobj;tmsxlsdXE7;dxPScxVGridLnkRS21;dxBarRS21;FireDACOracleDriver;fmxdae;dxSkinOffice2010BlueRS21;FireDACMSAccDriver;DataSnapIndy10ServerTransport;dxSkiniMaginaryRS21;$(DCC_UsePackage)</DCC_UsePackage>
+        <UWP_DelphiLogo44>$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_44.png</UWP_DelphiLogo44>
+        <UWP_DelphiLogo150>$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_150.png</UWP_DelphiLogo150>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1)'!=''">
         <DCC_Define>DEBUG;$(DCC_Define)</DCC_Define>
@@ -77,6 +88,8 @@
         <DCC_RemoteDebug>true</DCC_RemoteDebug>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
+        <VerInfo_Locale>1033</VerInfo_Locale>
+        <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <DCC_RemoteDebug>false</DCC_RemoteDebug>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
@@ -85,9 +98,13 @@
         <DCC_SymbolReferenceInfo>0</DCC_SymbolReferenceInfo>
         <DCC_DebugInformation>0</DCC_DebugInformation>
     </PropertyGroup>
+    <PropertyGroup Condition="'$(Cfg_2_OSX32)'!=''">
+        <BT_BuildType>Debug</BT_BuildType>
+    </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win32)'!=''">
         <VerInfo_Locale>1033</VerInfo_Locale>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
+        <BT_BuildType>Debug</BT_BuildType>
     </PropertyGroup>
     <ItemGroup>
         <DelphiCompile Include="$(MainSource)">
@@ -99,6 +116,10 @@
         </DCCReference>
         <DCCReference Include="PopupForm_.pas">
             <Form>PopupForm</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="DropDownForm_.pas">
+            <Form>DropDownForm</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Release">
@@ -121,9 +142,18 @@
                 <Source>
                     <Source Name="MainSource">Demo_Widgets.dpr</Source>
                 </Source>
-                <Excluded_Packages/>
+                <Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\dcloffice2k210.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\dclofficexp210.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
+                    <Excluded_Packages Name="C:\Users\Public\Documents\Embarcadero\Studio\15.0\Bpl\dcldxDockingRS21.bpl">ExpressDocking Library by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\Users\Public\Documents\Embarcadero\Studio\15.0\Bpl\dclcxPivotGridChartRS21.bpl">ExpressPivotGrid connection to ExpressQuantumGrid Chart View by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\Users\Public\Documents\Embarcadero\Studio\15.0\Bpl\dclcxSchedulerGridRS21.bpl">ExpressScheduler connection to ExpressQuantumGrid by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\Users\Public\Documents\Embarcadero\Studio\15.0\Bpl\dcldxSpellCheckerRS21.bpl">ExpressSpellChecker 2 by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\Users\Public\Documents\Embarcadero\Studio\15.0\Bpl\dcldxFlowChartRS21.bpl">ExpressFlowChart by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\Users\Public\Documents\Embarcadero\Studio\15.0\Bpl\dcldxTileControlRS21.bpl">ExpressTileControl by Developer Express Inc.</Excluded_Packages>
+                </Excluded_Packages>
             </Delphi.Personality>
-            <Deployment>
+            <Deployment Version="3">
                 <DeployFile LocalName="Win32\Release\Demo_Widgets.exe" Configuration="Release" Class="ProjectOutput">
                     <Platform Name="Win32">
                         <RemoteName>Demo_Widgets.exe</RemoteName>
@@ -136,6 +166,8 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
+                <DeployFile LocalName="Win32\Release\Demo_Widgets.exe" Configuration="Release" Class="ProjectOutput"/>
+                <DeployFile LocalName="Win32\Debug\Demo_Widgets.exe" Configuration="Debug" Class="ProjectOutput"/>
                 <DeployClass Required="true" Name="DependencyPackage">
                     <Platform Name="iOSDevice">
                         <Operation>1</Operation>
@@ -272,6 +304,26 @@
                         <Operation>1</Operation>
                     </Platform>
                 </DeployClass>
+                <DeployClass Name="UWP_DelphiLogo150">
+                    <Platform Name="Win64">
+                        <RemoteDir>Assets</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Win32">
+                        <RemoteDir>Assets</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="UWP_DelphiLogo44">
+                    <Platform Name="Win64">
+                        <RemoteDir>Assets</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Win32">
+                        <RemoteDir>Assets</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
                 <DeployClass Name="DebugSymbols">
                     <Platform Name="OSX32">
                         <RemoteDir>Contents\MacOS</RemoteDir>
@@ -338,6 +390,12 @@
                         <Operation>1</Operation>
                     </Platform>
                     <Platform Name="iOSSimulator">
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="AndroidServiceOutput">
+                    <Platform Name="Android">
+                        <RemoteDir>library\lib\armeabi-v7a</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
                 </DeployClass>
@@ -460,9 +518,20 @@
                         <Operation>1</Operation>
                     </Platform>
                 </DeployClass>
+                <DeployClass Name="ProjectUWPManifest">
+                    <Platform Name="Win64">
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Win32">
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <ProjectRoot Platform="iOSDevice32" Name="$(PROJECTNAME).app"/>
                 <ProjectRoot Platform="Android" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="iOSDevice" Name="$(PROJECTNAME).app"/>
                 <ProjectRoot Platform="Win32" Name="$(PROJECTNAME)"/>
+                <ProjectRoot Platform="iOSDevice64" Name="$(PROJECTNAME).app"/>
+                <ProjectRoot Platform="Linux64" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="OSX32" Name="$(PROJECTNAME).app"/>
                 <ProjectRoot Platform="iOSSimulator" Name="$(PROJECTNAME).app"/>
                 <ProjectRoot Platform="Win64" Name="$(PROJECTNAME)"/>

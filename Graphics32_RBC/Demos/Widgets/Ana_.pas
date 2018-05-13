@@ -22,9 +22,9 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, GR32_Image, Vcl.ComCtrls, GR32_ColorPicker, GR32_Widgets_PopupForm,
-  Vcl.ExtCtrls, Vcl.StdCtrls, GR32_Widgets_Bar, GR32_Widgets_Chart, GR32_Widgets_Circle, GR32_Widgets_Base,
-  GR32_Widgets_Box, GR32_Widgets_Title;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ComCtrls, GR32_Widgets_PopupForm,
+  Vcl.ExtCtrls, Vcl.StdCtrls, GR32_Widgets_Bar, GR32_Widgets_Chart, GR32_Widgets_Circle,
+  GR32_Widgets_Box, GR32_Widgets_Title, GR32_Widgets_Base;
 
 type
   TAna = class(TForm)
@@ -53,6 +53,7 @@ type
     GR32WidgetTitle1: TGR32WidgetTitle;
     GR32WidgetBar1: TGR32WidgetBar;
     GR32WidgetBar3: TGR32WidgetBar;
+    GR32WidgetPopupForm2: TGR32WidgetPopupForm;
     procedure TRAChange(Sender: TObject);
     procedure Timer2Timer(Sender: TObject);
     procedure BT_AnimasyonClick(Sender: TObject);
@@ -60,6 +61,9 @@ type
     procedure FREQChange(Sender: TObject);
     procedure GR32WidgetBar2Click(Sender: TObject);
     procedure GR32WidgetPopupForm1BeforePopup(Sender: TObject);
+    procedure GR32WidgetTitle1CloseClick(Sender: TObject);
+    procedure GR32WidgetBox3Click(Sender: TObject);
+    procedure GR32WidgetPopupForm2BeforePopup(Sender: TObject);
   private
     { Private declarations }
     procedure Setup;
@@ -80,8 +84,7 @@ implementation
 
 uses
     PopupForm_
-  , System.Math
-  , GR32_Rubicube_Utils
+  , DropDownForm_
   ;
 
 procedure TAna.BT_AnimasyonClick(Sender: TObject);
@@ -104,6 +107,7 @@ begin
   AX := 2;
   AY := 2;
   //M := GRO.Height;
+  //GRO.ClearItems;
   for I := 0 to 20 do begin
       M := Random(100);
       GRO.Add('Test', M);
@@ -122,10 +126,26 @@ begin
   GR32WidgetPopupForm1.DoPopupForm;
 end;
 
+procedure TAna.GR32WidgetBox3Click(Sender: TObject);
+begin
+  GR32WidgetPopupForm2.DoPopupForm;
+end;
+
 procedure TAna.GR32WidgetPopupForm1BeforePopup(Sender: TObject);
 begin
   // Atamayý Popup olayýndan hemen önce yapýyoruz.
   GR32WidgetPopupForm1.PopupForm := PopupForm_.CreatePopupForm(Self);
+end;
+
+procedure TAna.GR32WidgetPopupForm2BeforePopup(Sender: TObject);
+begin
+  // Atamayý Popup olayýndan hemen önce yapýyoruz.
+  GR32WidgetPopupForm2.PopupForm := DropDownForm_.TDropDownForm.CreateDropDownForm(Self);
+end;
+
+procedure TAna.GR32WidgetTitle1CloseClick(Sender: TObject);
+begin
+  Close;
 end;
 
 procedure TAna.Timer2Timer(Sender: TObject);
