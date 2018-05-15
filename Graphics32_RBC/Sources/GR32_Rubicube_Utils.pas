@@ -57,6 +57,10 @@ type                                                                    //      
   TGR32WidgetFillStyle      = (wfsWinding, wfsAlternatif ); //  TPolyFillMode; // (pfAlternate, pfWinding, pfEvenOdd = 0, pfNonZero); "= 0" ataması yapılmış dolayısıyla object inspectorde çıkmıyor, o nedenle ek bir set tanımlandı.
   TGR32WidgetVerticalPos    = (wvpNone, wvpTop, wvpBottom); //  Dikey konumlandırma bilgisi için...
   TGR32WidgetHorizontalPos  = (whpNone, whpLeft, whpRight); //  Yatay konumlandırma bilgisi için
+
+  TGR32WidgetBevelKinds = (wbvLeft, wbvTop, wbvRight, wbvBottom);
+  TGR32WidgetBevel = set of TGR32WidgetBevelKinds;
+
   TFontPos                  = (fpTopLeft, fpTopCenter, fpTopRight, fpCenterLeft, fpCenterCenter, fpCenterRight, fpBottomLeft, fpBottomCenter, fpBottomRight);
   TColor_Helper = record Helper for TColor
     public
@@ -76,7 +80,7 @@ type                                                                    //      
       function Kare(aMerkez: TFloatPoint; aKenar: Single): TArrayOfFloatPoint;
       function Dikdortgen(aMerkez: TFloatPoint; aWidth, aHeight: Single): TArrayOfFloatPoint;
       function DikdortgenOval(aMerkez: TFloatPoint; aWidth, aHeight: Single; YariCap: Single = 8): TArrayOfFloatPoint;
-      function DikDortgenCizgi(aMerkez: TFloatPoint; aWidth, aHeight, aKalinlik: Single; aStyle: TPenStyle = psSolid): TArrayOfArrayOfFloatPoint;
+      function DikDortgenCizgi(aMerkez: TFloatPoint; aWidth, aHeight, aKalinlik: Single; aStyle: TPenStyle = psSolid): TArrayOfArrayOfFloatPoint; overload;
       function Cizgi(aXY, aWH: TFloatPoint; aKalinlik: Single; aStyle: TPenStyle = psSolid): TArrayOfArrayOfFloatPoint;
       function CizgiDama(aXY, aWH: TFloatPoint; aKalinlik: Single; aDamaSize: Single): TArrayOfArrayOfFloatPoint;
       function Daire(aMerkez: TFloatPoint; aYariCap: Single): TArrayOfFloatPoint;
@@ -114,6 +118,7 @@ begin
   Result := Rectangle(R);
 end;
 
+
 function TRenderHelper.DikdortgenOval(aMerkez: TFloatPoint; aWidth, aHeight, YariCap: Single): TArrayOfFloatPoint;
 var
   R: TFloatRect;
@@ -137,7 +142,6 @@ function TRenderHelper.DikDortgenCizgi(aMerkez: TFloatPoint; aWidth, aHeight, aK
 var
   X, Y, W, H, Z: Single;
   Noktalar: TArrayOfFloatPoint;
-  //AOF: Array of Single; // : TArrayOfFloat;
   Dash, Dot: Single;
 begin
   if (aKalinlik < 1)
@@ -308,7 +312,8 @@ var
   TX, TY, TW, TH, TW2, TH2: Integer;
 begin
   with  Self.Bitmap do begin
-        if (aColor <> 0)      then Font.Color := aColor;
+        //if (aColor <> 0)      then
+        Font.Color := aColor;
         if (aFontSize <> 0)   then Font.Size := aFontSize;
         if (aFontName <> '')  then Font.Name := aFontName;
         Font.Style := aFontStyle;
@@ -351,7 +356,8 @@ var
   R: Integer; //  Top  - Bottom
 begin
   with  Self.Bitmap do begin
-        if (aColor <> 0)      then Font.Color := aColor;
+        //if (aColor <> 0)      then
+        Font.Color := aColor;
         if (aFontSize <> 0)   then Font.Size := aFontSize;
         if (aFontName <> '')  then Font.Name := aFontName;
         Font.Style := aFontStyle;

@@ -41,6 +41,7 @@ type
         private
           FOwner            : TGR32WidgetStatusBar;
           FBackground       : TColor;
+          FBackgroundHover  : TColor;
           FBorderColor      : TColor;
           FBorderStyle      : TPenStyle;
           FBorderWidth      : Integer;
@@ -48,6 +49,7 @@ type
           FFont             : TFont;
           FGap              : Integer;
           procedure SetBackground(const Value: TColor);
+          procedure SetBackgroundHover(const Value: TColor);
           procedure SetBorderColor(const Value: TColor);
           procedure SetBorderStyle(const Value: TPenStyle);
           procedure SetBorderWidth(const Value: Integer);
@@ -62,13 +64,14 @@ type
           procedure BeforeDestruction; override;
           procedure ResetSettings;
         published
-          property Background     : TColor        read  FBackground   write SetBackground   stored True  default $0033C1FE ;
-          property BorderColor    : TColor        read  FBorderColor  write SetBorderColor  stored True  default $00019ADC ;
-          property BorderStyle    : TPenStyle     read  FBorderStyle  write SetBorderStyle  stored True  default psSolid   ;
-          property BorderWidth    : Integer       read  FBorderWidth  write SetBorderWidth  stored True  default 1         ;
-          property BracketWidth   : Integer       read  FBracketWidth write SetBracketWidth stored True  default 25        ;
-          property Font           : TFont         read  FFont         write SetFont;
-          property Gap            : Integer       read  FGap          write SetGap          stored True  default 10        ;
+          property Background         : TColor        read  FBackground       write SetBackground       stored True  default $0033C1FE ;
+          property BackgroundHover    : TColor        read  FBackgroundHover  write SetBackgroundHover  stored True  default $0033C1FE ;
+          property BorderColor        : TColor        read  FBorderColor      write SetBorderColor      stored True  default $00019ADC ;
+          property BorderStyle        : TPenStyle     read  FBorderStyle      write SetBorderStyle      stored True  default psSolid   ;
+          property BorderWidth        : Integer       read  FBorderWidth      write SetBorderWidth      stored True  default 1         ;
+          property BracketWidth       : Integer       read  FBracketWidth     write SetBracketWidth     stored True  default 25        ;
+          property Font               : TFont         read  FFont             write SetFont;
+          property Gap                : Integer       read  FGap              write SetGap              stored True  default 10        ;
       end;
     private
       Bracket_Left      : TRect;
@@ -94,8 +97,8 @@ type
       property Align;
       property Margins;
       property Ayarlar        : TGR32WidgetStatusBarSettings  read  FAyarlar      write SetAyarlar;
-      property FooterText     : String                    read  FFooterText   write SetFooterText;
-      property OnMouseMove    : TNotifyEvent              read  FOnMouseMove  write FOnMouseMove;
+      property FooterText     : String                        read  FFooterText   write SetFooterText;
+      property OnMouseMove    : TNotifyEvent                  read  FOnMouseMove  write FOnMouseMove;
   end;
 
 procedure Register;
@@ -148,17 +151,23 @@ end;
 
 procedure TGR32WidgetStatusBar.TGR32WidgetStatusBarSettings.ResetSettings;
 begin
-  FBackground     := $0033C1FE;
-  FBorderColor    := $00019ADC;
-  FBorderStyle    := psSolid;
-  FBorderWidth    := 1;
-  FBracketWidth   := 25;
-  FGap            := 10;
+  FBackground       := $0033C1FE;
+  FBackgroundHover  := $0033C1FE;
+  FBorderColor      := $00019ADC;
+  FBorderStyle      := psSolid;
+  FBorderWidth      := 1;
+  FBracketWidth     := 25;
+  FGap              := 10;
 end;
 
 procedure TGR32WidgetStatusBar.TGR32WidgetStatusBarSettings.SetBackground(const Value: TColor);
 begin
   FBackground := Value; InlineChangeNotifier(nil);
+end;
+
+procedure TGR32WidgetStatusBar.TGR32WidgetStatusBarSettings.SetBackgroundHover(const Value: TColor);
+begin
+  FBackgroundHover := Value; InlineChangeNotifier(nil);
 end;
 
 procedure TGR32WidgetStatusBar.TGR32WidgetStatusBarSettings.SetBorderColor(const Value: TColor);
@@ -257,17 +266,13 @@ begin
   Ressam.Filler   := nil;
   Ressam.FillMode := pfWinding;
   Ressam.Bitmap   := Self.FBuffer;
-  Ressam.Bitmap.Clear( FAyarlar.FBackground.ToColor32 ); // Tuvalin zemin rengi ve tam temizlik
-
-  // Genel çerçeve bilgileri hesaplanýyor.
-  //Ressam.YaziBas( Bracket_Left     , FMenuChar     , FAyarlar.FIcons, fpCenterCenter);
-  //Ressam.YaziBas( Bracket_Right    , FCloseChar    , FAyarlar.FIcons, fpCenterCenter);
+  if  (MouseIsInside = True)
+  then Ressam.Bitmap.Clear( FAyarlar.BackgroundHover.ToColor32 )
+  else Ressam.Bitmap.Clear( FAyarlar.Background.ToColor32 ); // Tuvalin zemin rengi ve tam temizlik
+  Ressam.YaziBas( Bracket_Footer, FFooterText   , FAyarlar.FFont , fpCenterLeft);
   Ressam.SekilBas(FAyarlar.FBorderColor.ToColor32 , Ressam.Dikdortgen(Bracket_Left.ToCenterPointFloat, Bracket_Left.Width, Bracket_Left.Height));
   Ressam.SekilBas(FAyarlar.FBorderColor.ToColor32 , Ressam.Dikdortgen(Bracket_Right.ToCenterPointFloat, Bracket_Right.Width, Bracket_Right.Height));
-  Ressam.YaziBas( Bracket_Footer, FFooterText   , FAyarlar.FFont , fpCenterLeft);
-
   Ressam.SekilBas(FAyarlar.FBorderColor.ToColor32, Ressam.DikDortgenCizgi( Merkez, Width, Height, FAyarlar.FBorderWidth, FAyarlar.FBorderStyle));
-  //Ressam.SekilBas(FAyarlar.FBorderColor.ToColor32, Ressam.DikDortgenCizgi( Bracket_Footer.ToCenterPointFloat, Bracket_Footer.Width, Bracket_Footer.Height, FAyarlar.FBorderWidth, FAyarlar.FBorderStyle));
   Ressam.Free;
 end;
 

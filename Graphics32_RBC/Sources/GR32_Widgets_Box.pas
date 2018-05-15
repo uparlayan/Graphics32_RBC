@@ -38,7 +38,7 @@ type
         private
           FOwner            : TGR32WidgetBox;
           FBackground       : TColor;
-          FBackgroundHover  : TColor32;
+          FBackgroundHover  : TColor;
           FBorderColor      : TColor;
           FBorderStyle      : TPenStyle;
           FBorderWidth      : Integer;
@@ -57,7 +57,7 @@ type
           FSimgePos         : TFontPos;
           procedure InlineChangeNotifier(Sender: TObject);
           procedure SetBackground(const Value: TColor);
-          procedure SetBackgroundHover(const Value: TColor32);
+          procedure SetBackgroundHover(const Value: TColor);
           procedure SetBorderColor(const Value: TColor);
           procedure SetBorderStyle(const Value: TPenStyle);
           procedure SetBorderWidth(const Value: Integer);
@@ -82,7 +82,7 @@ type
           procedure ResetSettings;
         published
           property Background     : TColor                read  FBackground       write SetBackground     ;
-          property BackgroundHover: TColor32              read  FBackgroundHover  write SetBackgroundHover;
+          property BackgroundHover: TColor                read  FBackgroundHover  write SetBackgroundHover;
           property BorderColor    : TColor                read  FBorderColor      write SetBorderColor    ;
           property BorderStyle    : TPenStyle             read  FBorderStyle      write SetBorderStyle    ;
           property BorderWidth    : Integer               read  FBorderWidth      write SetBorderWidth    ;
@@ -201,7 +201,7 @@ begin
   FBackground := Value; InlineChangeNotifier(nil);
 end;
 
-procedure TGR32WidgetBox.TGR32WidgetBoxSettings.SetBackgroundHover(const Value: TColor32);
+procedure TGR32WidgetBox.TGR32WidgetBoxSettings.SetBackgroundHover(const Value: TColor);
 begin
   FBackgroundHover := Value; InlineChangeNotifier(nil);
 end;
@@ -389,9 +389,9 @@ begin
   Ressam.Filler   := nil; // henüz bir gradient kullanmadık.
   Ressam.FillMode := pfWinding;// FAyarlar.StyleFill.toPolyFillMode; // pfWinding; // bu ayar, iki çizgi üst üste kesiştiğinde çizgilerin kesiştiği kısımların birbirini yok etmesini engeller...
   Ressam.Bitmap   := Self.FBuffer;
-  if MouseIsInside = True
-  then Ressam.Bitmap.Clear( FAyarlar.BackgroundHover )
-  else Ressam.Bitmap.Clear( Color32(FAyarlar.Background) ); // Tuvalin zemin rengi ve tam temizlik
+  if  (MouseIsInside = True)
+  then Ressam.Bitmap.Clear( FAyarlar.BackgroundHover.ToColor32 )
+  else Ressam.Bitmap.Clear( FAyarlar.Background.ToColor32 ); // Tuvalin zemin rengi ve tam temizlik
 
   // Genel çerçeve bilgileri hesaplanıyor.
   //T  := 0;
@@ -420,7 +420,7 @@ begin
 
   // Border çiziliyor
   if (FAyarlar.BorderWidth >= 1) and (FAyarlar.BorderColor <> FAyarlar.FBackground) then
-  Ressam.SekilBas( Color32(FAyarlar.BorderColor), Ressam.DikDortgenCizgi(Merkez, W, H, FAyarlar.BorderWidth, FAyarlar.BorderStyle));
+  Ressam.SekilBas( FAyarlar.BorderColor.ToColor32, Ressam.DikDortgenCizgi(Merkez, W, H, FAyarlar.BorderWidth, FAyarlar.BorderStyle));
   SWH := FAyarlar.SimgeWidth;
 
   // Simge çiziliyor
@@ -446,7 +446,7 @@ begin
   SM.Y := SR.CenterPoint.Y;
 
   // Frame
-  Ressam.SekilBas( Color32(FAyarlar.FrameColor), Ressam.DikDortgenCizgi(SM, Trunc(SR.Width), Trunc(SR.Height), FW_, FAyarlar.FrameStyle));
+  Ressam.SekilBas( FAyarlar.FrameColor.ToColor32, Ressam.DikDortgenCizgi(SM, Trunc(SR.Width), Trunc(SR.Height), FW_, FAyarlar.FrameStyle));
   // Header
   Ressam.YaziBas( SR, FHeaderText, FAyarlar.Header.Color, FAyarlar.Header.Size, FAyarlar.Header.Name, FAyarlar.HeaderPos, FAyarlar.Header.Style);
   // Footer

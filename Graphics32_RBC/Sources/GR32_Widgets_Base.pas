@@ -48,12 +48,14 @@ type
       FBufferValid: Boolean;
       Merkez      : TFloatPoint;
       MinWH       : Integer;
+      MinRadius   : Integer;
       WidgetRect  : TRect;
       constructor Create(AOwner: TComponent); override;
       destructor Destroy(); override;
       procedure Invalidate; override;
       procedure Resize; override;
       procedure PaintControl; virtual;                                          // Bu, yavru nesnelerde tanımlanacak. Bu noktada ise bu metod Paint metodunda çağırılacak. Böylece işleyiş ve performans düzgün ilerleyecek...
+      class function iif<T>(const aValue: Boolean; const aTrue, aFalse: T): T; static;
     published
       property Align;
       property AlignWithMargins;
@@ -87,6 +89,12 @@ end;
 function TGR32CustomWidget.GetMouseIsInside: Boolean;
 begin
   Result := FMouseIsInside;
+end;
+
+class function TGR32CustomWidget.iif<T>(const aValue: Boolean; const aTrue, aFalse: T): T;
+begin
+  Result := AFalse;
+  if AValue then Exit(ATrue);
 end;
 
 procedure TGR32CustomWidget.Invalidate;
@@ -148,6 +156,7 @@ procedure TGR32CustomWidget.Resize;
 begin
   inherited;
   MinWH         := Min(Width, Height);
+  MinRadius     := MinWH div 2;
   Merkez.X      := Width  * 0.5;
   Merkez.Y      := Height * 0.5;
   FBufferValid  := False;

@@ -43,31 +43,33 @@ type
     type
       TGR32WidgetCircleSettings = class(TPersistent)
         private
-          FOwner        : TGR32WidgetCircle;
-          FAntiAliased  : Boolean;
-          FBackground   : TColor;
-          FBorderColor  : TColor;
-          FBorderWidth  : Integer;
-          FDisplayFormat: String;
-          FFont         : TFont;
-          FFrameColor   : TColor;
-          FFrameWidth   : Integer;
-          FHeader       : TFont;
-          FHeaderPos    : TFontPos;
-          FHeaderHeight : Integer;
-          FStyle        : TGR32WidgetCircleStyle;
-          FStyleFill    : TGR32WidgetCircleFillStyle;
-          FStyleLine    : TPenStyle;
-          FBaseColor    : TColor;
-          FValueColor   : TColor;
-          FInnerColor   : TColor;
-          FOuterColor   : TColor;
-          FIntraColor   : TColor;
-          FPadding      : TPadding;
-          FValueOnInner : Boolean;
-          FValueOnOuter : Boolean;
+          FOwner            : TGR32WidgetCircle;
+          FAntiAliased      : Boolean;
+          FBackground       : TColor;
+          FBackgroundHover  : TColor;
+          FBorderColor      : TColor;
+          FBorderWidth      : Integer;
+          FDisplayFormat    : String;
+          FFont             : TFont;
+          FFrameColor       : TColor;
+          FFrameWidth       : Integer;
+          FHeader           : TFont;
+          FHeaderPos        : TFontPos;
+          FHeaderHeight     : Integer;
+          FStyle            : TGR32WidgetCircleStyle;
+          FStyleFill        : TGR32WidgetCircleFillStyle;
+          FStyleLine        : TPenStyle;
+          FBaseColor        : TColor;
+          FValueColor       : TColor;
+          FInnerColor       : TColor;
+          FOuterColor       : TColor;
+          FIntraColor       : TColor;
+          FPadding          : TPadding;
+          FValueOnInner     : Boolean;
+          FValueOnOuter     : Boolean;
           procedure SetAntiAliased(const Value: Boolean);
           procedure SetBackground(const Value: TColor);
+          procedure SetBackgroundHover(const Value: TColor);
           procedure SetBorderColor(const Value: TColor);
           procedure SetBorderWidth(const Value: Integer);
           procedure SetDisplayFormat(const Value: String);
@@ -96,28 +98,29 @@ type
           procedure BeforeDestruction; override;
           procedure ResetSettings;
         published
-          property AntiAliased  : Boolean                     read FAntiAliased   write SetAntiAliased;
-          property Background   : TColor                      read FBackground    write SetBackground;
-          property BorderColor  : TColor                      read FBorderColor   write SetBorderColor;
-          property BorderWidth  : Integer                     read FBorderWidth   write SetBorderWidth;
-          property DisplayFormat: String                      read FDisplayFormat write SetDisplayFormat;
-          property Font         : TFont                       read FFont          write SetFont;
-          property FrameColor   : TColor                      read FFrameColor    write SetFrameColor;
-          property FrameWidth   : Integer                     read FFrameWidth    write SetFrameWidth;
-          property Header       : TFont                       read FHeader        write SetHeader;
-          property HeaderPos    : TFontPos                    read FHeaderPos     write SetHeaderPos;
-          property HeaderHeight : Integer                     read FHeaderHeight  write SetHeaderHeight;
-          property Style        : TGR32WidgetCircleStyle      read FStyle         write SetStyle;
-          property StyleFill    : TGR32WidgetCircleFillStyle  read FStyleFill     write SetStyleFill;
-          property StyleLine    : TPenStyle                   read FStyleLine     write SetStyleLine;
-          property BaseColor    : TColor                      read FBaseColor     write SetBaseColor;   //  Dairenin değer dışında kalan kısmının rengi
-          property ValueColor   : TColor                      read FValueColor    write SetValueColor;  //  Dairenin değer içeren kısmının rengi
-          property InnerColor   : TColor                      read FInnerColor    write SetInnerColor;  //  Dairenin iç çerçeve rengi
-          property OuterColor   : TColor                      read FOuterColor    write SetOuterColor;  //  Dairenin dış çerçeve rengi
-          property IntraColor   : TColor                      read FIntraColor    write SetIntraColor;  //  Dairenin merkezinin rengi
-          property Padding      : TPadding                    read FPadding       write SetPadding;
-          property ValueOnInner : Boolean                     read FValueOnInner  write SetValueOnInner;
-          property ValueOnOuter : Boolean                     read FValueOnOuter  write SetValueOnOuter;
+          property AntiAliased      : Boolean                     read FAntiAliased     write SetAntiAliased;
+          property Background       : TColor                      read FBackground      write SetBackground;
+          property BackgroundHover  : TColor                      read FBackgroundHover write SetBackgroundHover;
+          property BorderColor      : TColor                      read FBorderColor     write SetBorderColor;
+          property BorderWidth      : Integer                     read FBorderWidth     write SetBorderWidth;
+          property DisplayFormat    : String                      read FDisplayFormat   write SetDisplayFormat;
+          property Font             : TFont                       read FFont            write SetFont;
+          property FrameColor       : TColor                      read FFrameColor      write SetFrameColor;
+          property FrameWidth       : Integer                     read FFrameWidth      write SetFrameWidth;
+          property Header           : TFont                       read FHeader          write SetHeader;
+          property HeaderPos        : TFontPos                    read FHeaderPos       write SetHeaderPos;
+          property HeaderHeight     : Integer                     read FHeaderHeight    write SetHeaderHeight;
+          property Style            : TGR32WidgetCircleStyle      read FStyle           write SetStyle;
+          property StyleFill        : TGR32WidgetCircleFillStyle  read FStyleFill       write SetStyleFill;
+          property StyleLine        : TPenStyle                   read FStyleLine       write SetStyleLine;
+          property BaseColor        : TColor                      read FBaseColor       write SetBaseColor;   //  Dairenin değer dışında kalan kısmının rengi
+          property ValueColor       : TColor                      read FValueColor      write SetValueColor;  //  Dairenin değer içeren kısmının rengi
+          property InnerColor       : TColor                      read FInnerColor      write SetInnerColor;  //  Dairenin iç çerçeve rengi
+          property OuterColor       : TColor                      read FOuterColor      write SetOuterColor;  //  Dairenin dış çerçeve rengi
+          property IntraColor       : TColor                      read FIntraColor      write SetIntraColor;  //  Dairenin merkezinin rengi
+          property Padding          : TPadding                    read FPadding         write SetPadding;
+          property ValueOnInner     : Boolean                     read FValueOnInner    write SetValueOnInner;
+          property ValueOnOuter     : Boolean                     read FValueOnOuter    write SetValueOnOuter;
       end;
     private
       FAyarlar    : TGR32WidgetCircleSettings;
@@ -223,154 +226,146 @@ end;
 
 procedure TGR32WidgetCircle.TGR32WidgetCircleSettings.ResetSettings;
 begin
-  FAntiAliased  := False;
-  FBackground   := clWindow;
-  FBorderColor  := clWindowFrame;
-  FBorderWidth  := 1;
-  FDisplayFormat:= '%%%D';
+  FAntiAliased      := False;
+  FBackground       := clWindow;
+  FBackgroundHover  := clWindow;
+  FBorderColor      := clWindowFrame;
+  FBorderWidth      := 1;
+  FDisplayFormat    := '%%%D';
   with FFont do begin
-        Color   := clWindowText;
-        Name    := 'Calibri';
-        Size    := 24;
-        Style   := [];
+        Color       := clWindowText;
+        Name        := 'Calibri';
+        Size        := 24;
+        Style       := [];
   end;
-  FFrameColor   := clWindowFrame;
-  FFrameWidth   := 1;
+  FFrameColor       := clWindowFrame;
+  FFrameWidth       := 1;
   with FHeader do begin
-        Color   := clHotLight;
-        Name    := 'Calibri';
-        Size    := 16;
-        Style   := [];
+        Color       := clHotLight;
+        Name        := 'Calibri';
+        Size        := 16;
+        Style       := [];
   end;
-  FHeaderPos    := fpCenterCenter;
-  FHeaderHeight := 50;
-  FStyle        := wgtDaire;
-  FStyleFill    := wfsEventOdd;
-  FValueColor   := $005233DC;
-  FBaseColor    := $00D9D3E7; // $00AB9DEE;
-  FInnerColor   := clBtnFace;
-  FOuterColor   := clBtnFace;
-  FIntraColor   := clWindow;
+  FHeaderPos        := fpCenterCenter;
+  FHeaderHeight     := 50;
+  FStyle            := wgtDaire;
+  FStyleFill        := wfsEventOdd;
+  FValueColor       := $005233DC;
+  FBaseColor        := $00D9D3E7; // $00AB9DEE;
+  FInnerColor       := clBtnFace;
+  FOuterColor       := clBtnFace;
+  FIntraColor       := clWindow;
 end;
 
 procedure TGR32WidgetCircle.TGR32WidgetCircleSettings.SetAntiAliased(const Value: Boolean);
 begin
   FAntiAliased := Value;
-  FOwner.Invalidate;
+  InlineChangeNotifier(nil);
 end;
 
 procedure TGR32WidgetCircle.TGR32WidgetCircleSettings.SetBackground(const Value: TColor);
 begin
   FBackground := Value;
-  FOwner.Invalidate;
+  InlineChangeNotifier(nil);
+end;
+
+procedure TGR32WidgetCircle.TGR32WidgetCircleSettings.SetBackgroundHover(const Value: TColor);
+begin
+  FBackgroundHover := Value; InlineChangeNotifier(nil);
 end;
 
 procedure TGR32WidgetCircle.TGR32WidgetCircleSettings.SetBaseColor(const Value: TColor);
 begin
-  FBaseColor := Value;
-  FOwner.Invalidate;
+  FBaseColor := Value; InlineChangeNotifier(nil);
 end;
 
 procedure TGR32WidgetCircle.TGR32WidgetCircleSettings.SetBorderColor(const Value: TColor);
 begin
-  FBorderColor := Value;
-  FOwner.Invalidate;
+  FBorderColor := Value; InlineChangeNotifier(nil);
 end;
 
 procedure TGR32WidgetCircle.TGR32WidgetCircleSettings.SetBorderWidth(const Value: Integer);
 begin
   if (Trunc(Value) > 0) then FBorderWidth := Value;
-  FOwner.Invalidate;
+  InlineChangeNotifier(nil);
 end;
 
 procedure TGR32WidgetCircle.TGR32WidgetCircleSettings.SetDisplayFormat(const Value: String);
 begin
   FDisplayFormat := Value;
-  FOwner.Invalidate;
+  InlineChangeNotifier(nil);
 end;
 
 procedure TGR32WidgetCircle.TGR32WidgetCircleSettings.SetFont(const Value: TFont);
 begin
   FFont.Assign(Value);
-  FOwner.Invalidate;
+  InlineChangeNotifier(nil);
 end;
 
 procedure TGR32WidgetCircle.TGR32WidgetCircleSettings.SetFrameColor(const Value: TColor);
 begin
   FFrameColor := Value;
-  FOwner.Invalidate;
+  InlineChangeNotifier(nil);
 end;
 
 procedure TGR32WidgetCircle.TGR32WidgetCircleSettings.SetFrameWidth(const Value: Integer);
 begin
-  if (Trunc(Value) > 0) then FFrameWidth := Value;
-  FOwner.Invalidate;
+  FFrameWidth := Value; InlineChangeNotifier(nil);
 end;
 
 procedure TGR32WidgetCircle.TGR32WidgetCircleSettings.SetHeader(const Value: TFont);
 begin
-  FHeader.Assign(Value);
-  FOwner.Invalidate;
+  FHeader.Assign(Value); InlineChangeNotifier(nil);
 end;
 
 procedure TGR32WidgetCircle.TGR32WidgetCircleSettings.SetHeaderHeight(const Value: Integer);
 begin
-  FHeaderHeight := Value;
-  FOwner.Invalidate;
+  FHeaderHeight := Value; InlineChangeNotifier(nil);
 end;
 
 procedure TGR32WidgetCircle.TGR32WidgetCircleSettings.SetHeaderPos(const Value: TFontPos);
 begin
-  FHeaderPos := Value;
-  FOwner.Invalidate;
+  FHeaderPos := Value; InlineChangeNotifier(nil);
 end;
 
 procedure TGR32WidgetCircle.TGR32WidgetCircleSettings.SetInnerColor(const Value: TColor);
 begin
-  FInnerColor := Value;
-  FOwner.Invalidate;
+  FInnerColor := Value; InlineChangeNotifier(nil);
 end;
 
 procedure TGR32WidgetCircle.TGR32WidgetCircleSettings.SetIntraColor(const Value: TColor);
 begin
-  FIntraColor := Value;
-  FOwner.Invalidate;
+  FIntraColor := Value; InlineChangeNotifier(nil);
 end;
 
 procedure TGR32WidgetCircle.TGR32WidgetCircleSettings.SetOuterColor(const Value: TColor);
 begin
-  FOuterColor := Value;
-  FOwner.Invalidate;
+  FOuterColor := Value; InlineChangeNotifier(nil);
 end;
 
 procedure TGR32WidgetCircle.TGR32WidgetCircleSettings.SetPadding(const Value: TPadding);
 begin
-  FPadding.Assign(Value);
-  FOwner.Invalidate;
+  FPadding.Assign(Value); InlineChangeNotifier(nil);
 end;
 
 procedure TGR32WidgetCircle.TGR32WidgetCircleSettings.SetStyle(const Value: TGR32WidgetCircleStyle);
 begin
-  FStyle := Value;
-  FOwner.Invalidate;
+  FStyle := Value; InlineChangeNotifier(nil);
 end;
 
 procedure TGR32WidgetCircle.TGR32WidgetCircleSettings.SetStyleFill(const Value: TGR32WidgetCircleFillStyle);
 begin
-  FStyleFill := Value;
-  FOwner.Invalidate;
+  FStyleFill := Value; InlineChangeNotifier(nil);
 end;
 
 procedure TGR32WidgetCircle.TGR32WidgetCircleSettings.SetStyleLine(const Value: TPenStyle);
 begin
-  FStyleLine := Value;
-  FOwner.Invalidate;
+  FStyleLine := Value; InlineChangeNotifier(nil);
 end;
 
 procedure TGR32WidgetCircle.TGR32WidgetCircleSettings.SetValueColor(const Value: TColor);
 begin
-  FValueColor := Value;
-  FOwner.Invalidate;
+  FValueColor := Value; InlineChangeNotifier(nil);
 end;
 
 procedure TGR32WidgetCircle.TGR32WidgetCircleSettings.SetValueOnInner(const Value: Boolean);
@@ -448,7 +443,9 @@ begin
   Ressam.Filler   := nil; // henüz bir gradient kullanmadık.
   Ressam.FillMode := FAyarlar.StyleFill.toPolyFillMode; // pfWinding; // bu ayar, iki çizgi üst üste kesiştiğinde çizgilerin kesiştiği kısımların birbirini yok etmesini engeller...
   Ressam.Bitmap   := Self.FBuffer;
-  Ressam.Bitmap.Clear( Color32(FAyarlar.Background) ); // Tuvalin zemin rengi ve tam temizlik
+  if  (MouseIsInside = True)
+  then Ressam.Bitmap.Clear( FAyarlar.BackgroundHover.ToColor32 )
+  else Ressam.Bitmap.Clear( FAyarlar.Background.ToColor32 ); // Tuvalin zemin rengi ve tam temizlik
 
   //  Genel çerçeve bilgileri hesaplanıyor.
   T  := 0;
@@ -495,10 +492,7 @@ begin
 
   //  Frame kısmı çiziliyor...
 
-  if (FAyarlar.FrameWidth >= 1)
-  and (FAyarlar.FrameColor <> FAyarlar.FBackground)
-  then Ressam.SekilBas( Color32(FAyarlar.FrameColor), Ressam.DikDortgenCizgi(FM, FW, FH, FAyarlar.FrameWidth, FAyarlar.StyleLine));
-
+  Ressam.SekilBas( Color32(FAyarlar.FrameColor), Ressam.DikDortgenCizgi(FM, FW, FH, FAyarlar.FrameWidth, FAyarlar.StyleLine));
   MinWH := (Min(FW, FH) div 2) - _FW;
 
   if (FAyarlar.Style = wgtDaire) then begin

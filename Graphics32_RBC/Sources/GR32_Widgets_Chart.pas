@@ -46,6 +46,7 @@ type
         private
           FOwner            : TGR32WidgetChart;
           FBackground       : TColor;
+          FBackgroundHover  : TColor;
           FBorderColor      : TColor;
           FBorderStyle      : TPenStyle;
           FBorderWidth      : Integer;
@@ -56,6 +57,7 @@ type
           FCizgi_Renk       : TColor;
           FCizgi_YariCap    : Single;
           FFrameBG          : TColor;
+          FFrameBGHover     : TColor;
           FFrameColor       : TColor;
           FFrameStyle       : TPenStyle;
           FFrameWidth       : Integer;
@@ -64,6 +66,7 @@ type
           FHeaderPos        : TFontPos;
           FPadding          : TPadding;
           procedure SetBackground(const Value: TColor);
+          procedure SetBackgroundHover(const Value: TColor);
           procedure SetBorderColor(const Value: TColor);
           procedure SetBorderStyle(const Value: TPenStyle);
           procedure SetBorderWidth(const Value: Integer);
@@ -74,6 +77,7 @@ type
           procedure SetCizgi_Renk(const Value: TColor);
           procedure SetCizgi_YariCap(const Value: Single);
           procedure SetFrameBG(const Value: TColor);
+          procedure SetFrameBGHover(const Value: TColor);
           procedure SetFrameColor(const Value: TColor);
           procedure SetFrameStyle(const Value: TPenStyle);
           procedure SetFrameWidth(const Value: Integer);
@@ -89,24 +93,26 @@ type
           procedure BeforeDestruction; override;
           procedure ResetSettings;
         published
-          property Background     : TColor                read  FBackground       write SetBackground     ;
-          property BorderColor    : TColor                read  FBorderColor      write SetBorderColor    ;
-          property BorderStyle    : TPenStyle             read  FBorderStyle      write SetBorderStyle    ;
-          property BorderWidth    : Integer               read  FBorderWidth      write SetBorderWidth    ;
-          property ChartType      : TGR32WidgetChartTypes read  FChartType        write SetChartType      ;
-          property Cizgi_Cember   : TColor                read  FCizgi_Cember     write SetCizgi_Cember   ;
-          property Cizgi_Dolgusu  : TColor                read  FCizgi_Dolgusu    write SetCizgi_Dolgusu  ;
-          property Cizgi_Kalinlik : Single                read  FCizgi_Kalinlik   write SetCizgi_Kalinlik ;
-          property Cizgi_Renk     : TColor                read  FCizgi_Renk       write SetCizgi_Renk     ;
-          property Cizgi_YariCap  : Single                read  FCizgi_YariCap    write SetCizgi_YariCap  ;
-          property FrameBG        : TColor                read  FFrameBG          write SetFrameBG        ;
-          property FrameColor     : TColor                read  FFrameColor       write SetFrameColor     ;
-          property FrameStyle     : TPenStyle             read  FFrameStyle       write SetFrameStyle     ;
-          property FrameWidth     : Integer               read  FFrameWidth       write SetFrameWidth     ;
-          property Header         : TFont                 read  FHeader           write SetHeader         ;
-          property HeaderHeight   : Integer               read  FHeaderHeight     write SetHeaderHeight   ;
-          property HeaderPos      : TFontPos              read  FHeaderPos        write SetHeaderPos      ;
-          property Padding        : TPadding              read  FPadding          write SetPadding        ;
+          property Background       : TColor                read  FBackground         write SetBackground       ;
+          property BackgroundHover  : TColor                read  FBackgroundHover    write SetBackgroundHover  ;
+          property BorderColor      : TColor                read  FBorderColor        write SetBorderColor      ;
+          property BorderStyle      : TPenStyle             read  FBorderStyle        write SetBorderStyle      ;
+          property BorderWidth      : Integer               read  FBorderWidth        write SetBorderWidth      ;
+          property ChartType        : TGR32WidgetChartTypes read  FChartType          write SetChartType        ;
+          property Cizgi_Cember     : TColor                read  FCizgi_Cember       write SetCizgi_Cember     ;
+          property Cizgi_Dolgusu    : TColor                read  FCizgi_Dolgusu      write SetCizgi_Dolgusu    ;
+          property Cizgi_Kalinlik   : Single                read  FCizgi_Kalinlik     write SetCizgi_Kalinlik   ;
+          property Cizgi_Renk       : TColor                read  FCizgi_Renk         write SetCizgi_Renk       ;
+          property Cizgi_YariCap    : Single                read  FCizgi_YariCap      write SetCizgi_YariCap    ;
+          property FrameBG          : TColor                read  FFrameBG            write SetFrameBG          ;
+          property FrameBGHover     : TColor                read  FFrameBGHover       write SetFrameBGHover     ;
+          property FrameColor       : TColor                read  FFrameColor         write SetFrameColor       ;
+          property FrameStyle       : TPenStyle             read  FFrameStyle         write SetFrameStyle       ;
+          property FrameWidth       : Integer               read  FFrameWidth         write SetFrameWidth       ;
+          property Header           : TFont                 read  FHeader             write SetHeader           ;
+          property HeaderHeight     : Integer               read  FHeaderHeight       write SetHeaderHeight     ;
+          property HeaderPos        : TFontPos              read  FHeaderPos          write SetHeaderPos        ;
+          property Padding          : TPadding              read  FPadding            write SetPadding          ;
       end;
       TGR32WidgetChartRuler = class(TPersistent)
         private
@@ -196,6 +202,7 @@ begin
       aSors := TGR32WidgetChart.TGR32WidgetChartSettings(Source);
       //FOwner      := BU KULLANILMAYACAK..
       FBackground       := aSors.Background     ;
+      FBackgroundHover  := aSors.BackgroundHover;
       FBorderColor      := aSors.BorderColor    ;
       FBorderStyle      := aSors.BorderStyle    ;
       FBorderWidth      := aSors.BorderWidth    ;
@@ -206,6 +213,7 @@ begin
       FCizgi_Renk       := aSors.Cizgi_Renk     ;
       FCizgi_YariCap    := aSors.Cizgi_YariCap  ;
       FFrameBG          := aSors.FrameBG        ;
+      FFrameBGHover     := aSors.FrameBGHover   ;
       FFrameColor       := aSors.FrameColor     ;
       FFrameStyle       := aSors.FrameStyle     ;
       FFrameWidth       := aSors.FrameWidth     ;
@@ -243,6 +251,7 @@ end;
 procedure TGR32WidgetChart.TGR32WidgetChartSettings.ResetSettings;
 begin
   FBackground       := clWindow;
+  FBackground       := clWindow;
   FBorderColor      := clBtnShadow;
   FBorderStyle      := psSolid;
   FBorderWidth      := 1;
@@ -253,6 +262,7 @@ begin
   FCizgi_Renk       := clPurple;
   FCizgi_YariCap    := 5;
   FFrameBG          := clWindow;
+  FFrameBGHover     := clWindow;
   FFrameColor       := clWindowFrame;
   FFrameStyle       := psDot;
   FFrameWidth       := 1;
@@ -270,6 +280,11 @@ end;
 procedure TGR32WidgetChart.TGR32WidgetChartSettings.SetBackground(const Value: TColor);
 begin
   FBackground := Value; InlineChangeNotifier(nil);
+end;
+
+procedure TGR32WidgetChart.TGR32WidgetChartSettings.SetBackgroundHover(const Value: TColor);
+begin
+  FBackgroundHover := Value; InlineChangeNotifier(nil);
 end;
 
 procedure TGR32WidgetChart.TGR32WidgetChartSettings.SetBorderColor(const Value: TColor);
@@ -320,6 +335,11 @@ end;
 procedure TGR32WidgetChart.TGR32WidgetChartSettings.SetFrameBG(const Value: TColor);
 begin
   FFrameBG := Value; InlineChangeNotifier(nil);
+end;
+
+procedure TGR32WidgetChart.TGR32WidgetChartSettings.SetFrameBGHover(const Value: TColor);
+begin
+  FFrameBGHover := Value; InlineChangeNotifier(nil);
 end;
 
 procedure TGR32WidgetChart.TGR32WidgetChartSettings.SetFrameColor(const Value: TColor);
@@ -519,7 +539,9 @@ begin
   Ressam.FillMode := pfWinding;
   Ressam.Bitmap   := Self.FBuffer;
   // Tuval temizliği
-  Ressam.Bitmap.Clear( FAyarlar.FBackground.ToColor32 );
+  if  (MouseIsInside = True)
+  then Ressam.Bitmap.Clear( FAyarlar.BackgroundHover.ToColor32 )
+  else Ressam.Bitmap.Clear( FAyarlar.Background.ToColor32 ); // Tuvalin zemin rengi ve tam temizlik
   // Genel geçer ölçü ve boyutların hesaplanması
   W  := ClientWidth ;
   H  := ClientHeight;
@@ -544,7 +566,8 @@ begin
   FM := Merkez;
   Boy := H - BW_ - PT - FW_ - FAyarlar.HeaderHeight - FW_ - PB - BW_;
   FM.Y := Merkez.Y + (FAyarlar.HeaderHeight div 2);
-  Ressam.SekilBas ( FAyarlar.FrameBG.ToColor32, Ressam.DikDortgen( FM, En, Boy));
+
+  Ressam.SekilBas ( iif(MouseIsInside = True, FAyarlar.FrameBGHover, FAyarlar.FrameBG).ToColor32, Ressam.DikDortgen( FM, En, Boy));
   Ressam.SekilBas ( FAyarlar.FrameColor.ToColor32, Ressam.DikDortgenCizgi( FM, En, Boy, FW_, FAyarlar.FrameStyle));
   MXV := Self.MaxValue;
   // Chart'ın içindeki çizim bölgesinin ölçüleri alınıyor...

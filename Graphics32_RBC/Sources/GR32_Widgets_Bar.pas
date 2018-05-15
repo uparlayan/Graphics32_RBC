@@ -36,19 +36,21 @@ type
     type
       TGR32WidgetBarSettings = class(TPersistent)
         private
-          FOwner        : TGR32WidgetBar;
-          FBackground   : TColor;
-          FBorderColor  : TColor;
-          FBorderWidth  : Integer;
-          FDisplayFormat: String;
-          FFont         : TFont;
-          FBorderStyle  : TPenStyle;
-          FBarColor     : TColor;
-          FValueColor   : TColor;
-          FPadding      : TPadding;
-          FInvert       : Boolean;
-          FHeaderHeight : Integer;
+          FOwner            : TGR32WidgetBar;
+          FBackground       : TColor;
+          FBackgroundHover  : TColor;
+          FBorderColor      : TColor;
+          FBorderWidth      : Integer;
+          FDisplayFormat    : String;
+          FFont             : TFont;
+          FBorderStyle      : TPenStyle;
+          FBarColor         : TColor;
+          FValueColor       : TColor;
+          FPadding          : TPadding;
+          FInvert           : Boolean;
+          FHeaderHeight     : Integer;
           procedure SetBackground(const Value: TColor);
+          procedure SetBackgroundHover(const Value: TColor);
           procedure SetBarColor(const Value: TColor);
           procedure SetBorderColor(const Value: TColor);
           procedure SetBorderStyle(const Value: TPenStyle);
@@ -67,17 +69,18 @@ type
           procedure BeforeDestruction; override;
           procedure ResetSettings;
         published
-          property Background   : TColor      read FBackground    write SetBackground;
-          property BarColor     : TColor      read FBarColor      write SetBarColor;   //  Dairenin değer dışında kalan kısmının rengi
-          property BorderColor  : TColor      read FBorderColor   write SetBorderColor;
-          property BorderStyle  : TPenStyle   read FBorderStyle   write SetBorderStyle;
-          property BorderWidth  : Integer     read FBorderWidth   write SetBorderWidth;
-          property DisplayFormat: String      read FDisplayFormat write SetDisplayFormat;
-          property Font         : TFont       read FFont          write SetFont;
-          property HeaderHeight : Integer     read FHeaderHeight  write SetHeaderHeight;
-          property Invert       : Boolean     read FInvert        write SetInvert;
-          property Padding      : TPadding    read FPadding       write SetPadding;
-          property ValueColor   : TColor      read FValueColor    write SetValueColor;  //  Dairenin değer içeren kısmının rengi
+          property Background       : TColor      read FBackground        write SetBackground;
+          property BackgroundHover  : TColor      read FBackgroundHover   write SetBackgroundHover;
+          property BarColor         : TColor      read FBarColor          write SetBarColor;   //  Dairenin değer dışında kalan kısmının rengi
+          property BorderColor      : TColor      read FBorderColor       write SetBorderColor;
+          property BorderStyle      : TPenStyle   read FBorderStyle       write SetBorderStyle;
+          property BorderWidth      : Integer     read FBorderWidth       write SetBorderWidth;
+          property DisplayFormat    : String      read FDisplayFormat     write SetDisplayFormat;
+          property Font             : TFont       read FFont              write SetFont;
+          property HeaderHeight     : Integer     read FHeaderHeight      write SetHeaderHeight;
+          property Invert           : Boolean     read FInvert            write SetInvert;
+          property Padding          : TPadding    read FPadding           write SetPadding;
+          property ValueColor       : TColor      read FValueColor        write SetValueColor;  //  Dairenin değer içeren kısmının rengi
       end;
     private
       FAyarlar    : TGR32WidgetBarSettings;
@@ -190,26 +193,33 @@ end;
 
 procedure TGR32WidgetBar.TGR32WidgetBarSettings.ResetSettings;
 begin
-  FBackground   := clWhite;
-  FBorderColor  := $00CAB9AC;
-  FBorderStyle  := psSolid;
-  FBorderWidth  := 2;
-  FDisplayFormat:= '%%%D';
+  FBackground       := clWhite;
+  FBackgroundHover  := FBackground;
+
+  FBorderColor      := $00CAB9AC;
+  FBorderStyle      := psSolid;
+  FBorderWidth      := 2;
+  FDisplayFormat    := '%%%D';
   with FFont do begin
-        Color   := $00564237;
-        Name    := 'Calibri';
-        Size    := 24;
-        Style   := [];
+        Color       := $00564237;
+        Name        := 'Calibri';
+        Size        := 24;
+        Style       := [];
   end;
-  FBarColor     := $00E0D4CA;
-  FValueColor   := $005233DC;
-  FHeaderHeight := 40;
+  FBarColor         := $00E0D4CA;
+  FValueColor       := $005233DC;
+  FHeaderHeight     := 40;
   FPadding.SetBounds(10, 10, 10, 10);
 end;
 
 procedure TGR32WidgetBar.TGR32WidgetBarSettings.SetBackground(const Value: TColor);
 begin
   FBackground := Value; InlineChangeNotifier(nil);
+end;
+
+procedure TGR32WidgetBar.TGR32WidgetBarSettings.SetBackgroundHover(const Value: TColor);
+begin
+  FBackgroundHover := Value; InlineChangeNotifier(nil);
 end;
 
 procedure TGR32WidgetBar.TGR32WidgetBarSettings.SetBarColor(const Value: TColor);
@@ -277,7 +287,10 @@ begin
   Ressam.Filler   := nil; // henüz bir gradient kullanmadık.
   Ressam.FillMode := pfWinding;// FAyarlar.StyleFill.toPolyFillMode; // pfWinding; // bu ayar, iki çizgi üst üste kesiştiğinde çizgilerin kesiştiği kısımların birbirini yok etmesini engeller...
   Ressam.Bitmap   := Self.FBuffer;
-  Ressam.Bitmap.Clear( FAyarlar.Background.ToColor32 ); // Tuvalin zemin rengi ve tam temizlik
+  if  (MouseIsInside = True)
+  then Ressam.Bitmap.Clear( FAyarlar.BackgroundHover.ToColor32 )
+  else Ressam.Bitmap.Clear( FAyarlar.Background.ToColor32 ); // Tuvalin zemin rengi ve tam temizlik
+
 
   // Genel çerçeve bilgileri hesaplanıyor.
   W := ClientWidth;
