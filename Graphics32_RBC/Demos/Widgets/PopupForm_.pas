@@ -19,6 +19,7 @@ type
     procedure WTTMenuClick(Sender: TObject);
     procedure WTTCloseClick(Sender: TObject);
     procedure Button1Click(Sender: TObject);
+    procedure Edit1KeyPress(Sender: TObject; var Key: Char);
     //procedure GR32WidgetTitle1MouseMove(Sender: TObject);
   private
     { Private declarations }
@@ -44,6 +45,16 @@ end;
 procedure TPopupForm.Button1Click(Sender: TObject);
 begin
   Memo1.Lines.Add(Edit1.Text);
+  Edit1.Clear;
+  Edit1.SetFocus;
+end;
+
+procedure TPopupForm.Edit1KeyPress(Sender: TObject; var Key: Char);
+begin
+  if (Key = #13) then begin
+      Key := #0;
+      Button1.Click;
+  end;
 end;
 
 procedure TPopupForm.FormClose(Sender: TObject; var Action: TCloseAction);

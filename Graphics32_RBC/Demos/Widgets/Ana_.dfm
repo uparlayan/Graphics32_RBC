@@ -1,27 +1,30 @@
 object Ana: TAna
   Left = 0
   Top = 0
+  BorderStyle = bsNone
   Caption = 'Ana'
-  ClientHeight = 580
-  ClientWidth = 946
-  Color = 14734538
+  ClientHeight = 655
+  ClientWidth = 1109
+  Color = 14800844
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  Position = poScreenCenter
   OnCreate = FormCreate
+  OnResize = PNL_2Resize
   PixelsPerInch = 96
   TextHeight = 13
   object GP: TGridPanel
-    Left = 0
-    Top = 0
-    Width = 946
-    Height = 550
+    Left = 200
+    Top = 61
+    Width = 909
+    Height = 554
     Align = alClient
     BevelOuter = bvNone
-    Color = 14734538
+    Color = 14800844
     ColumnCollection = <
       item
         Value = 25.000000000000000000
@@ -38,9 +41,9 @@ object Ana: TAna
     ControlCollection = <
       item
         Column = 0
-        ColumnSpan = 2
+        ColumnSpan = 3
         Control = GR32WidgetBox6
-        Row = 3
+        Row = 0
       end
       item
         Column = 1
@@ -52,11 +55,13 @@ object Ana: TAna
         Column = 1
         Control = GR32WidgetCircle1
         Row = 2
+        RowSpan = 2
       end
       item
         Column = 0
         Control = GR32WidgetCircle2
         Row = 2
+        RowSpan = 2
       end
       item
         Column = -1
@@ -92,12 +97,6 @@ object Ana: TAna
         RowSpan = 2
       end
       item
-        Column = 0
-        ColumnSpan = 3
-        Control = GR32WidgetTitle1
-        Row = 0
-      end
-      item
         Column = 2
         Control = GR32WidgetBar1
         Row = 3
@@ -123,24 +122,27 @@ object Ana: TAna
       item
         SizeStyle = ssAbsolute
         Value = 90.000000000000000000
+      end
+      item
+        SizeStyle = ssAuto
       end>
     TabOrder = 0
     object GR32WidgetBox6: TGR32WidgetBox
       AlignWithMargins = True
       Left = 10
-      Top = 470
-      Width = 452
-      Height = 70
+      Top = 10
+      Width = 661
+      Height = 100
       Margins.Left = 10
       Margins.Top = 10
       Margins.Right = 10
       Margins.Bottom = 10
       Align = alClient
-      Ayarlar.Background = clWindow
-      Ayarlar.BackgroundHover = -1
+      Ayarlar.Background = 16448250
+      Ayarlar.BackgroundHover = clWhite
       Ayarlar.BorderColor = 13285804
       Ayarlar.BorderStyle = psSolid
-      Ayarlar.BorderWidth = 2
+      Ayarlar.BorderWidth = 1
       Ayarlar.FrameColor = 13285804
       Ayarlar.FrameStyle = psClear
       Ayarlar.FrameWidth = 0
@@ -149,13 +151,13 @@ object Ana: TAna
       Ayarlar.Header.Height = -48
       Ayarlar.Header.Name = 'Steelfish Outline'
       Ayarlar.Header.Style = []
-      Ayarlar.HeaderPos = fpTopRight
+      Ayarlar.HeaderPos = fpBottomRight
       Ayarlar.Footer.Charset = DEFAULT_CHARSET
       Ayarlar.Footer.Color = 5653047
       Ayarlar.Footer.Height = -40
       Ayarlar.Footer.Name = 'Kenyan Coffee Rg'
       Ayarlar.Footer.Style = []
-      Ayarlar.FooterPos = fpBottomLeft
+      Ayarlar.FooterPos = fpTopLeft
       Ayarlar.Padding.Left = 10
       Ayarlar.Padding.Top = 10
       Ayarlar.Padding.Right = 10
@@ -166,7 +168,7 @@ object Ana: TAna
       Ayarlar.Simge.Name = 'UgurFonts'
       Ayarlar.Simge.Style = []
       Ayarlar.Filigran.Charset = DEFAULT_CHARSET
-      Ayarlar.Filigran.Color = 14734538
+      Ayarlar.Filigran.Color = 14800844
       Ayarlar.Filigran.Height = -100
       Ayarlar.Filigran.Name = 'UgurFonts'
       Ayarlar.Filigran.Style = []
@@ -180,20 +182,20 @@ object Ana: TAna
     end
     object GR32WidgetBox3: TGR32WidgetBox
       AlignWithMargins = True
-      Left = 246
+      Left = 237
       Top = 130
-      Width = 452
+      Width = 434
       Height = 73
       Margins.Left = 10
       Margins.Top = 10
       Margins.Right = 10
       Margins.Bottom = 10
       Align = alClient
-      Ayarlar.Background = clWindow
-      Ayarlar.BackgroundHover = -1
+      Ayarlar.Background = 16448250
+      Ayarlar.BackgroundHover = clWhite
       Ayarlar.BorderColor = 13285804
       Ayarlar.BorderStyle = psSolid
-      Ayarlar.BorderWidth = 2
+      Ayarlar.BorderWidth = 1
       Ayarlar.FrameColor = 13285804
       Ayarlar.FrameStyle = psClear
       Ayarlar.FrameWidth = 0
@@ -219,7 +221,7 @@ object Ana: TAna
       Ayarlar.Simge.Name = 'UgurFonts'
       Ayarlar.Simge.Style = []
       Ayarlar.Filigran.Charset = DEFAULT_CHARSET
-      Ayarlar.Filigran.Color = 14734538
+      Ayarlar.Filigran.Color = 14800844
       Ayarlar.Filigran.Height = -171
       Ayarlar.Filigran.Name = 'UgurFonts'
       Ayarlar.Filigran.Style = []
@@ -227,26 +229,27 @@ object Ana: TAna
       Ayarlar.SimgeWidth = 60
       Ayarlar.SimgePos = fpCenterCenter
       HeaderText = '39143$'
-      FooterText = 'Send Invoices (Click)'
+      FooterText = 'Drop Down Form'
       SimgeChar = '#'
       FiligranChar = '#'
       OnClick = GR32WidgetBox3Click
     end
     object GR32WidgetCircle1: TGR32WidgetCircle
       AlignWithMargins = True
-      Left = 246
+      Left = 237
       Top = 223
-      Width = 216
-      Height = 227
+      Width = 207
+      Height = 321
       Margins.Left = 10
       Margins.Top = 10
       Margins.Right = 10
       Margins.Bottom = 10
       Align = alClient
       Ayarlar.AntiAliased = True
-      Ayarlar.Background = clWindow
+      Ayarlar.Background = 16448250
+      Ayarlar.BackgroundHover = clWhite
       Ayarlar.BorderColor = 13285804
-      Ayarlar.BorderWidth = 2
+      Ayarlar.BorderWidth = 1
       Ayarlar.DisplayFormat = '%%%D'
       Ayarlar.Font.Charset = DEFAULT_CHARSET
       Ayarlar.Font.Color = 5653047
@@ -254,7 +257,7 @@ object Ana: TAna
       Ayarlar.Font.Name = 'Droid'
       Ayarlar.Font.Style = []
       Ayarlar.FrameColor = clWindow
-      Ayarlar.FrameWidth = 1
+      Ayarlar.FrameWidth = 0
       Ayarlar.Header.Charset = DEFAULT_CHARSET
       Ayarlar.Header.Color = 5653047
       Ayarlar.Header.Height = -27
@@ -266,7 +269,7 @@ object Ana: TAna
       Ayarlar.StyleFill = wfsWinding
       Ayarlar.StyleLine = psSolid
       Ayarlar.BaseColor = 14057217
-      Ayarlar.ValueColor = 37119
+      Ayarlar.ValueColor = 3391998
       Ayarlar.InnerColor = clWindow
       Ayarlar.OuterColor = 14057217
       Ayarlar.IntraColor = 15460322
@@ -283,17 +286,18 @@ object Ana: TAna
       AlignWithMargins = True
       Left = 10
       Top = 223
-      Width = 216
-      Height = 227
+      Width = 207
+      Height = 321
       Margins.Left = 10
       Margins.Top = 10
       Margins.Right = 10
       Margins.Bottom = 10
       Align = alClient
       Ayarlar.AntiAliased = True
-      Ayarlar.Background = clWindow
+      Ayarlar.Background = 16448250
+      Ayarlar.BackgroundHover = clWhite
       Ayarlar.BorderColor = 13285804
-      Ayarlar.BorderWidth = 2
+      Ayarlar.BorderWidth = 1
       Ayarlar.DisplayFormat = '%D'
       Ayarlar.Font.Charset = DEFAULT_CHARSET
       Ayarlar.Font.Color = 10519147
@@ -301,7 +305,7 @@ object Ana: TAna
       Ayarlar.Font.Name = 'Droid'
       Ayarlar.Font.Style = []
       Ayarlar.FrameColor = 13285804
-      Ayarlar.FrameWidth = 2
+      Ayarlar.FrameWidth = 0
       Ayarlar.Header.Charset = DEFAULT_CHARSET
       Ayarlar.Header.Color = 5653047
       Ayarlar.Header.Height = -27
@@ -327,48 +331,57 @@ object Ana: TAna
       Yuzde = 75
     end
     object PNL_2: TPanel
-      Left = 472
+      Left = 454
       Top = 213
-      Width = 474
-      Height = 247
+      Width = 455
+      Height = 251
       Align = alClient
       BevelOuter = bvNone
+      Color = 14800844
+      Padding.Left = 10
+      Padding.Top = 10
+      Padding.Right = 10
+      Padding.Bottom = 10
+      ParentBackground = False
       TabOrder = 4
-      object Splitter1: TSplitter
-        Left = 0
+      OnResize = PNL_2Resize
+      object Spli: TSplitter
+        Left = 10
         Top = 125
-        Width = 474
+        Width = 435
         Height = 10
         Cursor = crVSplit
         Align = alTop
-        Color = 14734538
+        Color = 14800844
         ParentColor = False
         ResizeStyle = rsUpdate
-        ExplicitTop = 90
-        ExplicitWidth = 602
+        ExplicitLeft = 0
+        ExplicitTop = 122
+        ExplicitWidth = 455
       end
       object BRO: TGR32WidgetChart
-        AlignWithMargins = True
         Left = 10
         Top = 10
-        Width = 454
+        Width = 435
         Height = 115
         Margins.Left = 10
         Margins.Top = 10
         Margins.Right = 10
         Margins.Bottom = 0
         Align = alTop
-        Ayarlar.Background = clWindow
+        Ayarlar.Background = 16448250
+        Ayarlar.BackgroundHover = clWhite
         Ayarlar.BorderColor = 13285804
         Ayarlar.BorderStyle = psSolid
-        Ayarlar.BorderWidth = 2
+        Ayarlar.BorderWidth = 1
         Ayarlar.ChartType = wctCizgi
         Ayarlar.Cizgi_Cember = clWindow
         Ayarlar.Cizgi_Dolgusu = 14057217
         Ayarlar.Cizgi_Kalinlik = 2.000000000000000000
         Ayarlar.Cizgi_Renk = 14057217
         Ayarlar.Cizgi_YariCap = 5.000000000000000000
-        Ayarlar.FrameBG = clWindow
+        Ayarlar.FrameBG = 16448250
+        Ayarlar.FrameBGHover = clWhite
         Ayarlar.FrameColor = 13285804
         Ayarlar.FrameStyle = psSolid
         Ayarlar.FrameWidth = 0
@@ -384,30 +397,31 @@ object Ana: TAna
         Ayarlar.Padding.Right = 20
         Ayarlar.Padding.Bottom = 10
         AntiAliased = True
-        Header = 'ABD Dolar'#305' Volativite Seviyesi'
+        Header = 'Al'#305#351' Faturalar'#305' Grafi'#287'i'
       end
       object GRO: TGR32WidgetChart
-        AlignWithMargins = True
         Left = 10
         Top = 135
-        Width = 454
-        Height = 102
+        Width = 435
+        Height = 106
         Margins.Left = 10
         Margins.Top = 0
         Margins.Right = 10
         Margins.Bottom = 10
         Align = alClient
-        Ayarlar.Background = clWindow
+        Ayarlar.Background = 16448250
+        Ayarlar.BackgroundHover = clWhite
         Ayarlar.BorderColor = 13285804
         Ayarlar.BorderStyle = psSolid
-        Ayarlar.BorderWidth = 2
+        Ayarlar.BorderWidth = 1
         Ayarlar.ChartType = wctCubuk
         Ayarlar.Cizgi_Cember = clWindow
         Ayarlar.Cizgi_Dolgusu = 12400043
         Ayarlar.Cizgi_Kalinlik = 2.000000000000000000
         Ayarlar.Cizgi_Renk = 12400043
         Ayarlar.Cizgi_YariCap = 5.000000000000000000
-        Ayarlar.FrameBG = clWindow
+        Ayarlar.FrameBG = 16448250
+        Ayarlar.FrameBGHover = clWhite
         Ayarlar.FrameColor = 13285804
         Ayarlar.FrameStyle = psSolid
         Ayarlar.FrameWidth = 0
@@ -423,25 +437,26 @@ object Ana: TAna
         Ayarlar.Padding.Right = 20
         Ayarlar.Padding.Bottom = 10
         AntiAliased = True
-        Header = 'Gram Alt'#305'n Analizi'
+        Header = 'Sat'#305#351' Grafi'#287'i'
       end
     end
     object GR32WidgetBar2: TGR32WidgetBar
       AlignWithMargins = True
       Left = 10
       Top = 130
-      Width = 216
+      Width = 207
       Height = 73
       Margins.Left = 10
       Margins.Top = 10
       Margins.Right = 10
       Margins.Bottom = 10
       Align = alClient
-      Ayarlar.Background = clWindow
+      Ayarlar.Background = 16448250
+      Ayarlar.BackgroundHover = clWhite
       Ayarlar.BarColor = 14734538
       Ayarlar.BorderColor = 13285804
       Ayarlar.BorderStyle = psSolid
-      Ayarlar.BorderWidth = 2
+      Ayarlar.BorderWidth = 1
       Ayarlar.DisplayFormat = '%%%D'
       Ayarlar.Font.Charset = DEFAULT_CHARSET
       Ayarlar.Font.Color = 5653047
@@ -449,42 +464,45 @@ object Ana: TAna
       Ayarlar.Font.Name = 'Rakesly Rg'
       Ayarlar.Font.Style = []
       Ayarlar.HeaderHeight = 40
-      Ayarlar.Invert = True
+      Ayarlar.Invert = False
       Ayarlar.Padding.Left = 10
       Ayarlar.Padding.Top = 10
       Ayarlar.Padding.Right = 10
       Ayarlar.Padding.Bottom = 10
       Ayarlar.ValueColor = 12400043
-      Header = 'Click Me !'
+      Header = 'Popup Form'
       Yuzde = 25
       OnClick = GR32WidgetBar2Click
     end
     object Panel2: TPanel
       AlignWithMargins = True
-      Left = 718
+      Left = 691
       Top = 10
-      Width = 218
+      Width = 208
       Height = 193
       Margins.Left = 10
       Margins.Top = 10
       Margins.Right = 10
       Margins.Bottom = 10
       Align = alClient
-      Color = clWindow
+      BevelKind = bkTile
+      BevelOuter = bvNone
+      Color = 16448250
       ParentBackground = False
       TabOrder = 6
       object GR32WidgetBar4: TGR32WidgetBar
         AlignWithMargins = True
-        Left = 1
-        Top = 1
-        Width = 216
+        Left = 0
+        Top = 0
+        Width = 204
         Height = 48
         Margins.Left = 0
         Margins.Top = 0
         Margins.Right = 0
         Margins.Bottom = 0
         Align = alTop
-        Ayarlar.Background = clWindow
+        Ayarlar.Background = 16448250
+        Ayarlar.BackgroundHover = clWhite
         Ayarlar.BarColor = 14734538
         Ayarlar.BorderColor = 13285804
         Ayarlar.BorderStyle = psSolid
@@ -507,16 +525,17 @@ object Ana: TAna
       end
       object GR32WidgetBar5: TGR32WidgetBar
         AlignWithMargins = True
-        Left = 1
-        Top = 49
-        Width = 216
+        Left = 0
+        Top = 48
+        Width = 204
         Height = 48
         Margins.Left = 0
         Margins.Top = 0
         Margins.Right = 0
         Margins.Bottom = 0
         Align = alTop
-        Ayarlar.Background = clWindow
+        Ayarlar.Background = 16448250
+        Ayarlar.BackgroundHover = clWhite
         Ayarlar.BarColor = 14734538
         Ayarlar.BorderColor = 13285804
         Ayarlar.BorderStyle = psSolid
@@ -539,16 +558,17 @@ object Ana: TAna
       end
       object GR32WidgetBar6: TGR32WidgetBar
         AlignWithMargins = True
-        Left = 1
-        Top = 97
-        Width = 216
+        Left = 0
+        Top = 96
+        Width = 204
         Height = 48
         Margins.Left = 0
         Margins.Top = 0
         Margins.Right = 0
         Margins.Bottom = 0
         Align = alTop
-        Ayarlar.Background = clWindow
+        Ayarlar.Background = 16448250
+        Ayarlar.BackgroundHover = clWhite
         Ayarlar.BarColor = 14734538
         Ayarlar.BorderColor = 13285804
         Ayarlar.BorderStyle = psSolid
@@ -571,16 +591,17 @@ object Ana: TAna
       end
       object GR32WidgetBar7: TGR32WidgetBar
         AlignWithMargins = True
-        Left = 1
-        Top = 145
-        Width = 216
+        Left = 0
+        Top = 144
+        Width = 204
         Height = 48
         Margins.Left = 0
         Margins.Top = 0
         Margins.Right = 0
         Margins.Bottom = 0
         Align = alTop
-        Ayarlar.Background = clWindow
+        Ayarlar.Background = 16448250
+        Ayarlar.BackgroundHover = clWhite
         Ayarlar.BarColor = 14734538
         Ayarlar.BorderColor = 13285804
         Ayarlar.BorderStyle = psSolid
@@ -602,53 +623,23 @@ object Ana: TAna
         Yuzde = 25
       end
     end
-    object GR32WidgetTitle1: TGR32WidgetTitle
-      AlignWithMargins = True
-      Left = 10
-      Top = 10
-      Width = 688
-      Height = 100
-      Margins.Left = 10
-      Margins.Top = 10
-      Margins.Right = 10
-      Margins.Bottom = 10
-      Align = alClient
-      Ayarlar.Background = clWindow
-      Ayarlar.BorderColor = clWindowFrame
-      Ayarlar.Font.Charset = DEFAULT_CHARSET
-      Ayarlar.Font.Color = clWindowText
-      Ayarlar.Font.Height = -33
-      Ayarlar.Font.Name = 'zai Seagull Felt-tip Pen'
-      Ayarlar.Font.Style = []
-      Ayarlar.Icons.Charset = DEFAULT_CHARSET
-      Ayarlar.Icons.Color = clWindowText
-      Ayarlar.Icons.Height = -47
-      Ayarlar.Icons.Name = 'UgurFonts'
-      Ayarlar.Icons.Style = []
-      Ayarlar.Gap = 11
-      HeaderLeft = 'Rubicube'
-      HeaderCenter = 'Demo'
-      HeaderRight = 'Widgets'
-      CloseChar = 'o'
-      MenuChar = 'v'
-      OnCloseClick = GR32WidgetTitle1CloseClick
-    end
     object GR32WidgetBar1: TGR32WidgetBar
       AlignWithMargins = True
-      Left = 482
-      Top = 470
-      Width = 216
+      Left = 464
+      Top = 474
+      Width = 207
       Height = 70
       Margins.Left = 10
       Margins.Top = 10
       Margins.Right = 10
       Margins.Bottom = 10
       Align = alClient
-      Ayarlar.Background = clWindow
+      Ayarlar.Background = 16448250
+      Ayarlar.BackgroundHover = clWhite
       Ayarlar.BarColor = 14734538
       Ayarlar.BorderColor = 13285804
       Ayarlar.BorderStyle = psSolid
-      Ayarlar.BorderWidth = 2
+      Ayarlar.BorderWidth = 1
       Ayarlar.DisplayFormat = '%%%D'
       Ayarlar.Font.Charset = DEFAULT_CHARSET
       Ayarlar.Font.Color = 5653047
@@ -667,20 +658,21 @@ object Ana: TAna
     end
     object GR32WidgetBar3: TGR32WidgetBar
       AlignWithMargins = True
-      Left = 718
-      Top = 470
-      Width = 218
+      Left = 691
+      Top = 474
+      Width = 208
       Height = 70
       Margins.Left = 10
       Margins.Top = 10
       Margins.Right = 10
       Margins.Bottom = 10
       Align = alClient
-      Ayarlar.Background = clWindow
+      Ayarlar.Background = 16448250
+      Ayarlar.BackgroundHover = clWhite
       Ayarlar.BarColor = 14734538
       Ayarlar.BorderColor = 13285804
       Ayarlar.BorderStyle = psSolid
-      Ayarlar.BorderWidth = 2
+      Ayarlar.BorderWidth = 1
       Ayarlar.DisplayFormat = '%%%D'
       Ayarlar.Font.Charset = DEFAULT_CHARSET
       Ayarlar.Font.Color = 5653047
@@ -698,92 +690,535 @@ object Ana: TAna
       Yuzde = 25
     end
   end
+  object GR32WidgetTitle1: TGR32WidgetTitle
+    Left = 0
+    Top = 0
+    Width = 1109
+    Height = 55
+    Align = alTop
+    Ayarlar.Background = 5127995
+    Ayarlar.BackgroundHover = 6245191
+    Ayarlar.BorderColor = 4010286
+    Ayarlar.Font.Charset = DEFAULT_CHARSET
+    Ayarlar.Font.Color = clWhite
+    Ayarlar.Font.Height = -21
+    Ayarlar.Font.Name = 'Century Gothic'
+    Ayarlar.Font.Style = []
+    Ayarlar.Icons.Charset = DEFAULT_CHARSET
+    Ayarlar.Icons.Color = clWhite
+    Ayarlar.Icons.Height = -27
+    Ayarlar.Icons.Name = 'UgurFonts'
+    Ayarlar.Icons.Style = []
+    Ayarlar.Gap = 0
+    HeaderLeft = 'Rubicube'
+    HeaderRight = 'Dashboard Example'
+    CloseChar = 'K'
+    MenuChar = 'J'
+    OnMenuClick = GR32WidgetTitle1MenuClick
+    OnCloseClick = GR32WidgetTitle1CloseClick
+    OnDblClick = GR32WidgetTitle1DblClick
+  end
+  object GR32WidgetStatusBar1: TGR32WidgetStatusBar
+    Left = 0
+    Top = 615
+    Width = 1109
+    Height = 40
+    Align = alBottom
+    Ayarlar.Background = 5127995
+    Ayarlar.BackgroundHover = 6245191
+    Ayarlar.BorderColor = 4010286
+    Ayarlar.BracketWidth = 15
+    Ayarlar.Font.Charset = DEFAULT_CHARSET
+    Ayarlar.Font.Color = clWhite
+    Ayarlar.Font.Height = -17
+    Ayarlar.Font.Name = 'Calibri'
+    Ayarlar.Font.Style = []
+    FooterText = 'Footer'
+  end
+  object Menu: TPanel
+    Left = 0
+    Top = 61
+    Width = 200
+    Height = 554
+    Align = alLeft
+    BevelOuter = bvNone
+    Color = 6113589
+    ParentBackground = False
+    TabOrder = 3
+    object GR32WidgetBox2: TGR32WidgetBox
+      Left = 0
+      Top = 15
+      Width = 200
+      Height = 50
+      Align = alTop
+      OnMouseEnter = GR32WidgetBox2MouseEnter
+      OnMouseLeave = GR32WidgetBox2MouseLeave
+      Ayarlar.Background = 6113589
+      Ayarlar.BackgroundHover = 11308140
+      Ayarlar.BorderColor = 6113589
+      Ayarlar.BorderStyle = psSolid
+      Ayarlar.BorderWidth = 0
+      Ayarlar.FrameColor = 6113589
+      Ayarlar.FrameStyle = psSolid
+      Ayarlar.FrameWidth = 0
+      Ayarlar.Header.Charset = DEFAULT_CHARSET
+      Ayarlar.Header.Color = clWhite
+      Ayarlar.Header.Height = -21
+      Ayarlar.Header.Name = 'Rakesly Lt'
+      Ayarlar.Header.Style = []
+      Ayarlar.HeaderPos = fpCenterLeft
+      Ayarlar.Footer.Charset = DEFAULT_CHARSET
+      Ayarlar.Footer.Color = 5653047
+      Ayarlar.Footer.Height = -19
+      Ayarlar.Footer.Name = 'Libel Suit Rg'
+      Ayarlar.Footer.Style = []
+      Ayarlar.FooterPos = fpCenterRight
+      Ayarlar.Padding.Left = 5
+      Ayarlar.Padding.Top = 5
+      Ayarlar.Padding.Right = 5
+      Ayarlar.Padding.Bottom = 5
+      Ayarlar.Simge.Charset = DEFAULT_CHARSET
+      Ayarlar.Simge.Color = 3391998
+      Ayarlar.Simge.Height = -32
+      Ayarlar.Simge.Name = 'UgurFonts'
+      Ayarlar.Simge.Style = []
+      Ayarlar.Filigran.Charset = DEFAULT_CHARSET
+      Ayarlar.Filigran.Color = 14734538
+      Ayarlar.Filigran.Height = -171
+      Ayarlar.Filigran.Name = 'UgurFonts'
+      Ayarlar.Filigran.Style = []
+      Ayarlar.FiligranPos = fpTopRight
+      Ayarlar.SimgeWidth = 50
+      Ayarlar.SimgePos = fpTopCenter
+      HeaderText = 'Menu Item'
+      FooterText = ' '
+      SimgeChar = '2'
+      FiligranChar = #0
+    end
+    object GR32WidgetBox1: TGR32WidgetBox
+      Left = 0
+      Top = 65
+      Width = 200
+      Height = 50
+      Align = alTop
+      OnMouseEnter = GR32WidgetBox2MouseEnter
+      OnMouseLeave = GR32WidgetBox2MouseLeave
+      Ayarlar.Background = 6113589
+      Ayarlar.BackgroundHover = 11308140
+      Ayarlar.BorderColor = 6113589
+      Ayarlar.BorderStyle = psSolid
+      Ayarlar.BorderWidth = 0
+      Ayarlar.FrameColor = 6113589
+      Ayarlar.FrameStyle = psSolid
+      Ayarlar.FrameWidth = 0
+      Ayarlar.Header.Charset = DEFAULT_CHARSET
+      Ayarlar.Header.Color = clWhite
+      Ayarlar.Header.Height = -21
+      Ayarlar.Header.Name = 'Rakesly Lt'
+      Ayarlar.Header.Style = []
+      Ayarlar.HeaderPos = fpCenterLeft
+      Ayarlar.Footer.Charset = DEFAULT_CHARSET
+      Ayarlar.Footer.Color = 5653047
+      Ayarlar.Footer.Height = -19
+      Ayarlar.Footer.Name = 'Libel Suit Rg'
+      Ayarlar.Footer.Style = []
+      Ayarlar.FooterPos = fpCenterRight
+      Ayarlar.Padding.Left = 5
+      Ayarlar.Padding.Top = 5
+      Ayarlar.Padding.Right = 5
+      Ayarlar.Padding.Bottom = 5
+      Ayarlar.Simge.Charset = DEFAULT_CHARSET
+      Ayarlar.Simge.Color = 3391998
+      Ayarlar.Simge.Height = -32
+      Ayarlar.Simge.Name = 'UgurFonts'
+      Ayarlar.Simge.Style = []
+      Ayarlar.Filigran.Charset = DEFAULT_CHARSET
+      Ayarlar.Filigran.Color = 14734538
+      Ayarlar.Filigran.Height = -171
+      Ayarlar.Filigran.Name = 'UgurFonts'
+      Ayarlar.Filigran.Style = []
+      Ayarlar.FiligranPos = fpTopRight
+      Ayarlar.SimgeWidth = 50
+      Ayarlar.SimgePos = fpTopCenter
+      HeaderText = 'Menu Item'
+      FooterText = ' '
+      SimgeChar = '7'
+      FiligranChar = #0
+    end
+    object GR32WidgetBox4: TGR32WidgetBox
+      Left = 0
+      Top = 265
+      Width = 200
+      Height = 50
+      Align = alTop
+      OnMouseEnter = GR32WidgetBox2MouseEnter
+      OnMouseLeave = GR32WidgetBox2MouseLeave
+      Ayarlar.Background = 6113589
+      Ayarlar.BackgroundHover = 11308140
+      Ayarlar.BorderColor = 6113589
+      Ayarlar.BorderStyle = psSolid
+      Ayarlar.BorderWidth = 0
+      Ayarlar.FrameColor = 6113589
+      Ayarlar.FrameStyle = psSolid
+      Ayarlar.FrameWidth = 0
+      Ayarlar.Header.Charset = DEFAULT_CHARSET
+      Ayarlar.Header.Color = clWhite
+      Ayarlar.Header.Height = -21
+      Ayarlar.Header.Name = 'Rakesly Lt'
+      Ayarlar.Header.Style = []
+      Ayarlar.HeaderPos = fpCenterLeft
+      Ayarlar.Footer.Charset = DEFAULT_CHARSET
+      Ayarlar.Footer.Color = 5653047
+      Ayarlar.Footer.Height = -19
+      Ayarlar.Footer.Name = 'Libel Suit Rg'
+      Ayarlar.Footer.Style = []
+      Ayarlar.FooterPos = fpCenterRight
+      Ayarlar.Padding.Left = 5
+      Ayarlar.Padding.Top = 5
+      Ayarlar.Padding.Right = 5
+      Ayarlar.Padding.Bottom = 5
+      Ayarlar.Simge.Charset = DEFAULT_CHARSET
+      Ayarlar.Simge.Color = 3391998
+      Ayarlar.Simge.Height = -32
+      Ayarlar.Simge.Name = 'UgurFonts'
+      Ayarlar.Simge.Style = []
+      Ayarlar.Filigran.Charset = DEFAULT_CHARSET
+      Ayarlar.Filigran.Color = 14734538
+      Ayarlar.Filigran.Height = -171
+      Ayarlar.Filigran.Name = 'UgurFonts'
+      Ayarlar.Filigran.Style = []
+      Ayarlar.FiligranPos = fpTopRight
+      Ayarlar.SimgeWidth = 50
+      Ayarlar.SimgePos = fpTopCenter
+      HeaderText = 'Menu Item'
+      FooterText = ' '
+      SimgeChar = '%'
+      FiligranChar = #0
+    end
+    object Logo: TImage32
+      Left = 0
+      Top = 0
+      Width = 200
+      Height = 15
+      Align = alTop
+      AutoSize = True
+      Bitmap.DrawMode = dmBlend
+      Bitmap.ResamplerClassName = 'TNearestResampler'
+      BitmapAlign = baCenter
+      Color = 6113589
+      ParentColor = False
+      Scale = 1.000000000000000000
+      ScaleMode = smOptimalScaled
+      TabOrder = 3
+    end
+    object GR32WidgetBox5: TGR32WidgetBox
+      Left = 0
+      Top = 215
+      Width = 200
+      Height = 50
+      Align = alTop
+      OnMouseEnter = GR32WidgetBox2MouseEnter
+      OnMouseLeave = GR32WidgetBox2MouseLeave
+      Ayarlar.Background = 6113589
+      Ayarlar.BackgroundHover = 11308140
+      Ayarlar.BorderColor = 6113589
+      Ayarlar.BorderStyle = psSolid
+      Ayarlar.BorderWidth = 0
+      Ayarlar.FrameColor = 6113589
+      Ayarlar.FrameStyle = psSolid
+      Ayarlar.FrameWidth = 0
+      Ayarlar.Header.Charset = DEFAULT_CHARSET
+      Ayarlar.Header.Color = clWhite
+      Ayarlar.Header.Height = -21
+      Ayarlar.Header.Name = 'Rakesly Lt'
+      Ayarlar.Header.Style = []
+      Ayarlar.HeaderPos = fpCenterLeft
+      Ayarlar.Footer.Charset = DEFAULT_CHARSET
+      Ayarlar.Footer.Color = 5653047
+      Ayarlar.Footer.Height = -19
+      Ayarlar.Footer.Name = 'Libel Suit Rg'
+      Ayarlar.Footer.Style = []
+      Ayarlar.FooterPos = fpCenterRight
+      Ayarlar.Padding.Left = 5
+      Ayarlar.Padding.Top = 5
+      Ayarlar.Padding.Right = 5
+      Ayarlar.Padding.Bottom = 5
+      Ayarlar.Simge.Charset = DEFAULT_CHARSET
+      Ayarlar.Simge.Color = 3391998
+      Ayarlar.Simge.Height = -32
+      Ayarlar.Simge.Name = 'UgurFonts'
+      Ayarlar.Simge.Style = []
+      Ayarlar.Filigran.Charset = DEFAULT_CHARSET
+      Ayarlar.Filigran.Color = 14734538
+      Ayarlar.Filigran.Height = -171
+      Ayarlar.Filigran.Name = 'UgurFonts'
+      Ayarlar.Filigran.Style = []
+      Ayarlar.FiligranPos = fpTopRight
+      Ayarlar.SimgeWidth = 50
+      Ayarlar.SimgePos = fpTopCenter
+      HeaderText = 'Menu Item'
+      FooterText = ' '
+      SimgeChar = '_'
+      FiligranChar = #0
+    end
+    object GR32WidgetBox7: TGR32WidgetBox
+      Left = 0
+      Top = 165
+      Width = 200
+      Height = 50
+      Align = alTop
+      OnMouseEnter = GR32WidgetBox2MouseEnter
+      OnMouseLeave = GR32WidgetBox2MouseLeave
+      Ayarlar.Background = 6113589
+      Ayarlar.BackgroundHover = 11308140
+      Ayarlar.BorderColor = 6113589
+      Ayarlar.BorderStyle = psSolid
+      Ayarlar.BorderWidth = 0
+      Ayarlar.FrameColor = 6113589
+      Ayarlar.FrameStyle = psSolid
+      Ayarlar.FrameWidth = 0
+      Ayarlar.Header.Charset = DEFAULT_CHARSET
+      Ayarlar.Header.Color = clWhite
+      Ayarlar.Header.Height = -21
+      Ayarlar.Header.Name = 'Rakesly Lt'
+      Ayarlar.Header.Style = []
+      Ayarlar.HeaderPos = fpCenterLeft
+      Ayarlar.Footer.Charset = DEFAULT_CHARSET
+      Ayarlar.Footer.Color = 5653047
+      Ayarlar.Footer.Height = -19
+      Ayarlar.Footer.Name = 'Libel Suit Rg'
+      Ayarlar.Footer.Style = []
+      Ayarlar.FooterPos = fpCenterRight
+      Ayarlar.Padding.Left = 5
+      Ayarlar.Padding.Top = 5
+      Ayarlar.Padding.Right = 5
+      Ayarlar.Padding.Bottom = 5
+      Ayarlar.Simge.Charset = DEFAULT_CHARSET
+      Ayarlar.Simge.Color = 3391998
+      Ayarlar.Simge.Height = -32
+      Ayarlar.Simge.Name = 'UgurFonts'
+      Ayarlar.Simge.Style = []
+      Ayarlar.Filigran.Charset = DEFAULT_CHARSET
+      Ayarlar.Filigran.Color = 14734538
+      Ayarlar.Filigran.Height = -171
+      Ayarlar.Filigran.Name = 'UgurFonts'
+      Ayarlar.Filigran.Style = []
+      Ayarlar.FiligranPos = fpTopRight
+      Ayarlar.SimgeWidth = 50
+      Ayarlar.SimgePos = fpTopCenter
+      HeaderText = 'Menu Item'
+      FooterText = ' '
+      SimgeChar = '?'
+      FiligranChar = #0
+    end
+    object GR32WidgetBox8: TGR32WidgetBox
+      Left = 0
+      Top = 115
+      Width = 200
+      Height = 50
+      Align = alTop
+      OnMouseEnter = GR32WidgetBox2MouseEnter
+      OnMouseLeave = GR32WidgetBox2MouseLeave
+      Ayarlar.Background = 6113589
+      Ayarlar.BackgroundHover = 11308140
+      Ayarlar.BorderColor = 6113589
+      Ayarlar.BorderStyle = psSolid
+      Ayarlar.BorderWidth = 0
+      Ayarlar.FrameColor = 6113589
+      Ayarlar.FrameStyle = psSolid
+      Ayarlar.FrameWidth = 0
+      Ayarlar.Header.Charset = DEFAULT_CHARSET
+      Ayarlar.Header.Color = clWhite
+      Ayarlar.Header.Height = -21
+      Ayarlar.Header.Name = 'Rakesly Lt'
+      Ayarlar.Header.Style = []
+      Ayarlar.HeaderPos = fpCenterLeft
+      Ayarlar.Footer.Charset = DEFAULT_CHARSET
+      Ayarlar.Footer.Color = 5653047
+      Ayarlar.Footer.Height = -19
+      Ayarlar.Footer.Name = 'Libel Suit Rg'
+      Ayarlar.Footer.Style = []
+      Ayarlar.FooterPos = fpCenterRight
+      Ayarlar.Padding.Left = 5
+      Ayarlar.Padding.Top = 5
+      Ayarlar.Padding.Right = 5
+      Ayarlar.Padding.Bottom = 5
+      Ayarlar.Simge.Charset = DEFAULT_CHARSET
+      Ayarlar.Simge.Color = 3391998
+      Ayarlar.Simge.Height = -32
+      Ayarlar.Simge.Name = 'UgurFonts'
+      Ayarlar.Simge.Style = []
+      Ayarlar.Filigran.Charset = DEFAULT_CHARSET
+      Ayarlar.Filigran.Color = 14734538
+      Ayarlar.Filigran.Height = -171
+      Ayarlar.Filigran.Name = 'UgurFonts'
+      Ayarlar.Filigran.Style = []
+      Ayarlar.FiligranPos = fpTopRight
+      Ayarlar.SimgeWidth = 50
+      Ayarlar.SimgePos = fpTopCenter
+      HeaderText = 'Menu Item'
+      FooterText = ' '
+      SimgeChar = '"'
+      FiligranChar = #0
+    end
+    object GR32WidgetButton3: TGR32WidgetButton
+      AlignWithMargins = True
+      Left = 10
+      Top = 511
+      Width = 180
+      Height = 33
+      Margins.Left = 10
+      Margins.Top = 10
+      Margins.Right = 10
+      Margins.Bottom = 10
+      Align = alBottom
+      OnClick = BT_AnimasyonClick
+      Background = 6113589
+      BorderColor = 9729108
+      BorderWidth = 4
+      ButtonColor = 11308140
+      ButtonHover = clWhite
+      ButtonChecked = 9729108
+      ButtonStyle = wbsOval
+      ButtonType = wbtNormal
+      ButtonText = 'Anime'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -21
+      Font.Name = 'Calibri'
+      Font.Style = []
+      FontHover = clBlack
+      FontChecked = clYellow
+    end
+  end
   object Panel1: TPanel
     Left = 0
-    Top = 550
-    Width = 946
-    Height = 30
-    Align = alBottom
+    Top = 55
+    Width = 1109
+    Height = 6
+    Align = alTop
     BevelOuter = bvNone
-    TabOrder = 1
-    object FREQ: TTrackBar
-      AlignWithMargins = True
-      Left = 413
+    Color = 15855852
+    ParentBackground = False
+    TabOrder = 4
+    Visible = False
+    object GR32WidgetButton1: TGR32WidgetButton
+      Left = 995
       Top = 0
-      Width = 219
-      Height = 30
+      Width = 114
+      Height = 6
       Margins.Left = 10
-      Margins.Top = 0
-      Margins.Right = 0
-      Margins.Bottom = 0
+      Margins.Top = 10
+      Margins.Right = 10
+      Margins.Bottom = 10
       Align = alRight
+      OnClick = BT_AnimasyonClick
+      Background = 15855852
+      BorderColor = clBtnShadow
+      BorderWidth = 0
+      ButtonColor = 14057217
+      ButtonHover = 5387228
+      ButtonChecked = 1616246
+      ButtonStyle = wbsDiktortgen
+      ButtonType = wbtIsaretli
+      ButtonText = 'n'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -72
+      Font.Name = 'UgurFonts'
+      Font.Style = []
+      FontHover = clLime
+      FontChecked = clYellow
+    end
+    object GR32WidgetButton2: TGR32WidgetButton
+      Left = 881
+      Top = 0
+      Width = 114
+      Height = 6
+      Margins.Left = 10
+      Margins.Top = 10
+      Margins.Right = 10
+      Margins.Bottom = 10
+      Align = alRight
+      OnClick = BT_AnimasyonClick
+      Background = 15855852
+      BorderColor = clBtnShadow
+      BorderWidth = 0
+      ButtonColor = 14057217
+      ButtonHover = 5387228
+      ButtonChecked = clWhite
+      ButtonStyle = wbsDaire
+      ButtonType = wbtNormal
+      ButtonText = 'n'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -72
+      Font.Name = 'UgurFonts'
+      Font.Style = []
+      FontHover = clLime
+      FontChecked = clYellow
+    end
+    object TRA: TTrackBar
+      Left = 200
+      Top = 0
+      Width = 200
+      Height = 6
+      Margins.Left = 10
+      Margins.Top = 10
+      Margins.Right = 10
+      Margins.Bottom = 10
+      Align = alLeft
+      Max = 100
+      Position = 66
+      TabOrder = 2
+      OnChange = TRAChange
+    end
+    object FREQ: TTrackBar
+      Left = 0
+      Top = 0
+      Width = 200
+      Height = 6
+      Margins.Left = 10
+      Margins.Top = 10
+      Margins.Right = 10
+      Margins.Bottom = 10
+      Align = alLeft
       Max = 1000
       Min = 1
       Position = 1
-      TabOrder = 0
+      TabOrder = 3
       OnChange = FREQChange
-    end
-    object TRA: TTrackBar
-      AlignWithMargins = True
-      Left = 642
-      Top = 0
-      Width = 219
-      Height = 30
-      Margins.Left = 10
-      Margins.Top = 0
-      Margins.Right = 0
-      Margins.Bottom = 0
-      Align = alRight
-      Max = 100
-      Position = 66
-      TabOrder = 1
-      OnChange = TRAChange
-    end
-    object BT_Animasyon: TButton
-      AlignWithMargins = True
-      Left = 871
-      Top = 0
-      Width = 75
-      Height = 30
-      Margins.Left = 10
-      Margins.Top = 0
-      Margins.Right = 0
-      Margins.Bottom = 0
-      Align = alRight
-      Caption = 'Animasyon'
-      TabOrder = 2
-      OnClick = BT_AnimasyonClick
     end
   end
   object Timer1: TTimer
     Enabled = False
     Interval = 20
-    Left = 116
-    Top = 12
+    Left = 760
+    Top = 34
   end
   object Timer2: TTimer
     Enabled = False
     Interval = 1
     OnTimer = Timer2Timer
-    Left = 148
-    Top = 12
+    Left = 792
+    Top = 34
   end
   object GR32WidgetPopupForm1: TGR32WidgetPopupForm
+    Animasyon.AnimasyonStili = wasHarmanlama
     Bosluk_Kenar = 1
     Bosluk_Ust = 1
     Nesne = GR32WidgetBar2
     OnBeforePopup = GR32WidgetPopupForm1BeforePopup
-    Left = 180
-    Top = 12
+    Left = 824
+    Top = 34
   end
   object GR32WidgetPopupForm2: TGR32WidgetPopupForm
     Animasyon.AnimasyonStili = wasHarmanlama
     Bosluk_Kenar = 1
     Bosluk_Ust = 1
     Nesne = GR32WidgetBox3
-    PopupYonu = wpyRightToLeft
     OnBeforePopup = GR32WidgetPopupForm2BeforePopup
-    Left = 212
-    Top = 12
+    Left = 856
+    Top = 34
   end
 end

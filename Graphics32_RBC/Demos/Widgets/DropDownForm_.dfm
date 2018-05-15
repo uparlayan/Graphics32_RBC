@@ -17,11 +17,10 @@ object DropDownForm: TDropDownForm
   PixelsPerInch = 96
   TextHeight = 13
   object SG: TStringGrid
-    AlignWithMargins = True
-    Left = 15
-    Top = 15
-    Width = 490
-    Height = 217
+    Left = 0
+    Top = 0
+    Width = 520
+    Height = 250
     Margins.Left = 15
     Margins.Top = 15
     Margins.Right = 15
@@ -32,8 +31,8 @@ object DropDownForm: TDropDownForm
     FixedColor = clBtnShadow
     FixedCols = 0
     RowCount = 10
-    GradientEndColor = 105180
-    GradientStartColor = 3391998
+    GradientEndColor = 13681072
+    GradientStartColor = 14800844
     TabOrder = 0
     ColWidths = (
       38
@@ -53,17 +52,20 @@ object DropDownForm: TDropDownForm
   end
   object GR32WidgetStatusBar1: TGR32WidgetStatusBar
     Left = 0
-    Top = 247
+    Top = 250
     Width = 520
-    Height = 25
+    Height = 22
     Align = alBottom
-    Ayarlar.BorderWidth = 0
-    Ayarlar.BracketWidth = 10
+    Ayarlar.Background = 14800844
+    Ayarlar.BackgroundHover = 13681072
+    Ayarlar.BorderColor = 12429457
+    Ayarlar.BracketWidth = 20
     Ayarlar.Font.Charset = DEFAULT_CHARSET
-    Ayarlar.Font.Color = clWindowText
+    Ayarlar.Font.Color = 1
     Ayarlar.Font.Height = -11
     Ayarlar.Font.Name = 'Tahoma'
     Ayarlar.Font.Style = []
-    FooterText = 'Statusbar'
+    Ayarlar.Gap = 4
+    FooterText = 'StatusBar'
   end
 end

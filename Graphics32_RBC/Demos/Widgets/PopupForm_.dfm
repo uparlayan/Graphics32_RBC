@@ -26,11 +26,11 @@ object PopupForm: TPopupForm
     AralikDikey = 15
     AralikYatay = 15
     Background = clWindow
-    BorderColor = 105180
+    BorderColor = 4010286
     BorderStyle = psSolid
-    BorderWidth = 0
+    BorderWidth = 1
     DamaModu = True
-    LineColor = 13361128
+    LineColor = 14800844
     LineStyle = psDot
     LineWidth = 1
     LineView = wilTumu
@@ -41,15 +41,18 @@ object PopupForm: TPopupForm
     Width = 440
     Height = 40
     Align = alTop
+    Ayarlar.Background = 5127995
+    Ayarlar.BackgroundHover = 6245191
+    Ayarlar.BorderColor = 4010286
     Ayarlar.BorderWidth = 0
     Ayarlar.Font.Charset = DEFAULT_CHARSET
-    Ayarlar.Font.Color = clWindowText
+    Ayarlar.Font.Color = clWhite
     Ayarlar.Font.Height = -21
-    Ayarlar.Font.Name = 'Trebuchet MS'
+    Ayarlar.Font.Name = 'Century Gothic'
     Ayarlar.Font.Style = []
     Ayarlar.Icons.Charset = DEFAULT_CHARSET
-    Ayarlar.Icons.Color = clWindowText
-    Ayarlar.Icons.Height = -32
+    Ayarlar.Icons.Color = clWhite
+    Ayarlar.Icons.Height = -27
     Ayarlar.Icons.Name = 'UgurFonts'
     Ayarlar.Icons.Style = []
     HeaderCenter = 'TForm'
@@ -72,6 +75,7 @@ object PopupForm: TPopupForm
     ParentFont = False
     TabOrder = 2
     Text = 'Text'
+    OnKeyPress = Edit1KeyPress
   end
   object Button1: TButton
     Left = 398
@@ -86,8 +90,8 @@ object PopupForm: TPopupForm
   object Memo1: TMemo
     Left = 8
     Top = 81
-    Width = 424
-    Height = 156
+    Width = 384
+    Height = 148
     Anchors = [akLeft, akTop, akRight, akBottom]
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -104,10 +108,13 @@ object PopupForm: TPopupForm
     Width = 440
     Height = 25
     Align = alBottom
+    Ayarlar.Background = 5127995
+    Ayarlar.BackgroundHover = 6245191
+    Ayarlar.BorderColor = 4010286
     Ayarlar.BorderWidth = 0
     Ayarlar.BracketWidth = 10
     Ayarlar.Font.Charset = DEFAULT_CHARSET
-    Ayarlar.Font.Color = clWindowText
+    Ayarlar.Font.Color = clWhite
     Ayarlar.Font.Height = -11
     Ayarlar.Font.Name = 'Tahoma'
     Ayarlar.Font.Style = []
