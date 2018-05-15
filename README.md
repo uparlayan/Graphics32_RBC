@@ -2,11 +2,13 @@
 Rubicube Graphics Extension on Graphics 32 Library
 
 [TR] Bu bileşen paketinin kullanılabilmesi için aşağıdaki linkte yer alan kütüphanenin RAD Studio'ya önceden kurulmuş olmasını gerektirir.
+
 [EN] For this component package to be available, the library on the link below should be preinstalled in RAD Studio.
 
 https://github.com/graphics32/graphics32
 
 [TR] Aşağıdaki kütüphanenin ise Delphi IDE'sine önceden tanıtılmış olması gerekir;
+
 [EN] The path to the following library should be pre-promoted to Delphi IDE;
 
 https://github.com/graphics32/GR32PNG
