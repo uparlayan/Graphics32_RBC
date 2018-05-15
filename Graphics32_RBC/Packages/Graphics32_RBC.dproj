@@ -125,6 +125,8 @@
         <DCCReference Include="..\Sources\GR32_Widgets_PopupForm.pas"/>
         <DCCReference Include="..\Sources\GR32_Widgets_Title.pas"/>
         <DCCReference Include="..\Sources\GR32_Widgets_Statusbar.pas"/>
+        <DCCReference Include="..\Sources\GR32_Widgets_Button.pas"/>
+        <DCCReference Include="..\Sources\GR32_Widgets_Breadcrumb.pas"/>
         <None Include="..\Delphinus.Info.json"/>
         <None Include="..\Delphinus.Install.json"/>
         <BuildConfiguration Include="Release">
@@ -488,9 +490,9 @@
                 <ProjectRoot Platform="Win32" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="iOSDevice64" Name="$(PROJECTNAME).app"/>
                 <ProjectRoot Platform="Linux64" Name="$(PROJECTNAME)"/>
-                <ProjectRoot Platform="Win64" Name="$(PROJECTNAME)"/>
-                <ProjectRoot Platform="iOSSimulator" Name="$(PROJECTNAME).app"/>
                 <ProjectRoot Platform="OSX32" Name="$(PROJECTNAME)"/>
+                <ProjectRoot Platform="iOSSimulator" Name="$(PROJECTNAME).app"/>
+                <ProjectRoot Platform="Win64" Name="$(PROJECTNAME)"/>
             </Deployment>
             <Platforms>
                 <Platform value="Android">False</Platform>
