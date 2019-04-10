@@ -1,0 +1,51 @@
+package Graphics32_RBC;
+
+{$R *.res}
+{$R *.dres}
+{$IFDEF IMPLICITBUILDING This IFDEF should not be used by users}
+{$ALIGN 8}
+{$ASSERTIONS ON}
+{$BOOLEVAL OFF}
+{$DEBUGINFO OFF}
+{$EXTENDEDSYNTAX ON}
+{$IMPORTEDDATA ON}
+{$IOCHECKS ON}
+{$LOCALSYMBOLS ON}
+{$LONGSTRINGS ON}
+{$OPENSTRINGS ON}
+{$OPTIMIZATION OFF}
+{$OVERFLOWCHECKS OFF}
+{$RANGECHECKS OFF}
+{$REFERENCEINFO ON}
+{$SAFEDIVIDE OFF}
+{$STACKFRAMES ON}
+{$TYPEDADDRESS OFF}
+{$VARSTRINGCHECKS ON}
+{$WRITEABLECONST OFF}
+{$MINENUMSIZE 1}
+{$IMAGEBASE $400000}
+{$DEFINE DEBUG}
+{$ENDIF IMPLICITBUILDING}
+{$IMPLICITBUILD ON}
+
+requires
+  rtl,
+  vcl,
+  GR32_R;
+
+contains
+  GR32_Rubicube_Utils in '..\..\Sources\GR32_Rubicube_Utils.pas',
+  GR32_Widgets_Base in '..\..\Sources\GR32_Widgets_Base.pas',
+  GR32_Widgets_Circle in '..\..\Sources\GR32_Widgets_Circle.pas',
+  GR32_Widgets_Box in '..\..\Sources\GR32_Widgets_Box.pas',
+  GR32_Widgets_Bar in '..\..\Sources\GR32_Widgets_Bar.pas',
+  GR32_Widgets_Izgara in '..\..\Sources\GR32_Widgets_Izgara.pas',
+  GR32_Widgets_Chart in '..\..\Sources\GR32_Widgets_Chart.pas',
+  GR32_Rubicube_Consts in '..\..\Sources\GR32_Rubicube_Consts.pas',
+  GR32_Widgets_PopupForm in '..\..\Sources\GR32_Widgets_PopupForm.pas',
+  GR32_Widgets_Title in '..\..\Sources\GR32_Widgets_Title.pas',
+  GR32_Widgets_Statusbar in '..\..\Sources\GR32_Widgets_Statusbar.pas',
+  GR32_Widgets_Button in '..\..\Sources\GR32_Widgets_Button.pas',
+  GR32_Widgets_Breadcrumb in '..\..\Sources\GR32_Widgets_Breadcrumb.pas';
+
+end.
