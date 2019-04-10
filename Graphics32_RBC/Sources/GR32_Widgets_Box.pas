@@ -32,11 +32,11 @@ uses
   ;
 
 type
-  TGR32WidgetBox = class(TGR32CustomWidget)
+  TGR32WGBox = class(TGR32CustomWG)
     type
-      TGR32WidgetBoxSettings = class(TPersistent)
+      TGR32WGBoxSettings = class(TPersistent)
         private
-          FOwner            : TGR32WidgetBox;
+          FOwner            : TGR32WGBox;
           FBackground       : TColor;
           FBackgroundHover  : TColor;
           FBorderColor      : TColor;
@@ -101,12 +101,12 @@ type
           property SimgePos       : TFontPos              read  FSimgePos         write SetSimgePos       ;
       end;
     private
-      FAyarlar      : TGR32WidgetBoxSettings;
+      FAyarlar      : TGR32WGBoxSettings;
       FHeaderText   : String;
       FFooterText   : String;
       FSimgeChar    : Char;
       FFiligranChar : Char;
-      procedure SetAyarlar(const Value: TGR32WidgetBoxSettings);
+      procedure SetAyarlar(const Value: TGR32WGBoxSettings);
       procedure SetHeaderText(const Value: String);
       procedure SetFooterText(const Value: String);
       procedure SetSimgeChar(const Value: Char);
@@ -117,7 +117,7 @@ type
       destructor Destroy; override;
       procedure PaintControl; override;
     published
-      property Ayarlar      : TGR32WidgetBoxSettings  read FAyarlar       write SetAyarlar;
+      property Ayarlar      : TGR32WGBoxSettings  read FAyarlar       write SetAyarlar;
       property HeaderText   : String                  read FHeaderText    write SetHeaderText;
       property FooterText   : String                  read FFooterText    write SetFooterText;
       property SimgeChar    : Char                    read FSimgeChar     write SetSimgeChar;
@@ -131,17 +131,17 @@ implementation
 
 procedure Register;
 begin
-  RegisterComponents('Graphics32RBC', [TGR32WidgetBox]);
+  RegisterComponents('Graphics32RBC', [TGR32WGBox]);
 end;
 
-{ TGR32WidgetBox.TGR32WidgetBoxSettings }
+{ TGR32WGBox.TGR32WGBoxSettings }
 
-procedure TGR32WidgetBox.TGR32WidgetBoxSettings.Assign(Source: TPersistent);
+procedure TGR32WGBox.TGR32WGBoxSettings.Assign(Source: TPersistent);
 var
-  aSors: TGR32WidgetBox.TGR32WidgetBoxSettings;
+  aSors: TGR32WGBox.TGR32WGBoxSettings;
 begin
-  if (Source is TGR32WidgetBox.TGR32WidgetBoxSettings) then begin
-      aSors := TGR32WidgetBox.TGR32WidgetBoxSettings(Source);
+  if (Source is TGR32WGBox.TGR32WGBoxSettings) then begin
+      aSors := TGR32WGBox.TGR32WGBoxSettings(Source);
       //FOwner      := BU KULLANILMAYACAK..
       FBackground       := aSors.Background       ;
       FBackgroundHover  := aSors.BackgroundHover  ;
@@ -163,7 +163,7 @@ begin
   end else inherited;
 end;
 
-procedure TGR32WidgetBox.TGR32WidgetBoxSettings.AfterConstruction;
+procedure TGR32WGBox.TGR32WGBoxSettings.AfterConstruction;
 begin
   inherited;
   FHeader             := TFont.Create;
@@ -179,7 +179,7 @@ begin
   ResetSettings;
 end;
 
-procedure TGR32WidgetBox.TGR32WidgetBoxSettings.BeforeDestruction;
+procedure TGR32WGBox.TGR32WGBoxSettings.BeforeDestruction;
 begin
   FreeAndNil(FFiligran);
   FreeAndNil(FSimge);
@@ -189,104 +189,104 @@ begin
   inherited;
 end;
 
-procedure TGR32WidgetBox.TGR32WidgetBoxSettings.InlineChangeNotifier(Sender: TObject);
+procedure TGR32WGBox.TGR32WGBoxSettings.InlineChangeNotifier(Sender: TObject);
 begin
   // Persistent sınıfın alt type'lerinde bir değişiklik olduğunda ana sınıfın grafiğinin yeniden çizilmesini tetikler...
   // "Sender" parametresi bu noktada işimize yaramadığı için prosedürü çağırırken NIL değerini vermekte herhangi bir sakınca yoktur.
   if Assigned(FOwner) then FOwner.Invalidate;
 end;
 
-procedure TGR32WidgetBox.TGR32WidgetBoxSettings.SetBackground(const Value: TColor);
+procedure TGR32WGBox.TGR32WGBoxSettings.SetBackground(const Value: TColor);
 begin
   FBackground := Value; InlineChangeNotifier(nil);
 end;
 
-procedure TGR32WidgetBox.TGR32WidgetBoxSettings.SetBackgroundHover(const Value: TColor);
+procedure TGR32WGBox.TGR32WGBoxSettings.SetBackgroundHover(const Value: TColor);
 begin
   FBackgroundHover := Value; InlineChangeNotifier(nil);
 end;
 
-procedure TGR32WidgetBox.TGR32WidgetBoxSettings.SetBorderColor(const Value: TColor);
+procedure TGR32WGBox.TGR32WGBoxSettings.SetBorderColor(const Value: TColor);
 begin
   FBorderColor := Value; InlineChangeNotifier(nil);
 end;
 
-procedure TGR32WidgetBox.TGR32WidgetBoxSettings.SetBorderStyle(const Value: TPenStyle);
+procedure TGR32WGBox.TGR32WGBoxSettings.SetBorderStyle(const Value: TPenStyle);
 begin
   FBorderStyle := Value; InlineChangeNotifier(nil);
 end;
 
-procedure TGR32WidgetBox.TGR32WidgetBoxSettings.SetBorderWidth(const Value: Integer);
+procedure TGR32WGBox.TGR32WGBoxSettings.SetBorderWidth(const Value: Integer);
 begin
   FBorderWidth := Value; InlineChangeNotifier(nil);
 end;
 
-procedure TGR32WidgetBox.TGR32WidgetBoxSettings.SetFiligran(const Value: TFont);
+procedure TGR32WGBox.TGR32WGBoxSettings.SetFiligran(const Value: TFont);
 begin
   FFiligran.Assign(Value); InlineChangeNotifier(nil);
 end;
 
-procedure TGR32WidgetBox.TGR32WidgetBoxSettings.SetFiligranPos(const Value: TFontPos);
+procedure TGR32WGBox.TGR32WGBoxSettings.SetFiligranPos(const Value: TFontPos);
 begin
   FFiligranPos := Value; InlineChangeNotifier(nil);
 end;
 
-procedure TGR32WidgetBox.TGR32WidgetBoxSettings.SetFooter(const Value: TFont);
+procedure TGR32WGBox.TGR32WGBoxSettings.SetFooter(const Value: TFont);
 begin
   FFooter.Assign(Value); InlineChangeNotifier(nil);
 end;
 
-procedure TGR32WidgetBox.TGR32WidgetBoxSettings.SetFooterPos(const Value: TFontPos);
+procedure TGR32WGBox.TGR32WGBoxSettings.SetFooterPos(const Value: TFontPos);
 begin
   FFooterPos := Value; InlineChangeNotifier(nil);
 end;
 
-procedure TGR32WidgetBox.TGR32WidgetBoxSettings.SetFrameColor(const Value: TColor);
+procedure TGR32WGBox.TGR32WGBoxSettings.SetFrameColor(const Value: TColor);
 begin
   FFrameColor := Value; InlineChangeNotifier(nil);
 end;
 
-procedure TGR32WidgetBox.TGR32WidgetBoxSettings.SetFrameStyle(const Value: TPenStyle);
+procedure TGR32WGBox.TGR32WGBoxSettings.SetFrameStyle(const Value: TPenStyle);
 begin
   FFrameStyle := Value; InlineChangeNotifier(nil);
 end;
 
-procedure TGR32WidgetBox.TGR32WidgetBoxSettings.SetFrameWidth(const Value: Integer);
+procedure TGR32WGBox.TGR32WGBoxSettings.SetFrameWidth(const Value: Integer);
 begin
   FFrameWidth := Value; InlineChangeNotifier(nil);
 end;
 
-procedure TGR32WidgetBox.TGR32WidgetBoxSettings.SetHeader(const Value: TFont);
+procedure TGR32WGBox.TGR32WGBoxSettings.SetHeader(const Value: TFont);
 begin
   FHeader.Assign(Value); InlineChangeNotifier(nil);
 end;
 
-procedure TGR32WidgetBox.TGR32WidgetBoxSettings.SetHeaderPos(const Value: TFontPos);
+procedure TGR32WGBox.TGR32WGBoxSettings.SetHeaderPos(const Value: TFontPos);
 begin
   FHeaderPos := Value; InlineChangeNotifier(nil);
 end;
 
-procedure TGR32WidgetBox.TGR32WidgetBoxSettings.SetPadding(const Value: TPadding);
+procedure TGR32WGBox.TGR32WGBoxSettings.SetPadding(const Value: TPadding);
 begin
   FPadding.Assign(Value); InlineChangeNotifier(nil);
 end;
 
-procedure TGR32WidgetBox.TGR32WidgetBoxSettings.SetSimge(const Value: TFont);
+procedure TGR32WGBox.TGR32WGBoxSettings.SetSimge(const Value: TFont);
 begin
   FSimge.Assign(Value); InlineChangeNotifier(nil);
 end;
 
-procedure TGR32WidgetBox.TGR32WidgetBoxSettings.SetSimgeKenar(const Value: Integer);
+procedure TGR32WGBox.TGR32WGBoxSettings.SetSimgeKenar(const Value: Integer);
 begin
   FSimgeKenar := Value; InlineChangeNotifier(nil);
 end;
 
-procedure TGR32WidgetBox.TGR32WidgetBoxSettings.SetSimgePos(const Value: TFontPos);
+procedure TGR32WGBox.TGR32WGBoxSettings.SetSimgePos(const Value: TFontPos);
 begin
   FSimgePos := Value; InlineChangeNotifier(nil);
 end;
 
-procedure TGR32WidgetBox.TGR32WidgetBoxSettings.ResetSettings;
+procedure TGR32WGBox.TGR32WGBoxSettings.ResetSettings;
 begin
   FBackground   := clWindow;
   FBorderColor  := clBtnShadow;
@@ -327,12 +327,12 @@ begin
   FSimgePos     := fpCenterCenter;
 end;
 
-{ TGR32WidgetBox }
+{ TGR32WGBox }
 
-constructor TGR32WidgetBox.Create(AOwner: TComponent);
+constructor TGR32WGBox.Create(AOwner: TComponent);
 begin
   inherited Create(AOwner);
-  FAyarlar      := TGR32WidgetBoxSettings.Create;
+  FAyarlar      := TGR32WGBoxSettings.Create;
   FAyarlar.FOwner := Self;
   FHeaderText   := 'Header';
   FFooterText   := 'Footer';
@@ -340,43 +340,43 @@ begin
   FFiligranChar := 'ü';
 end;
 
-destructor TGR32WidgetBox.Destroy;
+destructor TGR32WGBox.Destroy;
 begin
   FreeAndNil(FAyarlar);
   inherited Destroy;
 end;
 
-procedure TGR32WidgetBox.SetAyarlar(const Value: TGR32WidgetBoxSettings);
+procedure TGR32WGBox.SetAyarlar(const Value: TGR32WGBoxSettings);
 begin
   FAyarlar.Assign(Value);
   Invalidate;
 end;
 
-procedure TGR32WidgetBox.SetHeaderText(const Value: String);
+procedure TGR32WGBox.SetHeaderText(const Value: String);
 begin
   FHeaderText := Value;
   Invalidate;
 end;
 
-procedure TGR32WidgetBox.SetFiligranChar(const Value: Char);
+procedure TGR32WGBox.SetFiligranChar(const Value: Char);
 begin
   FFiligranChar := Value;
   Invalidate;
 end;
 
-procedure TGR32WidgetBox.SetSimgeChar(const Value: Char);
+procedure TGR32WGBox.SetSimgeChar(const Value: Char);
 begin
   FSimgeChar := Value;
   Invalidate;
 end;
 
-procedure TGR32WidgetBox.SetFooterText(const Value: String);
+procedure TGR32WGBox.SetFooterText(const Value: String);
 begin
   FFooterText := Value;
   Invalidate;
 end;
 
-procedure TGR32WidgetBox.PaintControl;
+procedure TGR32WGBox.PaintControl;
 var
   W, H, BW_, FW_  : Integer;                // Border ve Frame çizgi kalınlığı
   SM        : TFloatPoint;            // Simge Merkezi

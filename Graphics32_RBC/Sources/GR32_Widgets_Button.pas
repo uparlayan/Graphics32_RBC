@@ -35,10 +35,15 @@ uses
   ;
 
 type
-  TGR32WidgetButtonTypes = (wbtNormal, wbtIsaretli);
-  TGR32WidgetButtonStyle = (wbsDiktortgen, wbsOval, wbsDaire);
-  TGR32WidgetButton = class(TGR32CustomWidget)
+  TGR32WGButtonTypes = (wbtNormal, wbtIsaretli);
+  TGR32WGButtonStyle = (wbsDiktortgen, wbsOval, wbsDaire);
+  TGR32WGButton = class(TGR32CustomWG)
     private
+      Zone_Top                : TRect;
+      Zone_Left               : TRect;
+      Zone_Right              : TRect;
+      Zone_Bottom             : TRect;
+
       FOnMouseMove            : TNotifyEvent;
       FBackground             : TColor;
       FBorderColor            : TColor;
@@ -48,13 +53,19 @@ type
       FButtonHover            : TColor;
       FButtonChecked          : TColor;
       FButtonRound            : Integer;
-      FButtonStyle            : TGR32WidgetButtonStyle;
-      FButtonType             : TGR32WidgetButtonTypes;
+      FButtonStyle            : TGR32WGButtonStyle;
+      FButtonType             : TGR32WGButtonTypes;
       FButtonText             : String;
       FChecked                : Boolean;
       FFont                   : TFont;
       FFontHover              : TColor;
       FFontChecked            : TColor;
+      FSymbol                 : Char;
+      FSymbolHover            : TColor;
+      FSymbolGap              : Integer;
+      FSymbolFont             : TFont;
+      FSymbolPos              : TGR32WGAxialPos;
+      FSymbolChecked          : TColor;
       procedure SetBackground(const Value: TColor);
       procedure SetBorderColor(const Value: TColor);
       procedure SetBorderStyle(const Value: TPenStyle);
@@ -63,40 +74,53 @@ type
       procedure SetButtonHover(const Value: TColor);
       procedure SetButtonChecked(const Value: TColor);
       procedure SetButtonRound(const Value: Integer);
-      procedure SetButtonStyle(const Value: TGR32WidgetButtonStyle);
-      procedure SetButtonType(const Value: TGR32WidgetButtonTypes);
+      procedure SetButtonStyle(const Value: TGR32WGButtonStyle);
+      procedure SetButtonType(const Value: TGR32WGButtonTypes);
       procedure SetButtonText(const Value: String);
       procedure SetChecked(const Value: Boolean);
       procedure SetFont(const Value: TFont);
       procedure SetFontHover(const Value: TColor);
       procedure SetFontChecked(const Value: TColor);
+      procedure SetSymbol(const Value: Char);
+      procedure SetSymbolChecked(const Value: TColor);
+      procedure SetSymbolFont(const Value: TFont);
+      procedure SetSymbolGap(const Value: Integer);
+      procedure SetSymbolHover(const Value: TColor);
+      procedure SetSymbolPos(const Value: TGR32WGAxialPos); // Click olaylarý burada iþlenir...
       procedure InlineChangeNotifier(Sender: TObject);
       procedure WMMouseMove (var Message: TWMMouseMove); message WM_MOUSEMOVE;
-      procedure WMLMouseDown(var Message: TWMLButtonDown); message WM_LBUTTONDOWN; // Click olaylarý burada iþlenir...
+      procedure WMLMouseDown(var Message: TWMLButtonDown); message WM_LBUTTONDOWN;
     protected
     public
       constructor Create(AOwner: TComponent); override;
       destructor Destroy; override;
       procedure PaintControl; override;
+      procedure Resize; override;
       procedure ResetSettings;
     published
       property OnClick;
-      property OnMouseMove    : TNotifyEvent            read  FOnMouseMove    write FOnMouseMove;
-      property Background     : TColor                  read  FBackground     write SetBackground     stored True default clBtnFace ; // Zemin rengini ifade eder, butonun deðil,i butonun yerleþtiði zemin anlaþýlmalýdýr...
-      property BorderColor    : TColor                  read  FBorderColor    write SetBorderColor    stored True default $00019ADC ;
-      property BorderStyle    : TPenStyle               read  FBorderStyle    write SetBorderStyle    stored True default psSolid   ;
-      property BorderWidth    : Integer                 read  FBorderWidth    write SetBorderWidth    stored True default 2         ;
-      property ButtonColor    : TColor                  read  FButtonColor    write SetButtonColor    stored True default $0033C1FE ;
-      property ButtonHover    : TColor                  read  FButtonHover    write SetButtonHover    stored True;
-      property ButtonRound    : Integer                 read  FButtonRound    write SetButtonRound    stored True default 10        ;
-      property ButtonChecked  : TColor                  read  FButtonChecked  write SetButtonChecked  stored True;
-      property ButtonStyle    : TGR32WidgetButtonStyle  read  FButtonStyle    write SetButtonStyle;
-      property ButtonType     : TGR32WidgetButtonTypes  read  FButtonType     write SetButtonType;
-      property ButtonText     : String                  read  FButtonText     write SetButtonText;
-      property Checked        : Boolean                 read  FChecked        write SetChecked        stored True default False     ;
-      property Font           : TFont                   read  FFont           write SetFont;
-      property FontHover      : TColor                  read  FFontHover      write SetFontHover      stored True;
-      property FontChecked    : TColor                  read  FFontChecked    write SetFontChecked    stored True;
+      property OnMouseMove    : TNotifyEvent              read  FOnMouseMove    write FOnMouseMove;
+      property Background     : TColor                    read  FBackground     write SetBackground     stored True default clBtnFace ; // Zemin rengini ifade eder, butonun deðil,i butonun yerleþtiði zemin anlaþýlmalýdýr...
+      property BorderColor    : TColor                    read  FBorderColor    write SetBorderColor    stored True default $00019ADC ;
+      property BorderStyle    : TPenStyle                 read  FBorderStyle    write SetBorderStyle    stored True default psSolid   ;
+      property BorderWidth    : Integer                   read  FBorderWidth    write SetBorderWidth    stored True default 2         ;
+      property ButtonColor    : TColor                    read  FButtonColor    write SetButtonColor    stored True default $0033C1FE ;
+      property ButtonHover    : TColor                    read  FButtonHover    write SetButtonHover    stored True;
+      property ButtonRound    : Integer                   read  FButtonRound    write SetButtonRound    stored True default 10        ;
+      property ButtonChecked  : TColor                    read  FButtonChecked  write SetButtonChecked  stored True;
+      property ButtonStyle    : TGR32WGButtonStyle    read  FButtonStyle    write SetButtonStyle;
+      property ButtonType     : TGR32WGButtonTypes    read  FButtonType     write SetButtonType;
+      property ButtonText     : String                    read  FButtonText     write SetButtonText;
+      property Checked        : Boolean                   read  FChecked        write SetChecked        stored True default False     ;
+      property Font           : TFont                     read  FFont           write SetFont;
+      property FontHover      : TColor                    read  FFontHover      write SetFontHover      stored True;
+      property FontChecked    : TColor                    read  FFontChecked    write SetFontChecked    stored True;
+      property Symbol         : Char                      read  FSymbol         write SetSymbol;
+      property SymbolFont     : TFont                     read  FSymbolFont     write SetSymbolFont;
+      property SymbolHover    : TColor                    read  FSymbolHover    write SetSymbolHover    stored True;
+      property SymbolChecked  : TColor                    read  FSymbolChecked  write SetSymbolChecked  stored True;
+      property SymbolPos      : TGR32WGAxialPos       read  FSymbolPos      write SetSymbolPos;
+      property SymbolGap      : Integer                   read  FSymbolGap      write SetSymbolGap      stored True  default 10        ;
       property Left;
       property Top;
       property Width;
@@ -113,107 +137,139 @@ uses
 
 procedure Register;
 begin
-  RegisterComponents('Graphics32RBC', [TGR32WidgetButton]);
+  RegisterComponents('Graphics32RBC', [TGR32WGButton]);
 end;
 
-{ TGR32WidgetButton }
+{ TGR32WGButton }
 
-constructor TGR32WidgetButton.Create(AOwner: TComponent);
+constructor TGR32WGButton.Create(AOwner: TComponent);
 begin
   inherited Create(AOwner);
   FFont := TFont.Create;
   FFont.OnChange := InlineChangeNotifier;
+  FSymbolFont := TFont.Create;
+  FSymbolFont.OnChange := InlineChangeNotifier;
   ResetSettings;
 end;
 
-destructor TGR32WidgetButton.Destroy;
+destructor TGR32WGButton.Destroy;
 begin
+  FreeAndNil(FSymbolFont);
   FreeAndNil(FFont);
   inherited;
 end;
 
-procedure TGR32WidgetButton.InlineChangeNotifier(Sender: TObject);
+procedure TGR32WGButton.InlineChangeNotifier(Sender: TObject);
 begin
   Invalidate;
 end;
 
-procedure TGR32WidgetButton.SetBackground(const Value: TColor);
+procedure TGR32WGButton.SetBackground(const Value: TColor);
 begin
   FBackground := Value; Invalidate;
 end;
 
-procedure TGR32WidgetButton.SetBorderColor(const Value: TColor);
+procedure TGR32WGButton.SetBorderColor(const Value: TColor);
 begin
   FBorderColor := Value; Invalidate;
 end;
 
-procedure TGR32WidgetButton.SetBorderStyle(const Value: TPenStyle);
+procedure TGR32WGButton.SetBorderStyle(const Value: TPenStyle);
 begin
   FBorderStyle := Value; Invalidate;
 end;
 
-procedure TGR32WidgetButton.SetBorderWidth(const Value: Integer);
+procedure TGR32WGButton.SetBorderWidth(const Value: Integer);
 begin
   FBorderWidth := Value; Invalidate;
 end;
 
-procedure TGR32WidgetButton.SetButtonColor(const Value: TColor);
+procedure TGR32WGButton.SetButtonColor(const Value: TColor);
 begin
   FButtonColor := Value; Invalidate;
 end;
 
-procedure TGR32WidgetButton.SetButtonHover(const Value: TColor);
+procedure TGR32WGButton.SetButtonHover(const Value: TColor);
 begin
   FButtonHover := Value; Invalidate;
 end;
 
-procedure TGR32WidgetButton.SetButtonRound(const Value: Integer);
+procedure TGR32WGButton.SetButtonRound(const Value: Integer);
 begin
   FButtonRound := Value; Invalidate;
 end;
 
-procedure TGR32WidgetButton.SetButtonStyle(const Value: TGR32WidgetButtonStyle);
+procedure TGR32WGButton.SetButtonStyle(const Value: TGR32WGButtonStyle);
 begin
   FButtonStyle := Value; Invalidate;
 end;
 
-procedure TGR32WidgetButton.SetButtonChecked(const Value: TColor);
+procedure TGR32WGButton.SetButtonChecked(const Value: TColor);
 begin
   FButtonChecked := Value; Invalidate;
 end;
 
-procedure TGR32WidgetButton.SetFont(const Value: TFont);
+procedure TGR32WGButton.SetFont(const Value: TFont);
 begin
   FFont.Assign(Value); Invalidate;
 end;
 
-procedure TGR32WidgetButton.SetFontHover(const Value: TColor);
+procedure TGR32WGButton.SetFontHover(const Value: TColor);
 begin
   FFontHover := Value; Invalidate;
 end;
 
-procedure TGR32WidgetButton.SetButtonText(const Value: String);
+procedure TGR32WGButton.SetSymbol(const Value: Char);
+begin
+  FSymbol := Value; Invalidate;
+end;
+
+procedure TGR32WGButton.SetSymbolChecked(const Value: TColor);
+begin
+  FSymbolChecked := Value; Invalidate;
+end;
+
+procedure TGR32WGButton.SetSymbolFont(const Value: TFont);
+begin
+  FSymbolFont.Assign(Value); Invalidate;
+end;
+
+procedure TGR32WGButton.SetSymbolGap(const Value: Integer);
+begin
+  FSymbolGap := Value; Invalidate;
+end;
+
+procedure TGR32WGButton.SetSymbolHover(const Value: TColor);
+begin
+  FSymbolHover := Value; Invalidate;
+end;
+
+procedure TGR32WGButton.SetSymbolPos(const Value: TGR32WGAxialPos);
+begin
+  FSymbolPos := Value; Invalidate;
+end;
+
+procedure TGR32WGButton.SetButtonText(const Value: String);
 begin
   FButtonText := Value; Invalidate;
 end;
 
-procedure TGR32WidgetButton.SetButtonType(const Value: TGR32WidgetButtonTypes);
+procedure TGR32WGButton.SetButtonType(const Value: TGR32WGButtonTypes);
 begin
   FButtonType := Value; Invalidate;
 end;
 
-procedure TGR32WidgetButton.SetChecked(const Value: Boolean);
+procedure TGR32WGButton.SetChecked(const Value: Boolean);
 begin
   FChecked := Value; Invalidate;
 end;
 
-procedure TGR32WidgetButton.SetFontChecked(const Value: TColor);
+procedure TGR32WGButton.SetFontChecked(const Value: TColor);
 begin
   FFontChecked := Value; Invalidate;
 end;
 
-procedure TGR32WidgetButton.WMLMouseDown(var Message: TWMLButtonDown);
-
+procedure TGR32WGButton.WMLMouseDown(var Message: TWMLButtonDown);
 begin
   if (FButtonType = wbtIsaretli) then begin
       SetChecked(NOT FChecked);
@@ -222,7 +278,7 @@ begin
   if Assigned(OnClick) then OnClick(Self);
 end;
 
-procedure TGR32WidgetButton.WMMouseMove(var Message: TWMMouseMove);
+procedure TGR32WGButton.WMMouseMove(var Message: TWMMouseMove);
 begin
   // Nesnenin iç iþleyiþi için gerekli... Farenin nesne içindeki konumunu okutuyoruz...
   Resize;
@@ -230,7 +286,7 @@ begin
   if (Assigned(FOnMouseMove) = True) then FOnMouseMove(Self);
 end;
 
-procedure TGR32WidgetButton.ResetSettings;
+procedure TGR32WGButton.ResetSettings;
 begin
   FBackground     := clBtnFace;
   FBorderColor    := $00019ADC;
@@ -249,11 +305,12 @@ begin
   FFontChecked    := clYellow;
 end;
 
-procedure TGR32WidgetButton.PaintControl;
+procedure TGR32WGButton.PaintControl;
 var
   Ressam          : TPolygonRenderer32VPR;
-  HC, HT          : TColor32;
-  FNT             : TFont;
+  HC              : TColor32;
+  FNT, SYM        : TFont;
+  RCT             : TRect;
 begin
   Resize;
   Ressam          := TPolygonRenderer32VPR.Create;
@@ -261,7 +318,7 @@ begin
   Ressam.FillMode := pfWinding;
   Ressam.Bitmap   := Self.FBuffer;
   Ressam.Bitmap.Clear( FBackground.ToColor32 ); // Nesnenin yerleþtiði zeminin rengi kastedilmektedir.
-
+  HC := 0;
   FNT := TFont.Create;
   FNT.Assign(FFont);
   case FButtonType of
@@ -273,6 +330,21 @@ begin
                     HC        := iif(FChecked = True, FButtonChecked, FButtonColor).ToColor32;
                     FNT.Color := iif(FChecked = True, FFontChecked, FFont.Color);
                   end;
+  end;
+  if (FSymbol <> #0) and (FSymbolPos <> wgpNone) then begin
+      SYM := TFont.Create;
+      SYM.Assign(FSymbolFont);
+      case FButtonType of
+            wbtNormal : SYM.Color := iif(MouseIsInside = True, FSymbolHover  , FSymbolFont.Color);
+          wbtIsaretli : SYM.Color := iif(FChecked      = True, FSymbolChecked, FSymbolFont.Color);
+      end;
+      case FSymbolPos of
+           wgpNone   : RCT.Create(0,0,0,0); // Boþ kalmasýn //
+           wgpTop    : RCT := Zone_Top;
+           wgpLeft   : RCT := Zone_Left;
+           wgpRight  : RCT := Zone_Right;
+           wgpBottom : RCT := Zone_Bottom;
+      end;
   end;
   case  FButtonStyle  of
         wbsDiktortgen : begin
@@ -289,10 +361,49 @@ begin
                           Ressam.SekilBas(FBorderColor.ToColor32 , Ressam.Daire(Merkez, MinRadius));
                           Ressam.SekilBas(HC , Ressam.Daire(Merkez, MinRadius - FBorderWidth));
                           Ressam.YaziBas(WidgetRect, FButtonText, FNT, fpCenterCenter);
+                          // Simge desteklenmez, çünkü fontun kendisi bir simge olarak düþünülmüþtür...
                         end;
+  end;
+  if (FSymbol <> #0) and (FSymbolPos <> wgpNone) then begin
+      Ressam.YaziBas( RCT, FSymbol, SYM, fpCenterCenter);
+      FreeAndNil(SYM);
   end;
   FreeAndNil(FNT);
   Ressam.Free;
 end;
+
+procedure TGR32WGButton.Resize;
+var
+  WH: Integer;
+begin
+  inherited;
+  FBuffer.Font := FSymbolFont;
+  WH := FBuffer.TextHeight(FSymbol);
+  with  Zone_Top do begin
+        Top    := 0 + FSymbolGap;
+        Left   := 0;
+        Width  := Self.Width;
+        Height := WH;
+  end;
+  with  Zone_Left do begin
+        Top    := 0;
+        Left   := 0 + FSymbolGap;
+        Width  := WH;
+        Height := Self.Height;
+  end;
+  with  Zone_Right do begin
+        Top    := 0;
+        Left   := Self.Width - WH - FSymbolGap;
+        Width  := WH;
+        Height := Self.Height;
+  end;
+  with  Zone_Bottom do begin
+        Top    := Self.Height - WH - FSymbolGap;
+        Left   := 0;
+        Width  := Self.Width;
+        Height := WH;
+  end;
+
+  end;
 
 end.

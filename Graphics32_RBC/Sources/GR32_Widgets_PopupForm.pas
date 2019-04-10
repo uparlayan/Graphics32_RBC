@@ -24,26 +24,26 @@ uses
   System.SysUtils, System.Classes, System.Types, Winapi.Windows, Vcl.Forms, Vcl.Controls;
 
 type
-  TGR32WidgetsPopupYonu           = (wpyLeftToRight, wpyCenter, wpyRightToLeft);
-  TGR32WidgetsPopupSlaytYonu      = (wsyTopBottom, wsyLeftRight, wsyRightLeft);
-  TGR32WidgetsPopupAnimasyonStili = (wasKayma, wasHarmanlama);
-  TGR32WidgetPopupForm = class(TComponent)
+  TGR32WGPopupYonu           = (wpyLeftToRight, wpyCenter, wpyRightToLeft);
+  TGR32WGPopupSlaytYonu      = (wsyTopBottom, wsyLeftRight, wsyRightLeft);
+  TGR32WGPopupAnimasyonStili = (wasKayma, wasHarmanlama);
+  TGR32WGPopupForm = class(TComponent)
   type
-    TGR32WidgetsPopupSettings = class(TPersistent)
+    TGR32WGPopupSettings = class(TPersistent)
       private
         // Görsel bir bileşen olmadığı için Getter ve Setter metodları kullanmadık... (UP)
         FAktif            : Boolean;
         FAnimationPeriyot : Integer;
-        FAnimasyonStili   : TGR32WidgetsPopupAnimasyonStili;
-        FSlaytYonu        : TGR32WidgetsPopupSlaytYonu;
+        FAnimasyonStili   : TGR32WGPopupAnimasyonStili;
+        FSlaytYonu        : TGR32WGPopupSlaytYonu;
       protected
       public
         procedure Assign(Source: TPersistent); override;
       published
         property Aktif            : Boolean                         read FAktif             write FAktif            default True;
         property AnimationPeriyot : Integer                         read FAnimationPeriyot  write FAnimationPeriyot default 50;
-        property AnimasyonStili   : TGR32WidgetsPopupAnimasyonStili read FAnimasyonStili    write FAnimasyonStili   default wasKayma;
-        property SlaytYonu        : TGR32WidgetsPopupSlaytYonu      read FSlaytYonu         write FSlaytYonu        default wsyTopBottom;
+        property AnimasyonStili   : TGR32WGPopupAnimasyonStili read FAnimasyonStili    write FAnimasyonStili   default wasKayma;
+        property SlaytYonu        : TGR32WGPopupSlaytYonu      read FSlaytYonu         write FSlaytYonu        default wsyTopBottom;
     end;
   private
     FPopupForm      : TForm;
@@ -51,27 +51,27 @@ type
     FOtomatikKapat  : Boolean;
     FBosluk_Ust     : SmallInt;
     FBosluk_Kenar   : SmallInt;
-    FPopupYonu      : TGR32WidgetsPopupYonu;
-    FAnimasyon      : TGR32WidgetsPopupSettings;
+    FPopupYonu      : TGR32WGPopupYonu;
+    FAnimasyon      : TGR32WGPopupSettings;
     FGolgeli        : Boolean;
     FOnBeforePopup  : TNotifyEvent;
-    procedure SetAnimasyon(const Value: TGR32WidgetsPopupSettings);
+    procedure SetAnimasyon(const Value: TGR32WGPopupSettings);
   protected
   public
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
     procedure FormDeActivate(Sender: TObject);
     procedure DoPopupForm;
-    procedure DoPopupControl(aControl: TWinControl; aForm: TForm; aPopupYonu: TGR32WidgetsPopupYonu = wpyLeftToRight);
+    procedure DoPopupControl(aControl: TWinControl; aForm: TForm; aPopupYonu: TGR32WGPopupYonu = wpyLeftToRight);
   published
-    property Animasyon    : TGR32WidgetsPopupSettings  read FAnimasyon     write SetAnimasyon;
+    property Animasyon    : TGR32WGPopupSettings  read FAnimasyon     write SetAnimasyon;
     property Bosluk_Kenar : SmallInt                   read FBosluk_Kenar  write FBosluk_Kenar   default 0;
     property Bosluk_Ust   : SmallInt                   read FBosluk_Ust    write FBosluk_Ust     default 0;
     property Golgeli      : Boolean                    read FGolgeli       Write FGolgeli        default True;
     property Nesne        : TWinControl                read FNesne         write FNesne;
     property OtomatikKapat: Boolean                    read FOtomatikKapat write FOtomatikKapat  default True;
     property PopupForm    : TForm                      read FPopupForm     write FPopupForm;
-    property PopupYonu    : TGR32WidgetsPopupYonu      read FPopupYonu     write FPopupYonu      default wpyLeftToRight;
+    property PopupYonu    : TGR32WGPopupYonu      read FPopupYonu     write FPopupYonu      default wpyLeftToRight;
     property OnBeforePopup: TNotifyEvent               read FOnBeforePopup write FOnBeforePopup;
   end;
 
@@ -81,39 +81,39 @@ implementation
 
 procedure Register;
 begin
-  RegisterComponents('Graphics32RBC', [TGR32WidgetPopupForm]);
+  RegisterComponents('Graphics32RBC', [TGR32WGPopupForm]);
 end;
 
 { TRbcPopupForm }
 
-constructor TGR32WidgetPopupForm.Create(AOwner: TComponent);
+constructor TGR32WGPopupForm.Create(AOwner: TComponent);
 begin
   inherited Create(AOwner);
 
   OtomatikKapat := True;
   Golgeli       := True;
 
-  FAnimasyon                   := TGR32WidgetPopupForm.TGR32WidgetsPopupSettings.Create;
+  FAnimasyon                   := TGR32WGPopupForm.TGR32WGPopupSettings.Create;
   FAnimasyon.FAktif            := True;
   FAnimasyon.FAnimationPeriyot := 50;
   FAnimasyon.FAnimasyonStili   := wasKayma;
   FAnimasyon.SlaytYonu         := wsyTopBottom;
 end;
 
-destructor TGR32WidgetPopupForm.Destroy;
+destructor TGR32WGPopupForm.Destroy;
 begin
   FAnimasyon.Free;
   inherited;
 end;
 
-procedure TGR32WidgetPopupForm.DoPopupForm;
+procedure TGR32WGPopupForm.DoPopupForm;
 begin
   // FNesne'nin koordinatlarını ve ölçülerini baz alarak pencereyi ekrana getirir...
   if Assigned(FOnBeforePopup) then FOnBeforePopup(Self); // Bu satır, eğer formunuzu runtime anında oluşturmak istiyorsanız oldukça işinize yarayacaktır. Bu olayın olay işleyicisine doğrudan runtime'de oluşturduğunuz formu bir değişken gibi atayabilirsiniz... (UP)
   DoPopupControl(FNesne, FPopupForm, FPopupYonu);
 end;
 
-procedure TGR32WidgetPopupForm.DoPopupControl(aControl: TWinControl; aForm: TForm; aPopupYonu: TGR32WidgetsPopupYonu);
+procedure TGR32WGPopupForm.DoPopupControl(aControl: TWinControl; aForm: TForm; aPopupYonu: TGR32WGPopupYonu);
 var
   SolUst: TPoint;
 begin
@@ -152,7 +152,7 @@ begin
   end;
 end;
 
-procedure TGR32WidgetPopupForm.FormDeActivate(Sender: Tobject);
+procedure TGR32WGPopupForm.FormDeActivate(Sender: Tobject);
 begin
   // Başka bir forma geçildiğinde bu kısım tetiklenir, böylece bu formun kendi kendisini kapatmak mümkün hale gelir...
   with FAnimasyon do begin
@@ -172,19 +172,19 @@ begin
   (Sender as TForm).Close;
 end;
 
-procedure TGR32WidgetPopupForm.SetAnimasyon(const Value: TGR32WidgetsPopupSettings);
+procedure TGR32WGPopupForm.SetAnimasyon(const Value: TGR32WGPopupSettings);
 begin
   FAnimasyon.Assign(Value);
 end;
 
-{ TGR32WidgetsPopupForm.TGR32WidgetsPopupSettings }
+{ TGR32WGsPopupForm.TGR32WGsPopupSettings }
 
-procedure TGR32WidgetPopupForm.TGR32WidgetsPopupSettings.Assign(Source: TPersistent);
+procedure TGR32WGPopupForm.TGR32WGPopupSettings.Assign(Source: TPersistent);
 var
-  aSors : TGR32WidgetPopupForm.TGR32WidgetsPopupSettings;
+  aSors : TGR32WGPopupForm.TGR32WGPopupSettings;
 begin
-  if (Source is TGR32WidgetPopupForm.TGR32WidgetsPopupSettings) then begin
-      aSors := TGR32WidgetPopupForm.TGR32WidgetsPopupSettings(Source);
+  if (Source is TGR32WGPopupForm.TGR32WGPopupSettings) then begin
+      aSors := TGR32WGPopupForm.TGR32WGPopupSettings(Source);
       FAktif            := aSors.FAktif;
       FAnimationPeriyot := aSors.FAnimationPeriyot;
       FAnimasyonStili   := aSors.FAnimasyonStili;

@@ -32,11 +32,11 @@ uses
   ;
 
 type
-  TGR32WidgetBar = class(TGR32CustomWidget)
+  TGR32WGBar = class(TGR32CustomWG)
     type
-      TGR32WidgetBarSettings = class(TPersistent)
+      TGR32WGBarSettings = class(TPersistent)
         private
-          FOwner            : TGR32WidgetBar;
+          FOwner            : TGR32WGBar;
           FBackground       : TColor;
           FBackgroundHover  : TColor;
           FBorderColor      : TColor;
@@ -83,10 +83,10 @@ type
           property ValueColor       : TColor      read FValueColor        write SetValueColor;  //  Dairenin değer içeren kısmının rengi
       end;
     private
-      FAyarlar    : TGR32WidgetBarSettings;
+      FAyarlar    : TGR32WGBarSettings;
       FHeader     : String;
       FYuzde      : Integer;
-      procedure SetAyarlar(const Value: TGR32WidgetBarSettings);
+      procedure SetAyarlar(const Value: TGR32WGBarSettings);
       procedure SetHeader(const Value: String);
       procedure SetYuzde(const Value: Integer);
     protected
@@ -95,7 +95,7 @@ type
       destructor Destroy; override;
       procedure PaintControl; override;
     published
-      property Ayarlar    : TGR32WidgetBarSettings  read  FAyarlar    write SetAyarlar;
+      property Ayarlar    : TGR32WGBarSettings  read  FAyarlar    write SetAyarlar;
       property Header     : String                  read  FHeader     write SetHeader;
       property Yuzde      : Integer                 read  FYuzde      write SetYuzde;
       property Height;
@@ -111,43 +111,43 @@ implementation
 
 procedure Register;
 begin
-  RegisterComponents('Graphics32RBC', [TGR32WidgetBar]);
+  RegisterComponents('Graphics32RBC', [TGR32WGBar]);
 end;
 
-{ TGR32WidgetBar }
+{ TGR32WGBar }
 
-constructor TGR32WidgetBar.Create(AOwner: TComponent);
+constructor TGR32WGBar.Create(AOwner: TComponent);
 begin
   inherited Create(AOwner);
-  FAyarlar:= TGR32WidgetBarSettings.Create;
+  FAyarlar:= TGR32WGBarSettings.Create;
   FAyarlar.FOwner := Self;
   Margins.SetBounds(10, 10, 10, 10);
 end;
 
-destructor TGR32WidgetBar.Destroy;
+destructor TGR32WGBar.Destroy;
 begin
   FreeAndNil(FAyarlar);
   inherited Destroy;
 end;
 
-procedure TGR32WidgetBar.SetAyarlar(const Value: TGR32WidgetBarSettings);
+procedure TGR32WGBar.SetAyarlar(const Value: TGR32WGBarSettings);
 begin
   FAyarlar.Assign(Value); Invalidate;
 end;
 
-procedure TGR32WidgetBar.SetHeader(const Value: String);
+procedure TGR32WGBar.SetHeader(const Value: String);
 begin
   FHeader := Value; Invalidate;
 end;
 
-procedure TGR32WidgetBar.SetYuzde(const Value: Integer);
+procedure TGR32WGBar.SetYuzde(const Value: Integer);
 begin
   FYuzde := Value; Invalidate;
 end;
 
-{ TGR32WidgetBar.TGR32WidgetBarSettings }
+{ TGR32WGBar.TGR32WGBarSettings }
 
-procedure TGR32WidgetBar.TGR32WidgetBarSettings.AfterConstruction;
+procedure TGR32WGBar.TGR32WGBarSettings.AfterConstruction;
 begin
   inherited ;
   FFont             := TFont.Create;
@@ -157,12 +157,12 @@ begin
   ResetSettings;
 end;
 
-procedure TGR32WidgetBar.TGR32WidgetBarSettings.Assign(Source: TPersistent);
+procedure TGR32WGBar.TGR32WGBarSettings.Assign(Source: TPersistent);
 var
-  aSors: TGR32WidgetBar.TGR32WidgetBarSettings;
+  aSors: TGR32WGBar.TGR32WGBarSettings;
 begin
-  if (Source is TGR32WidgetBar.TGR32WidgetBarSettings) then begin
-      aSors := TGR32WidgetBar.TGR32WidgetBarSettings(Source);
+  if (Source is TGR32WGBar.TGR32WGBarSettings) then begin
+      aSors := TGR32WGBar.TGR32WGBarSettings(Source);
       //FOwner      := BU KULLANILMAYACAK..
       FBackground       := aSors.Background       ;
       FBorderColor      := aSors.BorderColor      ;
@@ -178,20 +178,20 @@ begin
   end else inherited;
 end;
 
-procedure TGR32WidgetBar.TGR32WidgetBarSettings.BeforeDestruction;
+procedure TGR32WGBar.TGR32WGBarSettings.BeforeDestruction;
 begin
   FreeAndNil(FFont);
   FreeAndNil(FPadding);
   inherited;
 end;
 
-procedure TGR32WidgetBar.TGR32WidgetBarSettings.InlineChangeNotifier(Sender: TObject);
+procedure TGR32WGBar.TGR32WGBarSettings.InlineChangeNotifier(Sender: TObject);
 begin
   // Persistent sınıfın alt type'lerinde bir değişiklik olduğunda ana sınıfın grafiğinin yeniden çizilmesini tetikler...
   if Assigned(FOwner) then FOwner.Invalidate;
 end;
 
-procedure TGR32WidgetBar.TGR32WidgetBarSettings.ResetSettings;
+procedure TGR32WGBar.TGR32WGBarSettings.ResetSettings;
 begin
   FBackground       := clWhite;
   FBackgroundHover  := FBackground;
@@ -212,67 +212,67 @@ begin
   FPadding.SetBounds(10, 10, 10, 10);
 end;
 
-procedure TGR32WidgetBar.TGR32WidgetBarSettings.SetBackground(const Value: TColor);
+procedure TGR32WGBar.TGR32WGBarSettings.SetBackground(const Value: TColor);
 begin
   FBackground := Value; InlineChangeNotifier(nil);
 end;
 
-procedure TGR32WidgetBar.TGR32WidgetBarSettings.SetBackgroundHover(const Value: TColor);
+procedure TGR32WGBar.TGR32WGBarSettings.SetBackgroundHover(const Value: TColor);
 begin
   FBackgroundHover := Value; InlineChangeNotifier(nil);
 end;
 
-procedure TGR32WidgetBar.TGR32WidgetBarSettings.SetBarColor(const Value: TColor);
+procedure TGR32WGBar.TGR32WGBarSettings.SetBarColor(const Value: TColor);
 begin
   FBarColor := Value; InlineChangeNotifier(nil);
 end;
 
-procedure TGR32WidgetBar.TGR32WidgetBarSettings.SetBorderColor(const Value: TColor);
+procedure TGR32WGBar.TGR32WGBarSettings.SetBorderColor(const Value: TColor);
 begin
   FBorderColor := Value; InlineChangeNotifier(nil);
 end;
 
-procedure TGR32WidgetBar.TGR32WidgetBarSettings.SetBorderWidth(const Value: Integer);
+procedure TGR32WGBar.TGR32WGBarSettings.SetBorderWidth(const Value: Integer);
 begin
   FBorderWidth := Value; InlineChangeNotifier(nil);
 end;
 
-procedure TGR32WidgetBar.TGR32WidgetBarSettings.SetDisplayFormat(const Value: String);
+procedure TGR32WGBar.TGR32WGBarSettings.SetDisplayFormat(const Value: String);
 begin
   FDisplayFormat := Value; InlineChangeNotifier(nil);
 end;
 
-procedure TGR32WidgetBar.TGR32WidgetBarSettings.SetFont(const Value: TFont);
+procedure TGR32WGBar.TGR32WGBarSettings.SetFont(const Value: TFont);
 begin
   FFont.Assign(Value); InlineChangeNotifier(nil);
 end;
 
-procedure TGR32WidgetBar.TGR32WidgetBarSettings.SetHeaderHeight(const Value: Integer);
+procedure TGR32WGBar.TGR32WGBarSettings.SetHeaderHeight(const Value: Integer);
 begin
   FHeaderHeight := Value; InlineChangeNotifier(nil);
 end;
 
-procedure TGR32WidgetBar.TGR32WidgetBarSettings.SetInvert(const Value: Boolean);
+procedure TGR32WGBar.TGR32WGBarSettings.SetInvert(const Value: Boolean);
 begin
   FInvert := Value; InlineChangeNotifier(nil);
 end;
 
-procedure TGR32WidgetBar.TGR32WidgetBarSettings.SetPadding(const Value: TPadding);
+procedure TGR32WGBar.TGR32WGBarSettings.SetPadding(const Value: TPadding);
 begin
   FPadding.Assign(Value); InlineChangeNotifier(nil);
 end;
 
-procedure TGR32WidgetBar.TGR32WidgetBarSettings.SetBorderStyle(const Value: TPenStyle);
+procedure TGR32WGBar.TGR32WGBarSettings.SetBorderStyle(const Value: TPenStyle);
 begin
   FBorderStyle := Value; InlineChangeNotifier(nil);
 end;
 
-procedure TGR32WidgetBar.TGR32WidgetBarSettings.SetValueColor(const Value: TColor);
+procedure TGR32WGBar.TGR32WGBarSettings.SetValueColor(const Value: TColor);
 begin
   FValueColor := Value; InlineChangeNotifier(nil);
 end;
 
-procedure TGR32WidgetBar.PaintControl;
+procedure TGR32WGBar.PaintControl;
 var
   BW_, TH, W,H: Integer;
   PL, PT, PR, PB  : Integer;

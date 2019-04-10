@@ -35,11 +35,11 @@ uses
   ;
 
 type
-  TGR32WidgetTitle = class(TGR32CustomWidget)
+  TGR32WGHeader = class(TGR32CustomWG)
     type
-      TGR32WidgetTitleSettings = class(TPersistent)
+      TGR32WGHeaderSettings = class(TPersistent)
         private
-          FOwner            : TGR32WidgetTitle;
+          FOwner            : TGR32WGHeader;
           FBackground       : TColor;
           FBackgroundHover  : TColor;
           FBorderColor      : TColor;
@@ -79,7 +79,7 @@ type
       Zone_H_Left       : TRect;
       Zone_H_Right      : TRect;
 
-      FAyarlar          : TGR32WidgetTitleSettings;
+      FAyarlar          : TGR32WGHeaderSettings;
       FHeaderLeft       : String;
       FHeaderCenter     : String;
       FHeaderRight      : String;
@@ -92,7 +92,7 @@ type
       procedure WMLMouseDown(var Message: TWMLButtonDown); message WM_LBUTTONDOWN; // Click olayları burada işlenir...
       procedure WMMouseMove (var Message: TWMMouseMove); message WM_MOUSEMOVE;
 
-      procedure SetAyarlar(const Value: TGR32WidgetTitleSettings);
+      procedure SetAyarlar(const Value: TGR32WGHeaderSettings);
       procedure SetHeaderLeft(const Value: String);
       procedure SetHeaderCenter(const Value: String);
       procedure SetHeaderRight(const Value: String);
@@ -107,7 +107,7 @@ type
     published
       property Align;
       property Margins;
-      property Ayarlar        : TGR32WidgetTitleSettings  read  FAyarlar      write SetAyarlar;
+      property Ayarlar        : TGR32WGHeaderSettings  read  FAyarlar      write SetAyarlar;
       property HeaderLeft     : String                    read  FHeaderLeft   write SetHeaderLeft;
       property HeaderCenter   : String                    read  FHeaderCenter write SetHeaderCenter;
       property HeaderRight    : String                    read  FHeaderRight  write SetHeaderRight;
@@ -125,12 +125,12 @@ implementation
 
 procedure Register;
 begin
-  RegisterComponents('Graphics32RBC', [TGR32WidgetTitle]);
+  RegisterComponents('Graphics32RBC', [TGR32WGHeader]);
 end;
 
-{ TGR32WidgetTitle.TGR32WidgetTitleSettings }
+{ TGR32WGHeader.TGR32WGHeaderSettings }
 
-procedure TGR32WidgetTitle.TGR32WidgetTitleSettings.AfterConstruction;
+procedure TGR32WGHeader.TGR32WGHeaderSettings.AfterConstruction;
 begin
   inherited;
   FFont             := TFont.Create;
@@ -140,12 +140,12 @@ begin
   ResetSettings;
 end;
 
-procedure TGR32WidgetTitle.TGR32WidgetTitleSettings.Assign(Source: TPersistent);
+procedure TGR32WGHeader.TGR32WGHeaderSettings.Assign(Source: TPersistent);
 var
-  aSors: TGR32WidgetTitle.TGR32WidgetTitleSettings;
+  aSors: TGR32WGHeader.TGR32WGHeaderSettings;
 begin
-  if (Source is TGR32WidgetTitle.TGR32WidgetTitleSettings) then begin
-      aSors := TGR32WidgetTitle.TGR32WidgetTitleSettings(Source);
+  if (Source is TGR32WGHeader.TGR32WGHeaderSettings) then begin
+      aSors := TGR32WGHeader.TGR32WGHeaderSettings(Source);
       //FOwner      := BU KULLANILMAYACAK..
       FBackground       := aSors.Background     ;
       FBorderColor      := aSors.BorderColor    ;
@@ -157,20 +157,20 @@ begin
   end else inherited;
 end;
 
-procedure TGR32WidgetTitle.TGR32WidgetTitleSettings.BeforeDestruction;
+procedure TGR32WGHeader.TGR32WGHeaderSettings.BeforeDestruction;
 begin
   FreeAndNil(FFont);
   FreeAndNil(FIcons);
   inherited;
 end;
 
-procedure TGR32WidgetTitle.TGR32WidgetTitleSettings.InlineChangeNotifier(Sender: TObject);
+procedure TGR32WGHeader.TGR32WGHeaderSettings.InlineChangeNotifier(Sender: TObject);
 begin
   // Persistent sınıfın alt type'lerinde bir değişiklik olduğunda ana sınıfın grafiğinin yeniden çizilmesini tetikler...
   if Assigned(FOwner) then FOwner.Invalidate;
 end;
 
-procedure TGR32WidgetTitle.TGR32WidgetTitleSettings.ResetSettings;
+procedure TGR32WGHeader.TGR32WGHeaderSettings.ResetSettings;
 begin
   FBackground       := $0033C1FE;
   FBackgroundHover  := $0033C1FE;
@@ -180,92 +180,92 @@ begin
   FGap              := 10;
 end;
 
-procedure TGR32WidgetTitle.TGR32WidgetTitleSettings.SetBackground(const Value: TColor);
+procedure TGR32WGHeader.TGR32WGHeaderSettings.SetBackground(const Value: TColor);
 begin
   FBackground := Value; InlineChangeNotifier(nil);
 end;
 
-procedure TGR32WidgetTitle.TGR32WidgetTitleSettings.SetBackgroundHover(const Value: TColor);
+procedure TGR32WGHeader.TGR32WGHeaderSettings.SetBackgroundHover(const Value: TColor);
 begin
   FBackgroundHover := Value; InlineChangeNotifier(nil);
 end;
 
-procedure TGR32WidgetTitle.TGR32WidgetTitleSettings.SetBorderColor(const Value: TColor);
+procedure TGR32WGHeader.TGR32WGHeaderSettings.SetBorderColor(const Value: TColor);
 begin
   FBorderColor := Value; InlineChangeNotifier(nil);
 end;
 
-procedure TGR32WidgetTitle.TGR32WidgetTitleSettings.SetBorderStyle(const Value: TPenStyle);
+procedure TGR32WGHeader.TGR32WGHeaderSettings.SetBorderStyle(const Value: TPenStyle);
 begin
   FBorderStyle := Value; InlineChangeNotifier(nil);
 end;
 
-procedure TGR32WidgetTitle.TGR32WidgetTitleSettings.SetBorderWidth(const Value: Integer);
+procedure TGR32WGHeader.TGR32WGHeaderSettings.SetBorderWidth(const Value: Integer);
 begin
   FBorderWidth := Value; InlineChangeNotifier(nil);
 end;
 
-procedure TGR32WidgetTitle.TGR32WidgetTitleSettings.SetFont(const Value: TFont);
+procedure TGR32WGHeader.TGR32WGHeaderSettings.SetFont(const Value: TFont);
 begin
   FFont.Assign(Value); InlineChangeNotifier(nil);
 end;
 
-procedure TGR32WidgetTitle.TGR32WidgetTitleSettings.SetIcons(const Value: TFont);
+procedure TGR32WGHeader.TGR32WGHeaderSettings.SetIcons(const Value: TFont);
 begin
   FIcons.Assign(Value); InlineChangeNotifier(nil);
 end;
 
-procedure TGR32WidgetTitle.TGR32WidgetTitleSettings.SetGap(const Value: Integer);
+procedure TGR32WGHeader.TGR32WGHeaderSettings.SetGap(const Value: Integer);
 begin
   FGap := Value; InlineChangeNotifier(nil);
 end;
 
-{ TGR32WidgetTitle }
+{ TGR32WGHeader }
 
-constructor TGR32WidgetTitle.Create(AOwner: TComponent);
+constructor TGR32WGHeader.Create(AOwner: TComponent);
 begin
   inherited Create(AOwner);
-  FAyarlar        := TGR32WidgetTitleSettings.Create;
+  FAyarlar        := TGR32WGHeaderSettings.Create;
   FAyarlar.FOwner := Self;
 end;
 
-destructor TGR32WidgetTitle.Destroy;
+destructor TGR32WGHeader.Destroy;
 begin
   FreeAndNil(FAyarlar);
   inherited;
 end;
 
-procedure TGR32WidgetTitle.SetAyarlar(const Value: TGR32WidgetTitleSettings);
+procedure TGR32WGHeader.SetAyarlar(const Value: TGR32WGHeaderSettings);
 begin
   FAyarlar.Assign(Value); Invalidate;
 end;
 
-procedure TGR32WidgetTitle.SetCloseChar(const Value: Char);
+procedure TGR32WGHeader.SetCloseChar(const Value: Char);
 begin
   FCloseChar := Value; Invalidate;
 end;
 
-procedure TGR32WidgetTitle.SetHeaderCenter(const Value: String);
+procedure TGR32WGHeader.SetHeaderCenter(const Value: String);
 begin
   FHeaderCenter := Value; Resize; Invalidate;
 end;
 
-procedure TGR32WidgetTitle.SetHeaderLeft(const Value: String);
+procedure TGR32WGHeader.SetHeaderLeft(const Value: String);
 begin
   FHeaderLeft := Value; Resize; Invalidate;
 end;
 
-procedure TGR32WidgetTitle.SetHeaderRight(const Value: String);
+procedure TGR32WGHeader.SetHeaderRight(const Value: String);
 begin
   FHeaderRight := Value; Resize; Invalidate;
 end;
 
-procedure TGR32WidgetTitle.SetMenuChar(const Value: Char);
+procedure TGR32WGHeader.SetMenuChar(const Value: Char);
 begin
   FMenuChar := Value; Invalidate;
 end;
 
-procedure TGR32WidgetTitle.WMLMouseDown(var Message: TWMLButtonDown);
+procedure TGR32WGHeader.WMLMouseDown(var Message: TWMLButtonDown);
 var
   Fare: TPoint;
 begin
@@ -282,14 +282,14 @@ begin
   end;
 end;
 
-procedure TGR32WidgetTitle.WMMouseMove(var Message: TWMMouseMove);
+procedure TGR32WGHeader.WMMouseMove(var Message: TWMMouseMove);
 begin
   // Nesnenin iç işleyişi için gerekli... Farenin nesne içindeki konumunu okutuyoruz...
   Resize;
   if (Assigned(FOnMouseMove) = True) then FOnMouseMove(Self);
 end;
 
-procedure TGR32WidgetTitle.PaintControl;
+procedure TGR32WGHeader.PaintControl;
 var
   Ressam          : TPolygonRenderer32VPR;
 begin
@@ -313,7 +313,7 @@ begin
   Ressam.Free;
 end;
 
-procedure TGR32WidgetTitle.Resize;
+procedure TGR32WGHeader.Resize;
 begin
   inherited;
   with  Zone_Menu do begin
@@ -332,13 +332,13 @@ begin
         Top    := 0;
         Left   := Zone_Menu.Left + Zone_Menu.Width + FAyarlar.FGap;
         Width  := FBuffer.TextWidth(FHeaderLeft);
-        Height := MinWH;// FBuffer.TextHeight(FHeaderLeft);
+        Height := MinWH;
   end;
   with  Zone_H_Right do begin
-        Height := MinWH;// FBuffer.TextHeight(FHeaderRight);
+        Height := MinWH;
         Width  := FBuffer.TextWidth(FHeaderRight);
         Top    := 0;
-        Left   := TGR32WidgetTitle(Self).Width - Zone_Close.Width - FAyarlar.FGap - Zone_H_Right.Width;
+        Left   := TGR32WGHeader(Self).Width - Zone_Close.Width - FAyarlar.FGap - Zone_H_Right.Width;
   end;
 end;
 

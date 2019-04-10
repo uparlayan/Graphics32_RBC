@@ -33,17 +33,17 @@ uses
   ;
 
 type
-  TGR32WidgetCircleFillStyle = ( wfsEventOdd, wfsAlternatif, wfsWinding, wfsNonZero );//TPolyFillMode; // (pfAlternate, pfWinding, pfEvenOdd = 0, pfNonZero);
-  TGR32WidgetCircleFillStyle_Helper = record helper for TGR32WidgetCircleFillStyle
+  TGR32WGCircleFillStyle = ( wfsEventOdd, wfsAlternatif, wfsWinding, wfsNonZero );//TPolyFillMode; // (pfAlternate, pfWinding, pfEvenOdd = 0, pfNonZero);
+  TGR32WGCircleFillStyle_Helper = record helper for TGR32WGCircleFillStyle
     public
       function toPolyFillMode: TPolyFillMode;
   end;
-  TGR32WidgetCircleStyle = (wgtDaire, wgtPasta);
-  TGR32WidgetCircle = class(TGR32CustomWidget)
+  TGR32WGCircleStyle = (wgtDaire, wgtPasta);
+  TGR32WGCircle = class(TGR32CustomWG)
     type
-      TGR32WidgetCircleSettings = class(TPersistent)
+      TGR32WGCircleSettings = class(TPersistent)
         private
-          FOwner            : TGR32WidgetCircle;
+          FOwner            : TGR32WGCircle;
           FAntiAliased      : Boolean;
           FBackground       : TColor;
           FBackgroundHover  : TColor;
@@ -56,8 +56,8 @@ type
           FHeader           : TFont;
           FHeaderPos        : TFontPos;
           FHeaderHeight     : Integer;
-          FStyle            : TGR32WidgetCircleStyle;
-          FStyleFill        : TGR32WidgetCircleFillStyle;
+          FStyle            : TGR32WGCircleStyle;
+          FStyleFill        : TGR32WGCircleFillStyle;
           FStyleLine        : TPenStyle;
           FBaseColor        : TColor;
           FValueColor       : TColor;
@@ -79,8 +79,8 @@ type
           procedure SetHeader(const Value: TFont);
           procedure SetHeaderPos(const Value: TFontPos);
           procedure SetHeaderHeight(const Value: Integer);
-          procedure SetStyle(const Value: TGR32WidgetCircleStyle);
-          procedure SetStyleFill(const Value: TGR32WidgetCircleFillStyle);
+          procedure SetStyle(const Value: TGR32WGCircleStyle);
+          procedure SetStyleFill(const Value: TGR32WGCircleFillStyle);
           procedure SetStyleLine(const Value: TPenStyle);
           procedure SetBaseColor(const Value: TColor);
           procedure SetValueColor(const Value: TColor);
@@ -110,8 +110,8 @@ type
           property Header           : TFont                       read FHeader          write SetHeader;
           property HeaderPos        : TFontPos                    read FHeaderPos       write SetHeaderPos;
           property HeaderHeight     : Integer                     read FHeaderHeight    write SetHeaderHeight;
-          property Style            : TGR32WidgetCircleStyle      read FStyle           write SetStyle;
-          property StyleFill        : TGR32WidgetCircleFillStyle  read FStyleFill       write SetStyleFill;
+          property Style            : TGR32WGCircleStyle      read FStyle           write SetStyle;
+          property StyleFill        : TGR32WGCircleFillStyle  read FStyleFill       write SetStyleFill;
           property StyleLine        : TPenStyle                   read FStyleLine       write SetStyleLine;
           property BaseColor        : TColor                      read FBaseColor       write SetBaseColor;   //  Dairenin değer dışında kalan kısmının rengi
           property ValueColor       : TColor                      read FValueColor      write SetValueColor;  //  Dairenin değer içeren kısmının rengi
@@ -123,11 +123,11 @@ type
           property ValueOnOuter     : Boolean                     read FValueOnOuter    write SetValueOnOuter;
       end;
     private
-      FAyarlar    : TGR32WidgetCircleSettings;
+      FAyarlar    : TGR32WGCircleSettings;
       FHeaderText : String;
       FYuzde      : Integer;
       FOnChange   : TNotifyEvent;
-      procedure SetAyarlar(const Value: TGR32WidgetCircleSettings);
+      procedure SetAyarlar(const Value: TGR32WGCircleSettings);
       procedure SetHeaderText(const Value: String);
       procedure SetYuzde(const Value: Integer);
     protected
@@ -137,7 +137,7 @@ type
       destructor Destroy(); override;
       procedure PaintControl; override;
     published
-      property Ayarlar    : TGR32WidgetCircleSettings read FAyarlar     write SetAyarlar;
+      property Ayarlar    : TGR32WGCircleSettings read FAyarlar     write SetAyarlar;
       property HeaderText : String                    read FHeaderText  write SetHeaderText;
       property Yuzde      : Integer                   read FYuzde       write SetYuzde;
       property OnChange   : TNotifyEvent              read FOnChange    write FOnChange;
@@ -148,14 +148,19 @@ procedure Register;
 
 implementation
 
+uses
+    System.UITypes        //  TFont.GetStyle
+  ;
+
+
 procedure Register;
 begin
-  RegisterComponents('Graphics32RBC', [TGR32WidgetCircle]);
+  RegisterComponents('Graphics32RBC', [TGR32WGCircle]);
 end;
 
-{ TGR32WidgetCircleFillStyle_Helper }
+{ TGR32WGCircleFillStyle_Helper }
 
-function TGR32WidgetCircleFillStyle_Helper.toPolyFillMode: TPolyFillMode;
+function TGR32WGCircleFillStyle_Helper.toPolyFillMode: TPolyFillMode;
 begin
   Result := pfEvenOdd;
   case Self of
@@ -166,9 +171,9 @@ begin
   end;
 end;
 
-{ TGR32WidgetCircle.TGR32WidgetCircleSettings }
+{ TGR32WGCircle.TGR32WGCircleSettings }
 
-procedure TGR32WidgetCircle.TGR32WidgetCircleSettings.AfterConstruction;
+procedure TGR32WGCircle.TGR32WGCircleSettings.AfterConstruction;
 begin
   inherited;
   FFont             := TFont.Create;
@@ -180,12 +185,12 @@ begin
   ResetSettings;
 end;
 
-procedure TGR32WidgetCircle.TGR32WidgetCircleSettings.Assign(Source: TPersistent);
+procedure TGR32WGCircle.TGR32WGCircleSettings.Assign(Source: TPersistent);
 var
-  aSors: TGR32WidgetCircle.TGR32WidgetCircleSettings;
+  aSors: TGR32WGCircle.TGR32WGCircleSettings;
 begin
-  if (Source is TGR32WidgetCircle.TGR32WidgetCircleSettings) then begin
-      aSors := TGR32WidgetCircle.TGR32WidgetCircleSettings(Source);
+  if (Source is TGR32WGCircle.TGR32WGCircleSettings) then begin
+      aSors := TGR32WGCircle.TGR32WGCircleSettings(Source);
       //FOwner      := BU KULLANILMAYACAK..
       FBackground   := aSors.Background   ;
       FBorderColor  := aSors.BorderColor  ;
@@ -210,7 +215,7 @@ begin
   end else inherited;
 end;
 
-procedure TGR32WidgetCircle.TGR32WidgetCircleSettings.BeforeDestruction;
+procedure TGR32WGCircle.TGR32WGCircleSettings.BeforeDestruction;
 begin
   FreeAndNil(FPadding);
   FreeAndNil(FFont);
@@ -218,13 +223,13 @@ begin
   inherited;
 end;
 
-procedure TGR32WidgetCircle.TGR32WidgetCircleSettings.InlineChangeNotifier(Sender: TObject);
+procedure TGR32WGCircle.TGR32WGCircleSettings.InlineChangeNotifier(Sender: TObject);
 begin
   // Persistent sınıfın alt type'lerinde bir değişiklik olduğunda ana sınıfın grafiğinin yeniden çizilmesini tetikler...
   if Assigned(FOwner) then FOwner.Invalidate;
 end;
 
-procedure TGR32WidgetCircle.TGR32WidgetCircleSettings.ResetSettings;
+procedure TGR32WGCircle.TGR32WGCircleSettings.ResetSettings;
 begin
   FAntiAliased      := False;
   FBackground       := clWindow;
@@ -257,163 +262,163 @@ begin
   FIntraColor       := clWindow;
 end;
 
-procedure TGR32WidgetCircle.TGR32WidgetCircleSettings.SetAntiAliased(const Value: Boolean);
+procedure TGR32WGCircle.TGR32WGCircleSettings.SetAntiAliased(const Value: Boolean);
 begin
   FAntiAliased := Value;
   InlineChangeNotifier(nil);
 end;
 
-procedure TGR32WidgetCircle.TGR32WidgetCircleSettings.SetBackground(const Value: TColor);
+procedure TGR32WGCircle.TGR32WGCircleSettings.SetBackground(const Value: TColor);
 begin
   FBackground := Value;
   InlineChangeNotifier(nil);
 end;
 
-procedure TGR32WidgetCircle.TGR32WidgetCircleSettings.SetBackgroundHover(const Value: TColor);
+procedure TGR32WGCircle.TGR32WGCircleSettings.SetBackgroundHover(const Value: TColor);
 begin
   FBackgroundHover := Value; InlineChangeNotifier(nil);
 end;
 
-procedure TGR32WidgetCircle.TGR32WidgetCircleSettings.SetBaseColor(const Value: TColor);
+procedure TGR32WGCircle.TGR32WGCircleSettings.SetBaseColor(const Value: TColor);
 begin
   FBaseColor := Value; InlineChangeNotifier(nil);
 end;
 
-procedure TGR32WidgetCircle.TGR32WidgetCircleSettings.SetBorderColor(const Value: TColor);
+procedure TGR32WGCircle.TGR32WGCircleSettings.SetBorderColor(const Value: TColor);
 begin
   FBorderColor := Value; InlineChangeNotifier(nil);
 end;
 
-procedure TGR32WidgetCircle.TGR32WidgetCircleSettings.SetBorderWidth(const Value: Integer);
+procedure TGR32WGCircle.TGR32WGCircleSettings.SetBorderWidth(const Value: Integer);
 begin
   if (Trunc(Value) > 0) then FBorderWidth := Value;
   InlineChangeNotifier(nil);
 end;
 
-procedure TGR32WidgetCircle.TGR32WidgetCircleSettings.SetDisplayFormat(const Value: String);
+procedure TGR32WGCircle.TGR32WGCircleSettings.SetDisplayFormat(const Value: String);
 begin
   FDisplayFormat := Value;
   InlineChangeNotifier(nil);
 end;
 
-procedure TGR32WidgetCircle.TGR32WidgetCircleSettings.SetFont(const Value: TFont);
+procedure TGR32WGCircle.TGR32WGCircleSettings.SetFont(const Value: TFont);
 begin
   FFont.Assign(Value);
   InlineChangeNotifier(nil);
 end;
 
-procedure TGR32WidgetCircle.TGR32WidgetCircleSettings.SetFrameColor(const Value: TColor);
+procedure TGR32WGCircle.TGR32WGCircleSettings.SetFrameColor(const Value: TColor);
 begin
   FFrameColor := Value;
   InlineChangeNotifier(nil);
 end;
 
-procedure TGR32WidgetCircle.TGR32WidgetCircleSettings.SetFrameWidth(const Value: Integer);
+procedure TGR32WGCircle.TGR32WGCircleSettings.SetFrameWidth(const Value: Integer);
 begin
   FFrameWidth := Value; InlineChangeNotifier(nil);
 end;
 
-procedure TGR32WidgetCircle.TGR32WidgetCircleSettings.SetHeader(const Value: TFont);
+procedure TGR32WGCircle.TGR32WGCircleSettings.SetHeader(const Value: TFont);
 begin
   FHeader.Assign(Value); InlineChangeNotifier(nil);
 end;
 
-procedure TGR32WidgetCircle.TGR32WidgetCircleSettings.SetHeaderHeight(const Value: Integer);
+procedure TGR32WGCircle.TGR32WGCircleSettings.SetHeaderHeight(const Value: Integer);
 begin
   FHeaderHeight := Value; InlineChangeNotifier(nil);
 end;
 
-procedure TGR32WidgetCircle.TGR32WidgetCircleSettings.SetHeaderPos(const Value: TFontPos);
+procedure TGR32WGCircle.TGR32WGCircleSettings.SetHeaderPos(const Value: TFontPos);
 begin
   FHeaderPos := Value; InlineChangeNotifier(nil);
 end;
 
-procedure TGR32WidgetCircle.TGR32WidgetCircleSettings.SetInnerColor(const Value: TColor);
+procedure TGR32WGCircle.TGR32WGCircleSettings.SetInnerColor(const Value: TColor);
 begin
   FInnerColor := Value; InlineChangeNotifier(nil);
 end;
 
-procedure TGR32WidgetCircle.TGR32WidgetCircleSettings.SetIntraColor(const Value: TColor);
+procedure TGR32WGCircle.TGR32WGCircleSettings.SetIntraColor(const Value: TColor);
 begin
   FIntraColor := Value; InlineChangeNotifier(nil);
 end;
 
-procedure TGR32WidgetCircle.TGR32WidgetCircleSettings.SetOuterColor(const Value: TColor);
+procedure TGR32WGCircle.TGR32WGCircleSettings.SetOuterColor(const Value: TColor);
 begin
   FOuterColor := Value; InlineChangeNotifier(nil);
 end;
 
-procedure TGR32WidgetCircle.TGR32WidgetCircleSettings.SetPadding(const Value: TPadding);
+procedure TGR32WGCircle.TGR32WGCircleSettings.SetPadding(const Value: TPadding);
 begin
   FPadding.Assign(Value); InlineChangeNotifier(nil);
 end;
 
-procedure TGR32WidgetCircle.TGR32WidgetCircleSettings.SetStyle(const Value: TGR32WidgetCircleStyle);
+procedure TGR32WGCircle.TGR32WGCircleSettings.SetStyle(const Value: TGR32WGCircleStyle);
 begin
   FStyle := Value; InlineChangeNotifier(nil);
 end;
 
-procedure TGR32WidgetCircle.TGR32WidgetCircleSettings.SetStyleFill(const Value: TGR32WidgetCircleFillStyle);
+procedure TGR32WGCircle.TGR32WGCircleSettings.SetStyleFill(const Value: TGR32WGCircleFillStyle);
 begin
   FStyleFill := Value; InlineChangeNotifier(nil);
 end;
 
-procedure TGR32WidgetCircle.TGR32WidgetCircleSettings.SetStyleLine(const Value: TPenStyle);
+procedure TGR32WGCircle.TGR32WGCircleSettings.SetStyleLine(const Value: TPenStyle);
 begin
   FStyleLine := Value; InlineChangeNotifier(nil);
 end;
 
-procedure TGR32WidgetCircle.TGR32WidgetCircleSettings.SetValueColor(const Value: TColor);
+procedure TGR32WGCircle.TGR32WGCircleSettings.SetValueColor(const Value: TColor);
 begin
   FValueColor := Value; InlineChangeNotifier(nil);
 end;
 
-procedure TGR32WidgetCircle.TGR32WidgetCircleSettings.SetValueOnInner(const Value: Boolean);
+procedure TGR32WGCircle.TGR32WGCircleSettings.SetValueOnInner(const Value: Boolean);
 begin
   FValueOnInner := Value; InlineChangeNotifier(nil);
 end;
 
-procedure TGR32WidgetCircle.TGR32WidgetCircleSettings.SetValueOnOuter(const Value: Boolean);
+procedure TGR32WGCircle.TGR32WGCircleSettings.SetValueOnOuter(const Value: Boolean);
 begin
   FValueOnOuter := Value; InlineChangeNotifier(nil);
 end;
 
-{ TGR32WidgetCircle }
+{ TGR32WGCircle }
 
-procedure TGR32WidgetCircle.Changed;
+procedure TGR32WGCircle.Changed;
 begin
   if Assigned(FOnChange) then FOnChange(Self);
 end;
 
-constructor TGR32WidgetCircle.Create(AOwner: TComponent);
+constructor TGR32WGCircle.Create(AOwner: TComponent);
 begin
   inherited Create(aOwner);
-  FAyarlar := TGR32WidgetCircleSettings.Create;
+  FAyarlar := TGR32WGCircleSettings.Create;
   FAyarlar.FOwner := SELF; { !!! }
   FAyarlar.FPadding.SetBounds(10, 10, 10, 10);
   Margins.SetBounds(10, 10, 10, 10);
   FHeaderText := 'Header';
 end;
 
-destructor TGR32WidgetCircle.Destroy;
+destructor TGR32WGCircle.Destroy;
 begin
   FreeAndNil(FAyarlar);
   inherited Destroy;
 end;
 
-procedure TGR32WidgetCircle.SetAyarlar(const Value: TGR32WidgetCircleSettings);
+procedure TGR32WGCircle.SetAyarlar(const Value: TGR32WGCircleSettings);
 begin
   FAyarlar.Assign(Value);
   Invalidate;
 end;
 
-procedure TGR32WidgetCircle.SetHeaderText(const Value: String);
+procedure TGR32WGCircle.SetHeaderText(const Value: String);
 begin
   FHeaderText := Value;
   Invalidate;
 end;
 
-procedure TGR32WidgetCircle.SetYuzde(const Value: Integer);
+procedure TGR32WGCircle.SetYuzde(const Value: Integer);
 begin
   if (Value < 0) or (Value > 100) then exit;
   if (FYuzde <> Value) then FYuzde := Value;
@@ -421,7 +426,7 @@ begin
   Changed;
 end;
 
-procedure TGR32WidgetCircle.PaintControl;
+procedure TGR32WGCircle.PaintControl;
 var
   T, L, W, H{, W2, H2}  : Integer;  // Genel çerçeve bilgisi
   HT,HL,HW,HH,HW2: Integer;  // Header kısmının çerçeve bilgisi

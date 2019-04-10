@@ -28,6 +28,7 @@ uses
   , VCL.Graphics                //  TColor
   , System.Classes              //  TList
   , System.Types                //  TRect,  TSize
+  //, Winapi.Windows
   ;
 
 const
@@ -54,14 +55,21 @@ const
                                                                       , 3.141592653589793 // 270. derece
                                                                       );
 type                                                                    //            0          1              0          1    //
-  TGR32WidgetFillStyle      = (wfsWinding, wfsAlternatif ); //  TPolyFillMode; // (pfAlternate, pfWinding, pfEvenOdd = 0, pfNonZero); "= 0" ataması yapılmış dolayısıyla object inspectorde çıkmıyor, o nedenle ek bir set tanımlandı.
-  TGR32WidgetVerticalPos    = (wvpNone, wvpTop, wvpBottom); //  Dikey konumlandırma bilgisi için...
-  TGR32WidgetHorizontalPos  = (whpNone, whpLeft, whpRight); //  Yatay konumlandırma bilgisi için
+  TGR32WGFullStyle      = (wfsWinding, wfsAlternatif ); //  TPolyFillMode; // (pfAlternate, pfWinding, pfEvenOdd = 0, pfNonZero); "= 0" ataması yapılmış dolayısıyla object inspectorde çıkmıyor, o nedenle ek bir set tanımlandı.
+  TGR32WGVerticalPos    = (wvpNone, wvpTop, wvpBottom); //  Dikey konumlandırma bilgisi için...
+  TGR32WGHorizontalPos  = (whpNone, whpLeft, whpRight); //  Yatay konumlandırma bilgisi için
+  TGR32WGAxialPos       = (wgpNone, wgpTop, wgpLeft, wgpBottom, wgpRight); //  Ana yön konumlandırma bilgisi için
 
-  TGR32WidgetBevelKinds = (wbvLeft, wbvTop, wbvRight, wbvBottom);
-  TGR32WidgetBevel = set of TGR32WidgetBevelKinds;
+  TGR32WGBevelKinds     = (wbvLeft, wbvTop, wbvRight, wbvBottom);
+  TGR32WGBevel          = set of TGR32WGBevelKinds;
 
-  TFontPos                  = (fpTopLeft, fpTopCenter, fpTopRight, fpCenterLeft, fpCenterCenter, fpCenterRight, fpBottomLeft, fpBottomCenter, fpBottomRight);
+  TFontPos              = (fpTopLeft, fpTopCenter, fpTopRight, fpCenterLeft, fpCenterCenter, fpCenterRight, fpBottomLeft, fpBottomCenter, fpBottomRight);
+  TFloatPoint_Helper = record helper for TFloatPoint
+    public
+      procedure Step(toX, toY: Single);
+      procedure AddX(toX: Single);
+      procedure AddY(toY: Single);
+  end;
   TColor_Helper = record Helper for TColor
     public
       function ToColor32: TColor32;
@@ -89,6 +97,7 @@ type                                                                    //      
       function AngleArc(aCenter: TFloatPoint; const aRadius, aThickness: TFloat; const aAngle, aOffset: TFloat; Steps: Integer = 4000): TArrayOfFloatPoint;
       procedure SekilBas(aRenk: TColor32; const aPoints: TArrayOfFloatPoint); overload; // Filler eklenecek
       procedure SekilBas(aRenk: TColor32; const aPoints: TArrayOfArrayOfFloatPoint); overload; // Filler eklenecek
+      procedure YaziBas(X, Y: Integer; aString: String; aFont: TFont; aFontPos: TFontPos = fpCenterCenter; aAntiAliased: Boolean = False); overload;
       procedure YaziBas(X, Y: Integer; aString: String; aColor: TColor = cldefault; aFontSize: Integer = 0; aFontName: String = ''; aFontPos: TFontPos = fpCenterCenter; aFontStyle: TFontStyles = []; aAntiAliased: Boolean = False); overload;
       procedure YaziBas(aRect: TRect; aString: String; aColor: TColor = cldefault; aFontSize: Integer = 0; aFontName: String = ''; aFontPos: TFontPos = fpCenterCenter; aFontStyle: TFontStyles = []; aAntiAliased: Boolean = False); overload;
       procedure YaziBas(aRect: TRect; aString: String; aFont: TFont; aFontPos: TFontPos = fpCenterCenter; aAntiAliased: Boolean = False); overload;
@@ -98,6 +107,8 @@ implementation
 
 uses
     System.SysUtils //  FreeAndNil
+  , System.Math
+  , System.UITypes
   ;
 
 { TRenderHelper }
@@ -269,6 +280,11 @@ begin
 
 end;
 
+procedure TRenderHelper.YaziBas(X, Y: Integer; aString: String; aFont: TFont; aFontPos: TFontPos; aAntiAliased: Boolean);
+begin
+  YaziBas(X, Y, aString, aFont.Color, aFont.Size, aFont.Name, aFontPos, aFont.Style, aAntiAliased);
+end;
+
 procedure TRenderHelper.YaziBas(aRect: TRect; aString: String; aFont: TFont; aFontPos: TFontPos; aAntiAliased: Boolean);
 begin
   YaziBas(aRect, aString, aFont.Color, aFont.Size, aFont.Name, aFontPos, aFont.Style, aAntiAliased);
@@ -280,13 +296,13 @@ var
   Origin, Outer, Inner: TFloatPoint;
 begin
   SetLength(Result, (Steps * 2) + 1);
-  // The outer edge of the arc is calculated starting point.
+  // Yayın dış kenarı başlangıç noktası olarak hesaplıyoruz.
   GR32_Math.SinCos(aOffset, aRadius, Outer.Y, Outer.X);
-  // calculate outer edge of complex offset
+  // Kompleks ofsetin dış kenarını hesaplıyoruz.
   GR32_Math.SinCos(aAngle / (Steps-2), Origin.Y, Origin.X);
-  // The internal edge start point of the arc is being calculated.
+  // Yayın iç kenarı başlangıç noktasını hesaplıyoruz.
   GR32_Math.SinCos(aOffset, aRadius - aThickness, Inner.Y, Inner.X);
-  // other items
+  // Diğer öğeleri (noktaları) hesaplıyoruz...
   for I := 0 to Steps do begin
       J := ((Steps * 2) - I) + 1;
       Outer := FloatPoint(Outer.X * Origin.X - Outer.Y * Origin.Y, Outer.Y * Origin.X + Outer.X * Origin.Y);
@@ -361,12 +377,10 @@ begin
         if (aFontSize <> 0)   then Font.Size := aFontSize;
         if (aFontName <> '')  then Font.Name := aFontName;
         Font.Style := aFontStyle;
-
         Q := 0;
         R := 0;
         W := TextWidth(aString);  W2 := (W div 2);
         H := TextHeight(aString); H2 := (H div 2);
-
         case aFontPos of
              fpTopLeft      : begin Q := X - W  ; R := Y - H  ; end; // ok
              fpTopCenter    : begin Q := X - W2 ; R := Y - H  ; end; // ok
@@ -394,6 +408,23 @@ end;
 
 { TColor_Helper }
 
+{
+function TColor_Helper.AsR: Byte;
+begin
+  Result := GetRValue(Self);
+end;
+
+function TColor_Helper.AsG: Byte;
+begin
+  Result := GetGValue(Self);
+end;
+
+function TColor_Helper.AsB: Byte;
+begin
+  Result := GetBValue(Self);
+end;
+}
+
 function TColor_Helper.ToColor32: TColor32;
 begin
   Result := Color32(Self);
@@ -402,12 +433,10 @@ end;
 { TListHelper }
 
 procedure TListHelper.Flush;
-var
-  I: Integer;
 begin
-  for I := Self.Count - 1 downto 0 do begin
-      TObject( Self[I] ).Free;
-      Self.Delete( I );
+  while Self.Count > 0 do begin
+        TObject(Self[0]).Free;
+        Self.Delete(0);
   end;
 end;
 
@@ -415,8 +444,28 @@ end;
 
 function TRect_Helper.ToCenterPointFloat: TFloatPoint;
 begin
-  Result.X := Self.CenterPoint.X;
-  Result.Y := Self.CenterPoint.Y;
+  Result.X := Self.CenterPoint.X.ToSingle;
+  Result.Y := Self.CenterPoint.Y.ToSingle;
+end;
+
+{ TFloatPoint_Helper }
+
+{ TFloatPoint_Helper }
+
+procedure TFloatPoint_Helper.AddX(toX: Single);
+begin
+  Self.X := Self.X + toX;
+end;
+
+procedure TFloatPoint_Helper.AddY(toY: Single);
+begin
+  Self.Y := Self.Y + toY;
+end;
+
+procedure TFloatPoint_Helper.Step(toX, toY: Single);
+begin
+  Self.X := Self.X + toX;
+  Self.Y := Self.Y + toY;
 end;
 
 end.
