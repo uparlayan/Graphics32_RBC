@@ -23,4 +23,4 @@ https://github.com/graphics32/GR32PNG
 
 Uğur PARLAYAN
 
-![animgif](https://user-images.githubusercontent.com/24311198/40005929-d2840ed0-57a1-11e8-86c7-92c325726bd5.gif)
+![animpng](https://github.com/uparlayan/Graphics32_RBC/blob/master/Graphics32RBC.png)
