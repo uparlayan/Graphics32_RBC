@@ -1,12 +1,9 @@
 ﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
-        <ProjectGuid>{5472E720-07D1-4286-B140-6AAB4D6852B1}</ProjectGuid>
+        <ProjectGuid>{6254C221-DD1A-417D-B2C3-3F5C3E8C7996}</ProjectGuid>
     </PropertyGroup>
     <ItemGroup>
-        <Projects Include="Packages\XE7\Graphics32_RBC.dproj">
-            <Dependencies/>
-        </Projects>
-        <Projects Include="Demos\Widget_Chart\Demo_Widget_Chart.dproj">
+        <Projects Include="Packages\XE102\Graphics32_RBC_XE10_2.dproj">
             <Dependencies/>
         </Projects>
         <Projects Include="Demos\Widgets\Demo_Widgets.dproj">
@@ -18,6 +15,9 @@
         <Projects Include="Demos\DoorGUI\DoorGUI.dproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="Demos\Widget_Chart\Demo_Widget_Chart.dproj">
+            <Dependencies/>
+        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -26,23 +26,14 @@
             <Default.Personality/>
         </BorlandProject>
     </ProjectExtensions>
-    <Target Name="Graphics32_RBC">
-        <MSBuild Projects="Packages\XE7\Graphics32_RBC.dproj"/>
+    <Target Name="Graphics32_RBC_XE10_2">
+        <MSBuild Projects="Packages\XE102\Graphics32_RBC_XE10_2.dproj"/>
     </Target>
-    <Target Name="Graphics32_RBC:Clean">
-        <MSBuild Projects="Packages\XE7\Graphics32_RBC.dproj" Targets="Clean"/>
+    <Target Name="Graphics32_RBC_XE10_2:Clean">
+        <MSBuild Projects="Packages\XE102\Graphics32_RBC_XE10_2.dproj" Targets="Clean"/>
     </Target>
-    <Target Name="Graphics32_RBC:Make">
-        <MSBuild Projects="Packages\XE7\Graphics32_RBC.dproj" Targets="Make"/>
-    </Target>
-    <Target Name="Demo_Widget_Chart">
-        <MSBuild Projects="Demos\Widget_Chart\Demo_Widget_Chart.dproj"/>
-    </Target>
-    <Target Name="Demo_Widget_Chart:Clean">
-        <MSBuild Projects="Demos\Widget_Chart\Demo_Widget_Chart.dproj" Targets="Clean"/>
-    </Target>
-    <Target Name="Demo_Widget_Chart:Make">
-        <MSBuild Projects="Demos\Widget_Chart\Demo_Widget_Chart.dproj" Targets="Make"/>
+    <Target Name="Graphics32_RBC_XE10_2:Make">
+        <MSBuild Projects="Packages\XE102\Graphics32_RBC_XE10_2.dproj" Targets="Make"/>
     </Target>
     <Target Name="Demo_Widgets">
         <MSBuild Projects="Demos\Widgets\Demo_Widgets.dproj"/>
@@ -71,14 +62,23 @@
     <Target Name="DoorGUI:Make">
         <MSBuild Projects="Demos\DoorGUI\DoorGUI.dproj" Targets="Make"/>
     </Target>
+    <Target Name="Demo_Widget_Chart">
+        <MSBuild Projects="Demos\Widget_Chart\Demo_Widget_Chart.dproj"/>
+    </Target>
+    <Target Name="Demo_Widget_Chart:Clean">
+        <MSBuild Projects="Demos\Widget_Chart\Demo_Widget_Chart.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Demo_Widget_Chart:Make">
+        <MSBuild Projects="Demos\Widget_Chart\Demo_Widget_Chart.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="Graphics32_RBC;Demo_Widget_Chart;Demo_Widgets;GramAltin;DoorGUI"/>
+        <CallTarget Targets="Graphics32_RBC_XE10_2;Demo_Widgets;GramAltin;DoorGUI;Demo_Widget_Chart"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="Graphics32_RBC:Clean;Demo_Widget_Chart:Clean;Demo_Widgets:Clean;GramAltin:Clean;DoorGUI:Clean"/>
+        <CallTarget Targets="Graphics32_RBC_XE10_2:Clean;Demo_Widgets:Clean;GramAltin:Clean;DoorGUI:Clean;Demo_Widget_Chart:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="Graphics32_RBC:Make;Demo_Widget_Chart:Make;Demo_Widgets:Make;GramAltin:Make;DoorGUI:Make"/>
+        <CallTarget Targets="Graphics32_RBC_XE10_2:Make;Demo_Widgets:Make;GramAltin:Make;DoorGUI:Make;Demo_Widget_Chart:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>
