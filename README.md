@@ -1,5 +1,5 @@
 # Graphics32_RBC
-Rubicube Graphics Extension on Graphics 32 Library
+Graphics Extension on Graphics 32 Library
 
 [TR] Bu bileşen paketinin kullanılabilmesi için aşağıdaki linkte yer alan kütüphanenin RAD Studio'ya önceden kurulmuş olmasını gerektirir.
 
