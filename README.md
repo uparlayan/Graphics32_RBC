@@ -1,6 +1,10 @@
 # Graphics32_RBC
 > Graphics Extension that extend of Graphics32 Library for Delphi and Lazarus by Uğur PARLAYAN.
 
+[EN] This is not a requirement, but; We are curious about what you are doing in your projects using this library. We would appreciate it if you share the images with us. (ugurparlayan@gmail.com)
+
+[TR] Bu bir gereklilik değil ama; Bu kütüphaneyi kullanarak projelerinizde neler yaptığınızı merak ediyoruz. Görselleri bizimle de paylaşırsanız seviniriz. ( ugurparlayan@gmail.com ) 
+
 # Türkçe (Turkish)
 
 Bu bileşen paketinin kullanılabilmesi için aşağıdaki linkte yer alan kütüphanenin RAD Studio'ya önceden kurulmuş olmasını gerektirir.
