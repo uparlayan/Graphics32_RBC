@@ -1,5 +1,5 @@
 # Graphics32_RBC
-> Graphics Extension on Graphics 32 Library for Delphi and Lazarus
+> Graphics Extension that extend of Graphics32 Library for Delphi and Lazarus by Uğur PARLAYAN.
 
 # Türkçe (Turkish)
 
