@@ -16,6 +16,7 @@ Bu bileşen paketi Graphics32 grafik kütüphanesinin yeteneklerinden faydalanar
 Bu bileşen paketi hali hazırda geliştirilmesi tamamlanmış daha büyük bir paketin çok ufak bir bölümünü kapsamakta ve programlama açısından bilgilendirme maksadıyla yayınlanmıştır. Bazı bileşenleri hafifletilmiş sürümleri zamanla buraya eklenecektir.
 
 Uğur PARLAYAN
+
 Kıdemli Yazılım Uzmanı
 
 # English (İngilizce)
@@ -33,6 +34,7 @@ This component package is intended to be used in business applications to produc
 This component package contains a very small portion of a larger package that has already been developed and has been published for informational purposes in terms of programming. Lightweight versions of some components will be added here over time.
 
 Uğur PARLAYAN
+
 Senior Software Specialist
 
 # Result
