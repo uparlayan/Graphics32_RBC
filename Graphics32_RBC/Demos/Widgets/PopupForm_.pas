@@ -9,12 +9,12 @@ uses
 
 type
   TPopupForm = class(TForm)
-    GR32WidgetIzgara1: TGR32WidgetIzgara;
-    WTT: TGR32WidgetTitle;
+    GR32WidgetIzgara1: TGR32WGIzgara;
+    WTT: TGR32WGHeader;
     Edit1: TEdit;
     Button1: TButton;
     Memo1: TMemo;
-    GR32WidgetStatusBar1: TGR32WidgetStatusBar;
+    GR32WidgetStatusBar1: TGR32WGStatusBar;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure WTTMenuClick(Sender: TObject);
     procedure WTTCloseClick(Sender: TObject);
@@ -26,16 +26,16 @@ type
     //procedure CreateParams(var Params: TCreateParams);
   public
     { Public declarations }
+    class function CreatePopupForm(aOwner: TComponent): TPopupForm;
   end;
 
   // var PopupForm: TPopupForm;
-  function CreatePopupForm(aOwner: TComponent): TPopupForm;
 
 implementation
 
 {$R *.dfm}
 
-function CreatePopupForm(aOwner: TComponent): TPopupForm;
+class function TPopupForm.CreatePopupForm(aOwner: TComponent): TPopupForm;
 begin
   Result := TPopupForm.Create(aOwner);
 end;

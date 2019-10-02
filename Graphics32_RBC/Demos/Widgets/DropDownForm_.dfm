@@ -50,7 +50,7 @@ object DropDownForm: TDropDownForm
       24
       24)
   end
-  object GR32WidgetStatusBar1: TGR32WidgetStatusBar
+  object GR32WidgetStatusBar1: TGR32WGStatusBar
     Left = 0
     Top = 250
     Width = 520

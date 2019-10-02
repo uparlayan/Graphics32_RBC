@@ -1,17 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
 	<Transactions>
-    <Transaction>1899.12.30 00:00:00.000.014,=C:\Users\Delphi\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.033,=C:\Users\Delphi\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.407,=C:\Users\Delphi\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.083,=C:\Users\Delphi\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.464,P:\Dev\Delphi\ProjXE7\_DENEYLER\DENEY_GRAMALTIN\GramAltin.dproj=C:\Users\Delphi\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
     <Transaction>1899.12.30 00:00:00.000.515,=C:\Users\Delphi\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.016,P:\Dev\Delphi\ProjXE7\_DENEYLER\DENEY_GRAMALTIN\Ana_.dfm=C:\Users\Delphi\Documents\Embarcadero\Studio\Projects\Unit3.dfm</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.726,=C:\Users\Delphi\Documents\Embarcadero\Studio\Projects\Unit3.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.016,P:\Dev\Delphi\ProjXE7\_DENEYLER\DENEY_GRAMALTIN\Ana_.pas=C:\Users\Delphi\Documents\Embarcadero\Studio\Projects\Unit3.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.083,=C:\Users\Delphi\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.014,=C:\Users\Delphi\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.745,=P:\Dev\Delphi\LibGenel\Graphics32_RBC\Demos\Doviz_com\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.464,P:\Dev\Delphi\ProjXE7\_DENEYLER\DENEY_GRAMALTIN\GramAltin.dproj=C:\Users\Delphi\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.164,P:\Dev\Delphi\LibGenel\Graphics32_RBC\Demos\Doviz_com\Classes\Class_Currency_.pas=P:\Dev\Delphi\LibGenel\Graphics32_RBC\Demos\Doviz_com\Unit1.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.114,=C:\Users\Delphi\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.016,P:\Dev\Delphi\ProjXE7\_DENEYLER\DENEY_GRAMALTIN\Ana_.pas=C:\Users\Delphi\Documents\Embarcadero\Studio\Projects\Unit3.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.726,=C:\Users\Delphi\Documents\Embarcadero\Studio\Projects\Unit3.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.016,P:\Dev\Delphi\ProjXE7\_DENEYLER\DENEY_GRAMALTIN\Ana_.dfm=C:\Users\Delphi\Documents\Embarcadero\Studio\Projects\Unit3.dfm</Transaction>
     <Transaction>1899.12.30 00:00:00.000.323,=C:\Users\Delphi\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.407,=C:\Users\Delphi\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.033,=C:\Users\Delphi\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
   </Transactions>
 	<ActiveMobileDevice>
 		<NoProfile iOSSimulator="iPhone5"/>

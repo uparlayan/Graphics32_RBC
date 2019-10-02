@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, GR32_Widgets_Base, GR32_Widgets_Chart, Vcl.ExtCtrls, GR32_Widgets_Circle,
-  dxGDIPlusClasses, Vcl.ComCtrls;
+  dxGDIPlusClasses, Vcl.ComCtrls, Vcl.StdCtrls;
 
 type
   TGezici = record
@@ -24,6 +24,7 @@ type
     CHRT: TGR32WGChart;
     Image1: TImage;
     TrackBar1: TTrackBar;
+    GR32WGChart1: TGR32WGChart;
     procedure FrekansTimer(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure TrackBar1Change(Sender: TObject);

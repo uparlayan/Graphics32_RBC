@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>1899.12.30 00:00:00.000.545,=C:\Users\Delphi\Documents\Embarcadero\Studio\Projects\Unit2.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.948,=C:\Users\Delphi\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.711,P:\Dev\Delphi\LibGenel\Graphics32_RBC\Demos\DoorGUI\Ana_.dfm=C:\Users\Delphi\Documents\Embarcadero\Studio\Projects\Unit2.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.711,P:\Dev\Delphi\LibGenel\Graphics32_RBC\Demos\DoorGUI\Ana_.pas=C:\Users\Delphi\Documents\Embarcadero\Studio\Projects\Unit2.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.618,P:\Dev\Delphi\LibGenel\Graphics32_RBC\Demos\DoorGUI\DoorGUI.dproj=C:\Users\Delphi\Documents\Embarcadero\Studio\Projects\Project2.dproj</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.551,=C:\Users\Delphi\Documents\Embarcadero\Studio\Projects\Unit2.pas</Transaction>
+  </Transactions>
+</BorlandProject>

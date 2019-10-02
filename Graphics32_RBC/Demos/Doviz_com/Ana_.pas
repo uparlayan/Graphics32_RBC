@@ -62,13 +62,13 @@ end;
 
 procedure TForm3.BT_Klik(Sender: TObject);
 var
-  A       : Boolean;
-  I       : Integer;
   JDATA   : TJSONValue; // Verinin tamamý
   JARAY   : TJSONArray; // Verideki bir tablo
   JVAL    : TJSONValue; // tablonun tek bir satýrý
   JPAR1   : TJSONPair;  // satýrýn tek bir sütun
   JPAR2   : TJSONPair;  // satýrýn tek bir sütun
+  A       : Boolean;
+  I       : Integer;
   X       : Single;
   T       : String;
   Z       : TDateTime;

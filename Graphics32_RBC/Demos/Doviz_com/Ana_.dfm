@@ -30,6 +30,7 @@ object Form3: TForm3
         Width = 807
         Height = 393
         Align = alClient
+        AlphaBlend = 255
         Ayarlar.Background = clWindow
         Ayarlar.BackgroundHover = clWindow
         Ayarlar.BorderColor = clBtnShadow
@@ -41,6 +42,7 @@ object Form3: TForm3
         Ayarlar.Cizgi_Kalinlik = 1.000000000000000000
         Ayarlar.Cizgi_Renk = clRed
         Ayarlar.Cizgi_YariCap = 0.100000001490116100
+        Ayarlar.Cizgi_CemberEkle = True
         Ayarlar.FrameBG = clWindow
         Ayarlar.FrameBGHover = clWindow
         Ayarlar.FrameColor = clWindowFrame
@@ -57,6 +59,27 @@ object Form3: TForm3
         Ayarlar.Padding.Top = 5
         Ayarlar.Padding.Right = 5
         Ayarlar.Padding.Bottom = 5
+        Ayarlar.LineColor = clBtnShadow
+        Ayarlar.LineStyle = psDot
+        Ayarlar.LineWidth = 1.000000000000000000
+        Ayarlar.AralikDikey = 30
+        Ayarlar.AralikYatay = 40
+        Ayarlar.ChartAreaColor = 16764573
+        Ayarlar.ChartAreaColorAlpha = 255
+        Ayarlar.ShowValues = True
+        Ayarlar.ShowValueType = svtEveryValue
+        Ayarlar.AutoScroll = True
+        Ayarlar.Axis.Charset = DEFAULT_CHARSET
+        Ayarlar.Axis.Color = clHotLight
+        Ayarlar.Axis.Height = -15
+        Ayarlar.Axis.Name = 'Tahoma'
+        Ayarlar.Axis.Style = []
+        Ayarlar.AxisYCount = 10
+        Ayarlar.AxisLineStyle = psSolid
+        Ayarlar.AxisLineColor = clRed
+        Ayarlar.AxisLineColorAlpha = 255
+        Ayarlar.AxisTextPos = fpTopLeft
+        Ayarlar.AxisYVisible = True
         AntiAliased = True
         Header = 'Gram Alt'#305'n Fiyatlar'#305
       end

@@ -17,7 +17,7 @@ object PopupForm: TPopupForm
     272)
   PixelsPerInch = 96
   TextHeight = 13
-  object GR32WidgetIzgara1: TGR32WidgetIzgara
+  object GR32WidgetIzgara1: TGR32WGIzgara
     Left = 0
     Top = 40
     Width = 440
@@ -35,7 +35,7 @@ object PopupForm: TPopupForm
     LineWidth = 1
     LineView = wilTumu
   end
-  object WTT: TGR32WidgetTitle
+  object WTT: TGR32WGHeader
     Left = 0
     Top = 0
     Width = 440
@@ -102,7 +102,7 @@ object PopupForm: TPopupForm
     ScrollBars = ssVertical
     TabOrder = 4
   end
-  object GR32WidgetStatusBar1: TGR32WidgetStatusBar
+  object GR32WidgetStatusBar1: TGR32WGStatusBar
     Left = 0
     Top = 247
     Width = 440

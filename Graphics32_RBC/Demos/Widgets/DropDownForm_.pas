@@ -10,7 +10,7 @@ uses
 type
   TDropDownForm = class(TForm)
     SG: TStringGrid;
-    GR32WidgetStatusBar1: TGR32WidgetStatusBar;
+    GR32WidgetStatusBar1: TGR32WGStatusBar;
     procedure FormCreate(Sender: TObject);
     procedure FormResize(Sender: TObject);
   private
@@ -20,8 +20,7 @@ type
     class function CreateDropDownForm(aOwner: TComponent): TDropDownForm;
   end;
 
-var
-  DropDownForm: TDropDownForm;
+  //  var DropDownForm: TDropDownForm;
 
 implementation
 
