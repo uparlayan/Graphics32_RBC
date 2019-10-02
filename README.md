@@ -1,5 +1,5 @@
 # Graphics32_RBC
-> Graphics Extension that extend of Graphics32 Library for Delphi and Lazarus by Uğur PARLAYAN.
+> Graphics Extension that extend of Graphics32 Library for Delphi XE6 and up (and maybe Lazarus) by Uğur PARLAYAN.
 
 **`EN`** This is not a requirement, but; We are curious about what you are doing in your projects using this library. We would appreciate it if you share the screen shots with us. (ugurparlayan@gmail.com)
 
