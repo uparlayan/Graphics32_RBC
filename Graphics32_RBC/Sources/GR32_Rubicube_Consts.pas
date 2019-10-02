@@ -75,6 +75,7 @@ implementation
 
 function TclRbcColors_Helper.ToColor: TColor;
 begin
+  Result := clNone;
   case  Self  of
         RbcMavi           : Result := clRbcMavi           ;
         RbcTurkuaz        : Result := clRbcTurkuaz        ;

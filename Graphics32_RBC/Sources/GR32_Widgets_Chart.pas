@@ -30,7 +30,7 @@ uses
   , System.SysUtils             //  FreeAndNil
   , Vcl.Graphics                //  TColor
   , Vcl.Controls                //  TCustomControl
-  , Generics.Collections
+  , Generics.Collections        //  TList<>
   , Generics.Defaults
   ;
 
@@ -612,11 +612,9 @@ end;
 procedure TGR32WGChart.Add(aGrup: string; aValue: Single);
 begin
   FItems.Add( TGR32WGChartItem.Ekle(aGrup, aValue) );
-  if (FAyarlar.FAutoScroll) and (FItems.Count >= 50) then begin
-      RemoveItem;
-      Invalidate;
-  end else Invalidate;
-  // Sort prosedürü eklenecek...
+  // if (FAyarlar.FAutoScroll) and (FItems.Count >= 50) then RemoveItem;
+  Invalidate;
+  {TODO -oUğur -cSıralama : Sort metodu eklenecek. Metod seçimlik olacak.}
 end;
 
 procedure TGR32WGChart.BeginUpdate;
@@ -626,15 +624,11 @@ end;
 
 procedure TGR32WGChart.ClearItems;
 begin
-  //FItems.Flush;
-
   BeginUpdate;
-
   try
-    while FItems.Count > 0 do
-    begin
-      FItems.Items[0].Free;
-      FItems.Delete(0);
+    while FItems.Count > 0 do begin
+          FItems.Items[0].Free;
+          FItems.Delete(0);
     end;
   finally
     EndUpdate;

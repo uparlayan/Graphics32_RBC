@@ -129,6 +129,10 @@ procedure Register;
 
 implementation
 
+uses
+    System.UITypes      //  TFont.GetStyle
+  ;
+
 procedure Register;
 begin
   RegisterComponents('Graphics32RBC', [TGR32WGBox]);
