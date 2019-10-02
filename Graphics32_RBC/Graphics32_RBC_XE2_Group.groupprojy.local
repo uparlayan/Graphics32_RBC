@@ -1,9 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<BorlandProject>
-	<Transactions>
-    <Transaction>1899.12.30 00:00:00.000.553,C:\Users\Ugur\Documents\Embarcadero\Studio\Projects\ProjectGroup1.groupproj=P:\Dev\Delphi\LibGenel\Graphics32_RBC\Graphics32_RBC_XE2_Group.groupproj</Transaction>
-  </Transactions>
-	<Default.Personality>
-		<Projects ActiveProject="P:\Dev\Delphi\LibGenel\Graphics32_RBC\Demos\Widget_Chart\Demo_Widget_Chart.dproj"/>
-	</Default.Personality>
-</BorlandProject>
