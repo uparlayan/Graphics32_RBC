@@ -7,7 +7,7 @@
 
 # Türkçe (Turkish)
 
-> Kurulum ve dökümantasyon detayları için lütfen [Wiki](https://github.com/uparlayan/Graphics32_RBC/wiki) sayfasını ziyaret edin. 
+> Kurulum ve dökümantasyon detayları için lütfen **[Wiki](https://github.com/uparlayan/Graphics32_RBC/wiki)** sayfasını ziyaret edin. 
 
 > **Delphi'nin XE6 sürümünden itibaren desteklenmektedir.**
 
@@ -18,7 +18,7 @@
 
 # English (İngilizce)
 
-> For installation and documentation details, please visit [Wiki] (https://github.com/uparlayan/Graphics32_RBC/wiki).
+> For installation and documentation details, please visit **[Wiki] (https://github.com/uparlayan/Graphics32_RBC/wiki).**
 
 > **Supported from XE6 version of Delphi.**
 
