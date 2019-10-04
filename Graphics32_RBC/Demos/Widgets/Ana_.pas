@@ -24,7 +24,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics, Vcl.Controls,
   Vcl.Forms, Vcl.Dialogs, Vcl.ComCtrls, Vcl.ExtCtrls, Vcl.StdCtrls, GR32_Widgets_PopupForm, GR32_Widgets_Bar,
   GR32_Widgets_Chart, GR32_Widgets_Circle, GR32_Widgets_Box, GR32_Widgets_Title, GR32_Widgets_Base, GR32_Widgets_Button,
-  GR32_Widgets_Statusbar, GR32_Widgets_Breadcrumb, GR32_Image, GR32_Png, Vcl.Menus, dxGDIPlusClasses;
+  GR32_Widgets_Statusbar, GR32_Widgets_Breadcrumb, GR32_Image, GR32_Png, Vcl.Menus;
 
 type
   TGezici = record
