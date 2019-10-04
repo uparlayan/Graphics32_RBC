@@ -13,13 +13,13 @@ uses
 {$R *.res}
 
 begin
-  AddFontResource('fontlar\droid.ttf');
+  //AddFontResource('fontlar\droid.ttf');
   //SendMessage(HWND_BROADCAST, WM_FONTCHANGE, 0, 0);
-  SendMessage(HWND_BROADCAST, $1D, 0, 0);
+  //SendMessage(HWND_BROADCAST, $1D, 0, 0);
+  //TStyleManager.TrySetStyle('Amethyst Kamri');
   ReportMemoryLeaksOnShutdown := True;
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
-  //TStyleManager.TrySetStyle('Amethyst Kamri');
   Application.CreateForm(TAna, Ana);
   Application.Run;
 end.
