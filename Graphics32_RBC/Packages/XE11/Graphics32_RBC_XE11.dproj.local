@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+  <ProjectSortOrder AutoSort="0" SortType="0">
+    <File Path="..\..\..\Graphics32_RBC"/>
+    <File Path="..\..\Sources"/>
+    <File Path="..\..\Sources\GR32_Rubicube_Consts.pas"/>
+    <File Path="..\..\Sources\GR32_Rubicube_Utils.pas"/>
+    <File Path="..\..\Sources\GR32_Widgets_Bar.pas"/>
+    <File Path="..\..\Sources\GR32_Widgets_Base.pas"/>
+    <File Path="..\..\Sources\GR32_Widgets_Box.pas"/>
+    <File Path="..\..\Sources\GR32_Widgets_Breadcrumb.pas"/>
+    <File Path="..\..\Sources\GR32_Widgets_Button.pas"/>
+    <File Path="..\..\Sources\GR32_Widgets_Chart.pas"/>
+    <File Path="..\..\Sources\GR32_Widgets_Circle.pas"/>
+    <File Path="..\..\Sources\GR32_Widgets_Izgara.pas"/>
+    <File Path="..\..\Sources\GR32_Widgets_PopupForm.pas"/>
+    <File Path="..\..\Sources\GR32_Widgets_Statusbar.pas"/>
+    <File Path="..\..\Sources\GR32_Widgets_Title.pas"/>
+    <File Path="..\..\Sources\TGR32WGBAR.bmp"/>
+    <File Path="..\..\Sources\TGR32WGBOX.bmp"/>
+    <File Path="..\..\Sources\TGR32WGBREADCRUMB.bmp"/>
+    <File Path="..\..\Sources\TGR32WGBUTTON.bmp"/>
+    <File Path="..\..\Sources\TGR32WGCHART.bmp"/>
+    <File Path="..\..\Sources\TGR32WGCIRCLE.bmp"/>
+    <File Path="..\..\Sources\TGR32WGHEADER.bmp"/>
+    <File Path="..\..\Sources\TGR32WGIZGARA.bmp"/>
+    <File Path="..\..\Sources\TGR32WGPOPUPFORM.bmp"/>
+    <File Path="..\..\Sources\TGR32WGSTATUSBAR.bmp"/>
+    <File Path="GR32_R.dcp"/>
+    <File Path="rtl.dcp"/>
+    <File Path="vcl.dcp"/>
+  </ProjectSortOrder>
+</BorlandProject>
