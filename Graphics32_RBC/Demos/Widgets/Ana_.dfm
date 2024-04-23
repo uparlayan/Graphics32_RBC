@@ -13,11 +13,9 @@ object Ana: TAna
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
-  OldCreateOrder = False
   Position = poScreenCenter
   OnCreate = FormCreate
   OnResize = PNL_2Resize
-  PixelsPerInch = 96
   TextHeight = 13
   object Splitter1: TSplitter
     Left = 167
@@ -69,7 +67,7 @@ object Ana: TAna
     AlphaBlend = 255
     Ayarlar.Background = 5127995
     Ayarlar.BackgroundHover = 6245191
-    Ayarlar.BorderColor = 4010286
+    Ayarlar.BorderColor = clRed
     Ayarlar.BracketWidth = 15
     Ayarlar.Font.Charset = DEFAULT_CHARSET
     Ayarlar.Font.Color = clWhite
@@ -219,7 +217,7 @@ object Ana: TAna
         AlignWithMargins = True
         Left = 10
         Top = 10
-        Width = 649
+        Width = 651
         Height = 100
         Margins.Left = 10
         Margins.Top = 10
@@ -271,9 +269,9 @@ object Ana: TAna
       end
       object GR32WidgetBox3: TGR32WGBox
         AlignWithMargins = True
-        Left = 233
+        Left = 234
         Top = 130
-        Width = 426
+        Width = 427
         Height = 73
         Margins.Left = 10
         Margins.Top = 10
@@ -326,9 +324,9 @@ object Ana: TAna
       end
       object CRC2: TGR32WGCircle
         AlignWithMargins = True
-        Left = 233
+        Left = 234
         Top = 223
-        Width = 203
+        Width = 204
         Height = 369
         Margins.Left = 10
         Margins.Top = 10
@@ -377,7 +375,7 @@ object Ana: TAna
         AlignWithMargins = True
         Left = 10
         Top = 223
-        Width = 203
+        Width = 204
         Height = 369
         Margins.Left = 10
         Margins.Top = 10
@@ -423,9 +421,9 @@ object Ana: TAna
         Yuzde = 75
       end
       object PNL_2: TPanel
-        Left = 446
+        Left = 448
         Top = 213
-        Width = 449
+        Width = 447
         Height = 389
         Align = alClient
         BevelOuter = bvNone
@@ -679,7 +677,7 @@ object Ana: TAna
         object Splitter2: TSplitter
           Left = 10
           Top = 159
-          Width = 429
+          Width = 427
           Height = 6
           Cursor = crVSplit
           Align = alTop
@@ -688,7 +686,7 @@ object Ana: TAna
         object Splitter3: TSplitter
           Left = 10
           Top = 268
-          Width = 429
+          Width = 427
           Height = 6
           Cursor = crVSplit
           Align = alBottom
@@ -698,7 +696,7 @@ object Ana: TAna
         object BRO: TGR32WGChart
           Left = 10
           Top = 10
-          Width = 429
+          Width = 427
           Height = 149
           Margins.Left = 10
           Margins.Top = 10
@@ -761,7 +759,7 @@ object Ana: TAna
         object GRO: TGR32WGChart
           Left = 10
           Top = 165
-          Width = 429
+          Width = 427
           Height = 103
           Margins.Left = 10
           Margins.Top = 0
@@ -824,7 +822,7 @@ object Ana: TAna
         object KRO: TGR32WGChart
           Left = 10
           Top = 274
-          Width = 429
+          Width = 427
           Height = 105
           Margins.Left = 10
           Margins.Top = 0
@@ -889,7 +887,7 @@ object Ana: TAna
         AlignWithMargins = True
         Left = 10
         Top = 130
-        Width = 203
+        Width = 204
         Height = 73
         Margins.Left = 10
         Margins.Top = 10
@@ -922,9 +920,9 @@ object Ana: TAna
       end
       object Panel2: TPanel
         AlignWithMargins = True
-        Left = 679
+        Left = 681
         Top = 10
-        Width = 206
+        Width = 204
         Height = 193
         Margins.Left = 10
         Margins.Top = 10
@@ -940,7 +938,7 @@ object Ana: TAna
           AlignWithMargins = True
           Left = 0
           Top = 0
-          Width = 202
+          Width = 200
           Height = 48
           Margins.Left = 0
           Margins.Top = 0
@@ -974,7 +972,7 @@ object Ana: TAna
           AlignWithMargins = True
           Left = 0
           Top = 48
-          Width = 202
+          Width = 200
           Height = 48
           Margins.Left = 0
           Margins.Top = 0
@@ -1008,7 +1006,7 @@ object Ana: TAna
           AlignWithMargins = True
           Left = 0
           Top = 96
-          Width = 202
+          Width = 200
           Height = 48
           Margins.Left = 0
           Margins.Top = 0
@@ -1042,7 +1040,7 @@ object Ana: TAna
           AlignWithMargins = True
           Left = 0
           Top = 144
-          Width = 202
+          Width = 200
           Height = 48
           Margins.Left = 0
           Margins.Top = 0
