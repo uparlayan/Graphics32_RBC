@@ -109,6 +109,7 @@ uses
     System.SysUtils //  FreeAndNil
   , System.Math
   , System.UITypes
+  , GR32_Backends
   ;
 
 { TRenderHelper }
@@ -329,10 +330,10 @@ var
 begin
   with  Self.Bitmap do begin
         //if (aColor <> 0)      then
-        Font.Color := aColor;
-        if (aFontSize <> 0)   then Font.Size := aFontSize;
-        if (aFontName <> '')  then Font.Name := aFontName;
-        Font.Style := aFontStyle;
+        (Self.Bitmap.Backend as IFontSupport).Font.Color := aColor;
+        if (aFontSize <> 0)   then (Self.Bitmap.Backend as IFontSupport).Font.Size := aFontSize;
+        if (aFontName <> '')  then (Self.Bitmap.Backend as IFontSupport).Font.Name := aFontName;
+        (Self.Bitmap.Backend as IFontSupport).Font.Style := aFontStyle;
 
         RX := aRect.Left;
         RY := aRect.Top;
@@ -341,8 +342,10 @@ begin
 
         TX := 0;
         TY := 0;
-        TW := TextWidth(aString);  TW2 := (TW div 2);
-        TH := TextHeight(aString); TH2 := (TH div 2);
+        //TW := TextWidth(aString);  TW2 := (TW div 2);
+        //TH := TextHeight(aString); TH2 := (TH div 2);
+        TW := (Self.Bitmap.Backend as ITextSupport).TextExtent(aString).Width;  TW2 := (TW div 2);
+        TH := (Self.Bitmap.Backend as ITextSupport).TextExtent(aString).Height; TH2 := (TH div 2);
 
         case aFontPos of
              fpTopLeft      : begin TX := RX       ; TY := RY       ; end; // ok
@@ -358,10 +361,11 @@ begin
              fpBottomRight  : begin TX := RW  - TW ; TY := RH  - TH ; end; // ok
         end;
 
-        case aAntiAliased of
-          True : RenderText(TX, TY, aString, 1, Color32(aColor) );
-          False: TextOut(TX, TY, aString);
-        end;
+        if   (aAntiAliased = TRUE)
+        then (Self.Bitmap.Backend as IFontSupport).Font.Quality := TFontQuality.fqAntialiased
+        else (Self.Bitmap.Backend as IFontSupport).Font.Quality := TFontQuality.fqDefault;
+
+        (Self.Bitmap.Backend as ITextSupport).Textout(TX, TY, aString);
   end;
 end;
 
@@ -373,14 +377,14 @@ var
 begin
   with  Self.Bitmap do begin
         //if (aColor <> 0)      then
-        Font.Color := aColor;
-        if (aFontSize <> 0)   then Font.Size := aFontSize;
-        if (aFontName <> '')  then Font.Name := aFontName;
-        Font.Style := aFontStyle;
+        (Self.Bitmap.Backend as IFontSupport).Font.Color := aColor;
+        if (aFontSize <> 0)   then (Self.Bitmap.Backend as IFontSupport).Font.Size := aFontSize;
+        if (aFontName <> '')  then (Self.Bitmap.Backend as IFontSupport).Font.Name := aFontName;
+        (Self.Bitmap.Backend as IFontSupport).Font.Style := aFontStyle;
         Q := 0;
         R := 0;
-        W := TextWidth(aString);  W2 := (W div 2);
-        H := TextHeight(aString); H2 := (H div 2);
+        W := (Self.Bitmap.Backend as ITextSupport).TextExtent(aString).Width;  W2 := (W div 2);
+        H := (Self.Bitmap.Backend as ITextSupport).TextExtent(aString).Height; H2 := (H div 2);
         case aFontPos of
              fpTopLeft      : begin Q := X - W  ; R := Y - H  ; end; // ok
              fpTopCenter    : begin Q := X - W2 ; R := Y - H  ; end; // ok
@@ -392,10 +396,12 @@ begin
              fpBottomCenter : begin Q := X - W2 ; R := Y      ; end; // ok
              fpBottomRight  : begin Q := X      ; R := Y      ; end; // ok
         end;
-        case aAntiAliased of
-          True : RenderText(Q, R, aString, 1, Color32(aColor) );
-          False: TextOut(Q, R, aString);
-        end;
+
+        if   (aAntiAliased = TRUE)
+        then (Self.Bitmap.Backend as IFontSupport).Font.Quality := TFontQuality.fqAntialiased
+        else (Self.Bitmap.Backend as IFontSupport).Font.Quality := TFontQuality.fqDefault;
+
+        (Self.Bitmap.Backend as ITextSupport).Textout(Q, R, aString);
   end;
 end;
 

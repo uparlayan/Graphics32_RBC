@@ -83,14 +83,14 @@ type
           FShowValueType        : TShowValueType;
           FAutoScroll           : Boolean;
 
-          FAxis               : TFont;
-          FAxisYCount          : Byte;
-          FAxisLineColor      : TColor;
-          FAxisLineColorAlpha : Byte;
-          FAxisLineStyle      : TPenStyle;
-          FAxisLineWidth      : Single;
-          FAxisTextPos        : TFontPos;
-          FAxisYVisible        : Boolean;
+          FAxis                 : TFont;
+          FAxisYCount           : Byte;
+          FAxisLineColor        : TColor;
+          FAxisLineColorAlpha   : Byte;
+          FAxisLineStyle        : TPenStyle;
+          FAxisLineWidth        : Single;
+          FAxisTextPos          : TFontPos;
+          FAxisYVisible         : Boolean;
 
           procedure SetBackground(const Value: TColor);
           procedure SetBackgroundHover(const Value: TColor);
@@ -879,7 +879,6 @@ begin
                         _R := GetRValue(FAyarlar.ChartAreaColor);
                         _G := GetGValue(FAyarlar.ChartAreaColor);
                         _B := GetBValue(FAyarlar.ChartAreaColor);
-
                         PolygonFS(Self.FBuffer, ClosePolygon(AlanPoint), Color32(_R, _G, _B, FAyarlar.ChartAreaColorAlpha)); // !!! > ClosePolygon fonksiyonu APoints[Length(APoints)]'in son elemanını ilk eleman ile eşitliyor...
 
                         if (FAyarlar.Cizgi_CemberEkle = True) then begin
